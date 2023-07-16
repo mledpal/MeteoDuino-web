@@ -26,25 +26,32 @@
     </form> 
     
     <section id="sDatos">      
-      <div id="datos">
-        <p><span class="titulo actual">Hora</span><span class="dato actual" id="tiempo"></span></p>  
-        <p><span class="titulo actual">T.Actual</span><span class="dato actual" id="tactual"></span></p>
-        <p><span class="titulo actual">H.Actual</span><span class="dato actual" id="hactual"></span></p>
-        <p><span class="titulo actual">P.Actual</span><span class="dato actual" id="pactual"></span></p>
+      
+        <div class="datosActuales">
+          <p><span class="titulo actual">Hora</span><span class="dato actual" id="tiempo"></span></p>  
+          <p><span class="titulo actual">T.Actual</span><span class="dato actual" id="tactual"></span></p>
+          <p><span class="titulo actual">H.Actual</span><span class="dato actual" id="hactual"></span></p>
+          <p><span class="titulo actual">P.Actual</span><span class="dato actual" id="pactual"></span></p>
+        </div>
 
-        <p><span class="titulo">T.Máxima</span><span class="dato" id="tmaxima"></span></p>
-        <p><span class="titulo">T.Media</span><span class="dato" id="tmedia"></span></p>
-        <p><span class="titulo">T.Mínima</span><span class="dato"  id="tminima"></span></p>       
-        
-        <p><span class="titulo">H.Máxima</span><span class="dato" id="hmaxima"></span></p>
-        <p><span class="titulo">H.Media</span><span class="dato" id="hmedia"></span></p>
-        <p><span class="titulo">H.Mínima</span><span class="dato"  id="hminima"></span></p>
-        
-        <p><span class="titulo">P.Máxima</span><span class="dato" id="pmaxima"></span></p>
-        <p><span class="titulo">P.Media</span><span class="dato" id="pmedia"></span></p>
-        <p><span class="titulo">P.Mínima</span><span class="dato" id="pminima"></span></p>   
-      </div>
+        <div class="temperatura">
+          <p><span class="titulo">T.Máxima</span><span class="dato" id="tmaxima"></span></p>
+          <p><span class="titulo">T.Media</span><span class="dato" id="tmedia"></span></p>
+          <p><span class="titulo">T.Mínima</span><span class="dato"  id="tminima"></span></p>       
+        </div>
 
+        <div class="humedad">
+          <p><span class="titulo">H.Máxima</span><span class="dato" id="hmaxima"></span></p>
+          <p><span class="titulo">H.Media</span><span class="dato" id="hmedia"></span></p>
+          <p><span class="titulo">H.Mínima</span><span class="dato"  id="hminima"></span></p>
+          </div>
+
+        <div class="presion">
+          <p><span class="titulo">P.Máxima</span><span class="dato" id="pmaxima"></span></p>
+          <p><span class="titulo">P.Media</span><span class="dato" id="pmedia"></span></p>
+          <p><span class="titulo">P.Mínima</span><span class="dato" id="pminima"></span></p>   
+        </div>
+      
     </section>
   </aside>
     

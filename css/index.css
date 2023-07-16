@@ -19,7 +19,7 @@ aside {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background: #888;
+    background: #222;
 }
 
 form {
@@ -67,22 +67,20 @@ section[id="sDatos"] {
     display: flex;
     flex-direction: column;
     align-items: center;    
-}
-
-
-section[id="sDatos"] div[id="datos"] {    
-    padding-top: 50px;
-    padding-bottom: 50px;
-    height: 100%;
-    width: 100%;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: flex-start;
 }
 
-section[id="sDatos"] p {
+
+section[id="sDatos"]  div {
+    position: relative;
+    top: 25px;
+    width: 100%;        
+    border: 2px solid #eee;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+section[id="sDatos"] div p {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -95,6 +93,10 @@ section[id="sDatos"] p {
 
 section[id="sDatos"] p:nth-child(odd) {
     background: #555;
+}
+
+section[id="sDatos"] p:nth-child(even) {
+    background: #999;
 }
 
 span.titulo {
@@ -115,22 +117,6 @@ span.actual {
     font-weight: 600;
 }
 
-p:nth-child(1),
-p:nth-child(2),
-p:nth-child(3),
-p:nth-child(4) {
-    border-left: 2px solid #eee;
-    border-right: 2px solid #eee;
-}
-p:nth-child(1) {
-    border-top: 2px solid #eee;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
-p:nth-child(4) {
-    border-bottom: 2px solid #eee;
-    padding-bottom: 5px;
-}
 
 
 @media screen and (max-width:1300px) {
