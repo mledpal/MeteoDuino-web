@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+
+// Borramos el gráfico anterior
 function destroyGraph() {
   document.getElementById('grafico').remove();    
   let canvas = document.createElement('canvas');
@@ -41,6 +43,8 @@ function destroyGraph() {
   document.getElementById('graph').appendChild(canvas);    
 }
 
+
+// Borramos los datos de la tabla
 function cleanData() {
   TMaxima.textContent = ``;
   TMinima.textContent = ``;
@@ -58,6 +62,13 @@ function cleanData() {
 }
 
 
+
+
+/**
+ * Función para recuperar los datos meteorológicos del servidor y dibujar el gráfico
+ * @param {*} url URL a la que nos conectamos
+ * @param {*} modo Tipo de datos que recuperamos * 
+ */
 async function drawGraph(modo) {
 
   const options = {
