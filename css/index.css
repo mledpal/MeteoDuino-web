@@ -10,7 +10,7 @@ body {
     background: #222;       
     min-height: 100vh;    
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 35% 65%;
     overflow-x: hidden;
 }
 
@@ -54,15 +54,16 @@ form input {
     cursor: pointer;
 }
 
-div[id="graph"] {    
-    margin: auto;
-    width: 80%;
-    height: 80%;
+div[id="graph"] {  
+    display: grid;
+    place-items: center;      
+    width: 95%;
+    height: 95%;
 }
 
 section[id="sDatos"] {
     margin-top: 20px;
-    width: 100%;
+    width: 80%;
     height: 100%;
     display: flex;
     flex-direction: column;
