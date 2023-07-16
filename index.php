@@ -26,8 +26,8 @@
     
     <section id="datos">      
       <div id="datos">
-        <p><span class="titulo hora">Hora</span><span class="dato hora" id="tiempo"></span></p>  
-        <p><span class="titulo">T.Actual</span><span class="dato" id="tactual"></span></p>
+        <p><span class="titulo actual">Hora</span><span class="dato actual" id="tiempo"></span></p>  
+        <p><span class="titulo actual">T.Actual</span><span class="dato actual" id="tactual"></span></p>
         <p><span class="titulo">T.Máxima</span><span class="dato" id="tmaxima"></span></p>
         <p><span class="titulo">T.Media</span><span class="dato" id="tmedia"></span></p>
         <p><span class="titulo">T.Mínima</span><span class="dato"  id="tminima"></span></p>       
