@@ -89,6 +89,7 @@ async function drawGraph(modo) {
   switch(modo) {
 
     case '24h':
+      document.getElementById('sDatos').style.display = 'block';
       graph24(datos[0], datos[1], datos[2], datos[3], datos[4]);     
       TActual.textContent = `${datos[1][datos[1].length-1]} ºC`;  
       TMaxima.textContent = `${Math.max(...datos[1])} ºC`;
@@ -108,16 +109,19 @@ async function drawGraph(modo) {
       break;
 
     case 'temperaturas':  
+      document.getElementById('sDatos').style.display = 'none';
       cleanData();          
       graphTemperaturas(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
       break;
 
     case 'otros':       
+      document.getElementById('sDatos').style.display = 'none';
       cleanData();   
       graphOtros(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
       break;
 
     case 'last14days':      
+      document.getElementById('sDatos').style.display = 'none';    
       graphLastDays(datos[0].reverse(), datos[1].reverse(), datos[2].reverse(), datos[3].reverse(), datos[4].reverse());
       TMaxima.textContent = `${Math.max(...datos[1])} ºC`;
       TMinima.textContent = `${Math.min(...datos[1])} ºC`;
