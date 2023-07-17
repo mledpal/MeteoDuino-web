@@ -111,14 +111,21 @@ span.dato {
     font-size: 1.3em;
     font-weight: 400;
     color: #ddd;    
+    width: 9ch;
+    text-align: right;
 }
 
 span.actual {
     padding: 10px 0;
     font-weight: 600;
+    text-align: center;    
 }
 
-
+span.time {
+    font-size: 0.8em;
+    font-weight: 400;
+    color: #ddd;
+}
 
 @media screen and (max-width:1300px) {
     body {          

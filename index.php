@@ -35,21 +35,44 @@
         </div>
 
         <div class="temperatura">
-          <p><span class="titulo">T.Máxima</span><span class="dato" id="tmaxima"></span></p>
-          <p><span class="titulo">T.Media</span><span class="dato" id="tmedia"></span></p>
-          <p><span class="titulo">T.Mínima</span><span class="dato"  id="tminima"></span></p>       
+          <p>
+            <span class="titulo">T.Máxima</span>
+            <span id="tmaxtime" class="time"></span>
+            <span class="dato" id="tmaxima"></span>
+          </p>
+          <p>
+            <span class="titulo">T.Media</span>
+            <span class="dato" id="tmedia"></span>
+          </p>
+          <p>
+            <span class="titulo">T.Mínima</span>
+            <span id="tmintime" class="time"></span>
+            <span class="dato" id="tminima"></span>
+          </p>
         </div>
 
         <div class="humedad">
-          <p><span class="titulo">H.Máxima</span><span class="dato" id="hmaxima"></span></p>
-          <p><span class="titulo">H.Media</span><span class="dato" id="hmedia"></span></p>
-          <p><span class="titulo">H.Mínima</span><span class="dato"  id="hminima"></span></p>
-          </div>
+          <p>
+            <span class="titulo">H.Máxima</span>
+            <span id="hmaxtime" class="time"></span>
+            <span class="dato" id="hmaxima"></span>
+          </p>
+          
+          <p>
+            <span class="titulo">H.Media</span>
+            <span class="dato" id="hmedia"></span>
+          </p>
+          <p>
+            <span class="titulo">H.Mínima</span>
+            <span id="hmintime" class="time"></span>
+            <span class="dato" id="hminima"></span>
+          </p>
+        </div>
 
         <div class="presion">
-          <p><span class="titulo">P.Máxima</span><span class="dato" id="pmaxima"></span></p>
+          <p><span class="titulo">P.Máxima</span><span id="pmaxtime" class="time"></span><span class="dato" id="pmaxima"></span></p>
           <p><span class="titulo">P.Media</span><span class="dato" id="pmedia"></span></p>
-          <p><span class="titulo">P.Mínima</span><span class="dato" id="pminima"></span></p>   
+          <p><span class="titulo">P.Mínima</span><span id="pmintime" class="time"></span><span class="dato" id="pminima"></span></p>   
         </div>
       
     </section>

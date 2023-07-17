@@ -21,6 +21,12 @@ const PMinima = document.getElementById('pminima');
 const PMedia = document.getElementById('pmedia');
 const PActual = document.getElementById('pactual');
 
+const TMaxTime = document.getElementById('tmaxtime');
+const TMinTime = document.getElementById('tmintime');
+const HMaxTime = document.getElementById('hmaxtime');
+const HMinTime = document.getElementById('hmintime');
+const PMaxTime = document.getElementById('pmaxtime');
+const PMinTime = document.getElementById('pmintime');
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -59,6 +65,12 @@ function cleanData() {
   PMinima.textContent = ``;
   PMedia.textContent = ``;
   PActual.textContent = ``;  
+  TMaxTime.textContent = ``;
+  TMinTime.textContent = ``;
+  HMaxTime.textContent = ``;
+  HMinTime.textContent = ``;
+  PMaxTime.textContent = ``;
+  PMinTime.textContent = ``;
 }
 
 
@@ -96,16 +108,28 @@ async function drawGraph(modo) {
       TMinima.textContent = `${Math.min(...datos[1])} ºC`;
       TMedia.textContent = `${Math.round(datos[1].reduce((a, b) => a + b, 0) / datos[1].length, 2)} ºC`;
       tiempo.textContent = datos[0][datos[0].length-1];
+
+      let tmaxtime = datos[0][datos[1].indexOf(Math.max(...datos[1]))];
+      let tmintime = datos[0][datos[1].indexOf(Math.min(...datos[1]))];
+      TMaxTime.textContent = `${tmaxtime}`;
+      TMinTime.textContent = `${tmintime}`;
       
       HActual.textContent = `${datos[3][datos[3].length-1]} %`;
       HMaxima.textContent = `${Math.max(...datos[3])} %`;
       HMinima.textContent = `${Math.min(...datos[3])} %`;
       HMedia.textContent = `${Math.round(datos[3].reduce((a, b) => a + b, 0) / datos[3].length, 2)} %`;
 
+      let hmaxtime = datos[0][datos[3].indexOf(Math.max(...datos[3]))];
+      let hmintime = datos[0][datos[3].indexOf(Math.min(...datos[3]))];
+      HMaxTime.textContent = `${hmaxtime}`;
+      HMinTime.textContent = `${hmintime}`;
+
       PActual.textContent = `${datos[4][datos[4].length-1]} hPa`;
       PMaxima.textContent = `${Math.max(...datos[4])} hPa`;
       PMinima.textContent = `${Math.min(...datos[4])} hPa`;
-      PMedia.textContent = `${Math.round(datos[4].reduce((a, b) => a + b, 0) / datos[4].length, 2)} hPa`;      
+      PMedia.textContent = `${Math.round(datos[4].reduce((a, b) => a + b, 0) / datos[4].length, 2)} hPa`;  
+      PMaxTime.textContent = `${datos[0][datos[4].indexOf(Math.max(...datos[4]))]}`;
+      PMinTime.textContent = `${datos[0][datos[4].indexOf(Math.min(...datos[4]))]}`;    
       break;
 
     case 'temperaturas':  
