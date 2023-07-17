@@ -29,9 +29,9 @@
       
         <div class="datosActuales">
           <p><span class="titulo actual">Hora</span><span class="dato actual" id="tiempo"></span></p>  
-          <p><span class="titulo actual">T.Actual</span><span class="dato actual" id="tactual"></span></p>
-          <p><span class="titulo actual">H.Actual</span><span class="dato actual" id="hactual"></span></p>
-          <p><span class="titulo actual">P.Actual</span><span class="dato actual" id="pactual"></span></p>
+          <p><span class="titulo actual">Temperatura</span><span class="dato actual" id="tactual"></span></p>
+          <p><span class="titulo actual">Humedad</span><span class="dato actual" id="hactual"></span></p>
+          <p><span class="titulo actual">Presion</span><span class="dato actual" id="pactual"></span></p>
         </div>
 
         <div class="temperatura">
