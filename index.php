@@ -20,8 +20,7 @@
         <option value="24h">24 Horas</option>
         <option value="temperaturas">Temperaturas</option>        
         <option value="otros">Presion / Humedad </option>        
-        <option value="last14days">14 días anteriores</option>
-        <option value="otros">Presion / Humedad </option>           
+        <option value="last14days">14 días anteriores</option>                
       </select>        
     </form> 
     
