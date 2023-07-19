@@ -4,6 +4,8 @@ import { graph24, graphTemperaturas, graphOtros, graphLastDays } from './graph.j
 
 const url = 'http://ledemar.ddns.net/chart/api.php';
 
+const titulo = document.getElementById('titulo');
+
 const opcion = document.getElementById('modo');
 const tiempo = document.getElementById('tiempo');
 const TMaxima = document.getElementById('tmaxima');
@@ -101,6 +103,8 @@ async function drawGraph(modo) {
   switch(modo) {
 
     case '24h':
+      titulo.textContent = 'Últimas 24 horas';
+
       document.getElementById('sDatos').style.display = 'block';
       graph24(datos[0], datos[1], datos[2], datos[3], datos[4]);     
       TActual.textContent = `${datos[1][datos[1].length-1]} ºC`;  
@@ -133,18 +137,21 @@ async function drawGraph(modo) {
       break;
 
     case 'temperaturas':  
+      titulo.textContent = 'Temperatura a 60 días';
       document.getElementById('sDatos').style.display = 'none';
       cleanData();          
       graphTemperaturas(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
       break;
 
-    case 'otros':       
+    case 'otros':     
+      titulo.textContent = 'Presión / Humedad a 60 días';  
       document.getElementById('sDatos').style.display = 'none';
       cleanData();   
       graphOtros(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
       break;
 
     case 'last14days':      
+      titulo.textContent = 'Valores puntuales 14 días anteriores';
       document.getElementById('sDatos').style.display = 'none';    
       graphLastDays(datos[0].reverse(), datos[1].reverse(), datos[2].reverse(), datos[3].reverse(), datos[4].reverse());
       TMaxima.textContent = `${Math.max(...datos[1])} ºC`;

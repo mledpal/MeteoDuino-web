@@ -127,6 +127,10 @@ span.time {
     color: #ddd;
 }
 
+h2#titulo{
+    color: #eee;
+}
+
 @media screen and (max-width:1300px) {
     body {          
         display: flex;

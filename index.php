@@ -78,6 +78,7 @@
   </aside>
     
   <div id="graph">
+      <h2 id="titulo"></h2>
       <canvas id="grafico"></canvas>
   </div>
 
