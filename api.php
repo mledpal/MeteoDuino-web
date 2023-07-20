@@ -171,6 +171,14 @@ function devolverDatos($modo) {
 
 
 
+
+    // Cabeceras de respuesta
+    header('Content-Type: application/json'); 
+    header('Access-Control-Allow-Origin: *'); 
+    header('Access-Control-Allow-Methods: POST'); 
+    header('Access-Control-Allow-Headers: Content-Type, Authorization'); 
+    header('Permissions-Policy: browsing-context="self"');
+
     echo json_encode($datos);
 }
 

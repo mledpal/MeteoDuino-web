@@ -7,9 +7,7 @@
 
 body {
     width: 100vw;
-    background-image: linear-gradient(90deg, #595ef5, #f37bbb);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background:#595ef5;
     min-height: 100vh;       
     display: flex;
     flex-direction: column;
