@@ -164,7 +164,7 @@ function devolverDatos($modo) {
                 array_push($humedad , (float) $row['humedad']);          
             } 
 
-            array_push($datos, $fecha, $sensor1, $sensor2, $presion, $humedad);
+            array_push($datos, array_reverse($fecha), array_reverse($sensor1), array_reverse($sensor2), array_reverse($presion), array_reverse($humedad));
             
             break;
 

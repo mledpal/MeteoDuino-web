@@ -55,8 +55,9 @@ async function drawGraph(modo) {
     switch(modo) {
   
       case '24h':        
-        // Dibuja la gráfica        
-        graph24([...datos]);
+        // Dibuja la gráfica
+        //graph24(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);   
+        graph24(...datos);
 
         // Muestra los datos actuales
         let temperatura  = `${datos[1][datos[1].length-1]} ºC`;
@@ -111,16 +112,19 @@ async function drawGraph(modo) {
         
         break;
   
-      case 'temperaturas':                          
-        graphTemperaturas([...datos]);
+      case 'temperaturas':                  
+        //graphTemperaturas(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
+        graphTemperaturas(...datos);
         break;
   
-      case 'otros':                        
-        graphOtros([...datos]);
+      case 'otros':                
+        //graphOtros(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
+        graphOtros(...datos);
         break;
   
-      case 'last14days':                  
-        graphLastDays([...datos]);
+      case 'last14days':          
+        //graphLastDays(datos[0].reverse(), datos[1].reverse(), datos[2].reverse(), datos[3].reverse(), datos[4].reverse());
+        graphLastDays(...datos);
         break;
     }; 
     
