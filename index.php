@@ -61,7 +61,7 @@
         
 
     <script src="./js/chart.js"></script>
-    <script src="./js/graph.min.js" type="module"></script>  
+    <script src="./js/graph.js" type="module"></script>  
     <script src="./js/index.js" type="module"></script>
 </body>
 </html>
