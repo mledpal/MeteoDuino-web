@@ -18,6 +18,7 @@ const li14dias = document.getElementById('li14dias');
 const fecha = document.getElementById('fecha');
 
 const txtDatos = document.getElementById('txtDatos');
+const txtEstado = document.getElementById('estadoActual');
 
 
 function toggleMenu() {
@@ -59,10 +60,28 @@ async function drawGraph(modo) {
         graph24(datos[0], datos[1], datos[2], datos[3], datos[4]);   
 
         // Muestra los datos actuales
-        txtTemperatura.textContent = `${datos[1][datos[1].length-1]} ºC`;
-        txtHumedad.textContent = `${datos[3][datos[3].length-1]} %`;
-        txtPresion.textContent = `${datos[4][datos[4].length-1]} hPa`;
+        let temperatura  = `${datos[1][datos[1].length-1]} ºC`;
+        let humedad = `${datos[3][datos[3].length-1]}`;
+        let presion = `${datos[4][datos[4].length-1]} hPa`;
+        txtTemperatura.textContent = temperatura;
+        txtHumedad.textContent = humedad+'  %';
+        txtPresion.textContent = presion;
+
         
+        // Muestra el estado meteorológico actual en texto
+        if(humedad < 35) {
+          txtEstado.textContent = 'Soleado';
+        }
+
+        if(humedad > 80 && humedad < 90) {
+          txtEstado.textContent = 'Nuboso';
+        }
+        
+        if(humedad > 90) {
+          txtEstado.textContent = 'Lluvia';
+        }
+
+
 
         // Muestra los datos de la tabla y del roll-over
         let tiempo = datos[0][datos[0].length-1];
@@ -90,7 +109,6 @@ async function drawGraph(modo) {
 
         let largo = txtDatos.textContent.length;
         
-
         break;
   
       case 'temperaturas':                  

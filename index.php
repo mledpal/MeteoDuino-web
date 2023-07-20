@@ -27,7 +27,7 @@
                 </div>
                 
                 <div id="estado">
-                    <p id="estadoActual">Soleado</p>
+                    <p id="estadoActual"></p>
                 </div>
 
                 <div id="masDatos">
