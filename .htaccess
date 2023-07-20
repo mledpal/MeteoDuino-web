@@ -9,7 +9,6 @@ RewriteRule . /index.php [L]
 
 <IfModule mod_expires.c>
     ExpiresActive On
-
     ExpiresByType image/jpg "access 1 year"
     ExpiresByType image/webp "access 1 year"
     ExpiresByType video/mp4 "access 1 year"

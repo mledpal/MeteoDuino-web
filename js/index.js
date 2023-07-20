@@ -133,10 +133,10 @@ async function drawGraph(modo) {
     let hora = new Date().getHours();
     const superior = document.getElementById('superior');
 
-    if(hora >= 6 && hora<= 8) {
+    if(hora >= 6 && hora <= 8) {
         superior.style.backgroundImage = "url('img/amanecer.webp')";   
     }
-    else if(hora >= 9 && hora<= 18) { 
+    else if(hora >= 9 && hora <= 18) { 
         superior.style.backgroundImage = "url('img/dia.webp')";
     } 
     else if(hora >= 19 && hora <= 21) {

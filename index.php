@@ -6,7 +6,7 @@
     <meta name="description" content="Author: Miguel Ledesma Palacios | Estación meteorológica privada de Linares (Jaén) España">
     <link rel=icon href='img/thermostat.svg' sizes="32x32" type="image/svg">
     <link rel="stylesheet" href="css/index.css">
-    <title>MeteoDuino Monitor</title>
+    <title>MeteoDuino Linares</title>
 </head>
 <body>
     <header>
