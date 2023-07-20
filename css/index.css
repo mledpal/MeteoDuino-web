@@ -359,7 +359,8 @@ div[id="central"] span {
 
 }
 
-@media screen and (orientation: landscape) {
+@media only screen and (max-height: 600px) and (orientation: landscape) {
+
     body {        
         justify-content: start;
     }
