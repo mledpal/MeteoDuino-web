@@ -43,9 +43,7 @@ async function drawGraph(modo) {
       method: "POST",
       body: `modo=${modo}`,    
       cors: 'no-cors',
-      headers: {      
-        'Access-Control-Allow-Origin': '*',
-        'cors': 'no-cors',
+      headers: {             
         'Content-type': 'application/x-www-form-urlencoded',        
         cache: 'no-cache'        
       }
