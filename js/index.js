@@ -19,6 +19,7 @@ const fecha = document.getElementById('fecha');
 
 const txtDatos = document.getElementById('txtDatos');
 const txtEstado = document.getElementById('estadoActual');
+const txtSensacion = document.getElementById('sensacionTermica');
 
 
 function toggleMenu() {
@@ -57,16 +58,17 @@ async function drawGraph(modo) {
   
       case '24h':        
         // Dibuja la gráfica
-        graph24(datos[0], datos[1], datos[2], datos[3], datos[4]);   
+        graph24(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);   
 
         // Muestra los datos actuales
         let temperatura  = `${datos[1][datos[1].length-1]} ºC`;
         let humedad = `${datos[3][datos[3].length-1]}`;
         let presion = `${datos[4][datos[4].length-1]} hPa`;
+        let sensacionTermica = `${datos[5][datos[5].length-1]} ºC`
         txtTemperatura.textContent = temperatura;
         txtHumedad.textContent = humedad+'  %';
         txtPresion.textContent = presion;
-
+        txtSensacion.textContent = `Sensacion térmica : ${sensacionTermica}`;
         
         // Muestra el estado meteorológico actual en texto
         if(humedad < 35) {

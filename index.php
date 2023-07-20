@@ -23,11 +23,12 @@
         <div id="superior">
             <div id="datos">                
                 <div id="temperatura">
-                    <p id="temperaturaActual"></p>                   
+                    <p id="temperaturaActual"></p>                      
                 </div>
                 
                 <div id="estado">
                     <p id="estadoActual"></p>
+                    <p id="sensacionTermica"></p>                    
                 </div>
 
                 <div id="masDatos">

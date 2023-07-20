@@ -159,9 +159,23 @@ main div[id="superior"] div[id="datos"] div[id="temperatura"] {
     text-shadow: 1px 1px 5px #111;
 }
 
+
+
+main div[id="superior"] div[id="datos"] div[id="estado"] {
+    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+#sensacionTermica {    
+    font-size: .8em;
+    font-weight: 400;
+}
+
 main div[id="superior"] div[id="datos"] div[id="estado"] p {
-    position: relative;
-    top: -40px;
+    
     color: rgba(255,255,255,.8);
     width: 100%;
     font-size: 2em;

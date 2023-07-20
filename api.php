@@ -32,10 +32,11 @@ function devolverDatos($modo) {
             $temperaturas2 = array();
             $humedad = array();
             $presion = array();
+            $sensacion = array();
     
             $query = "SELECT subquery.* FROM (
                         SELECT 
-                            id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, sensor1 as T1, sensor2 AS T2, p_mar as presion, humedad 
+                            id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, sensor1 as T1, sensor2 AS T2, p_mar as presion, humedad, t_sens as sensacion 
                             FROM `datos`  
                             ORDER BY id DESC 
                             LIMIT 288
@@ -52,9 +53,10 @@ function devolverDatos($modo) {
                 array_push($temperaturas2 , (float) $row['T2']);
                 array_push($humedad , $row['humedad']);
                 array_push($presion , $row['presion']);
+                array_push($sensacion , $row['sensacion']);
             }     
     
-            array_push($datos, $horas, $temperaturas1, $temperaturas2, $humedad, $presion);
+            array_push($datos, $horas, $temperaturas1, $temperaturas2, $humedad, $presion, $sensacion);
             break;
 
         case 'temperaturas':

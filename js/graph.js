@@ -1,4 +1,4 @@
-export function graph24(horas, temperaturas1, temperaturas2, humedad, presion)  {
+export function graph24(horas, temperaturas1, temperaturas2, humedad, presion, sensacion)  {
   
   const ctx = document.getElementById('grafico');
   
@@ -6,16 +6,24 @@ export function graph24(horas, temperaturas1, temperaturas2, humedad, presion)  
         data: {
           labels: horas,            
           datasets: [{
-            label: 'BMP ºC',
+            label: 'Temperatura BMP280',
             type: 'line',
             data: temperaturas1,
             borderWidth: 1,                
             yAxisID: 'y-temperatura'
           },
           {
-            label: 'DHT ºC',
+            label: 'Temperatura DHT',
             type: 'line',
             data: temperaturas2,
+            borderWidth: 1,
+            yAxisID: 'y-temperatura',
+            hidden: true
+          },
+          {
+            type: 'line',
+            label: 'Sensación Térmica',
+            data: sensacion,
             borderWidth: 1,
             yAxisID: 'y-temperatura',
             hidden: true
