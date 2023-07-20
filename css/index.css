@@ -114,6 +114,7 @@ main div[id="superior"] {
     grid-template-columns: 60% 40%;    
     background-repeat: no-repeat;
     background-size: cover;    
+    box-shadow: 1px 1px 10px #111 inset;    
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;   
     padding-bottom: 25px; 
