@@ -16,6 +16,10 @@
 
 
 
+// TODO: 
+// Intentar devolver todos los datos independientemente del modo usado
+// Y hacer los cálculos en el cliente
+
 function devolverDatos($modo) {
 
     
