@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Author: Miguel Ledesma Palacios | Estación meteorológica privada de Linares (Jaén) España">
-    <link rel=icon href='img/thermostat.svg' sizes="32x32" type="image/svg">
+    <link rel=icon href='img/meteo.ico.webp' sizes="32x32">
     <link rel="stylesheet" href="css/index.css">
     <title>MeteoDuino Linares</title>
 </head>
@@ -17,7 +17,7 @@
             <li id="liOtros">Humedad / Presión</li>
             <li id="li14dias">14 días atrás</li>
         </ul>        
-        <p id="fecha"></p>
+        <p id="fecha"></p>        
     </header>
 
     <main>
