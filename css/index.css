@@ -193,20 +193,20 @@ main div[id="superior"] div[id="datos"] div[id="masDatos"] {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-}
-
-div[id="divPresion"] {
-    border-left: 3px solid #eee;
+    gap: 20px;
 }
 
 div[id="divPresion"],
 div[id="divHumedad"] {
+    background: rgba(0,0,0,.4);
     display: flex;
     height: 100%;
-    width: 50%;
+    width: 40%;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    border-radius: 20px;    
+    box-shadow: 1px 1px 3px #eee inset, -2px -2px 5px #000 inset;
 }
 
 div[id="divPresion"] p,
