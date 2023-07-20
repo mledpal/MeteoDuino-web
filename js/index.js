@@ -2,7 +2,7 @@
 
 import { graph24, graphTemperaturas, graphOtros, graphLastDays } from './graph.js';
 
-const url = 'http://ledemar.ddns.net/chart/api.php';
+const url = './api.php';
 
 const txtTemperatura = document.getElementById('temperatura');
 const txtHumedad = document.getElementById('humedad');
