@@ -93,6 +93,7 @@ main {
     position: relative;
     top: 25px;
     width: 80vw;
+    max-width: 900px;
     height: 80vh;
     border: 1px solid #000;
 
@@ -131,8 +132,7 @@ main div[id="superior"] div[id="localizacion"] p {
     padding-bottom: 10px;
     border-bottom: 5px solid #eee;
     border-top: 5px solid #eee;
-    color: rgba(255,255,255, .8);    
-    font-size: 2rem;
+    color: rgba(255,255,255, .8);    font-size: 2rem;
     font-weight: bold;
     text-align: center;
     margin: 0;
@@ -230,8 +230,7 @@ main div[id="inferior"] canvas {
     margin: auto;
 }
 
-div[id="central"] {
-    width: 100%;
+div[id="central"] {    
     height: 50px;   
     color: white;
     display: flex;
@@ -239,16 +238,20 @@ div[id="central"] {
     justify-content: center;
     overflow: hidden;         
     box-shadow: 1px 1px 10px #111 inset;
+    width: 100%;
 }
 
-div[id="central"] span {     
+div[id="central"] span { 
+    white-space: nowrap;
+    
+    width: 100%;
+    z-index: -1;    
     font-size: 1.1em;
     font-weight: 300;
-    color: rgba(255,255,255,.8);     
-    text-transform: uppercase;
+    color: rgba(255,255,255,.8);         
     transform: translateX(164ch);
     animation: moverTexto 30s linear infinite;       
-    max-height: 24px;     
+    max-height: 24px;        
 }
 
 @keyframes moverTexto {
@@ -290,12 +293,30 @@ div[id="central"] span {
 
 @media screen and (max-width: 600px) {
 
+    body {        
+        justify-content: start;
+    }
+
+    main {
+        position: absolute;
+        top: 100px;
+        width: 100vw;   
+        min-height: 100vh;
+        box-shadow: none;                    
+    }
+
     main div[id="superior"] {
+        border-radius: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-bottom: 10px;
+        padding-bottom: 10px;        
     }
+
+    main div[id="inferior"] {
+        border-radius: 0;
+    }
+
 
     main div[id="superior"] div[id="datos"] {
         height: 100%;
@@ -306,6 +327,7 @@ div[id="central"] span {
     }
 
     main div[id="superior"] div[id="datos"] div[id="temperatura"] {
+        padding-top: 20px;
         font-size: 15vw;
     }
 
@@ -323,10 +345,106 @@ div[id="central"] span {
         right: 0px;
         font-size: 1.5rem;   
         width: 10ch;
+    }    
+
+    main div[id="inferior"] {
+        padding-top: 20px;
+        width: 100%;
+        height: 100%;
+    }
+    main div[id="inferior"] canvas {        
+        padding: 0px;     
+        margin: auto;   
+    }
+
+}
+
+@media screen and (orientation: landscape) {
+    body {        
+        justify-content: start;
     }
 
     main {
-        top: 45px;
+        position: absolute;
+        top: 100px;
+        width: 100vw;   
+        min-height: 300vh;
+        box-shadow: none;                    
+    }
+
+    main div[id="superior"] {
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 10px;        
+    }
+
+    main div[id="inferior"] {
+        border-radius: 0;
+    }
+
+
+    main div[id="superior"] div[id="datos"] {
+        height: 100%;
+    }
+
+    main div[id="superior"] div[id="localizacion"] {
+        display: none;
+    }
+
+    main div[id="superior"] div[id="datos"] div[id="temperatura"] {
+        padding-top: 20px;
+        font-size: 15vw;
+    }
+
+    main div[id="superior"] div[id="datos"] div[id="estado"] p {
+        font-size: 1em;
     }
     
+    main div[id="superior"] div[id="datos"] div[id="estado"] p {
+        position: relative;
+        top: 0px;        
+    }
+
+    header p {
+        position: absolute;
+        right: 0px;
+        font-size: 1.5rem;   
+        width: 10ch;
+    }    
+
+    main div[id="inferior"] {
+        padding-top: 20px;
+        width: 100%;
+        height: 100%;
+    }
+    main div[id="inferior"] canvas {        
+        padding: 0px; 
+        width: 100%;
+        height: auto;    
+        margin: auto;   
+    }
+
+    div[id="central"] {    
+        height: 100px;     
+        background: transparent;              
+    }
+
+    div[id="central"] span {  
+        background-color: #eee;       
+        color: #111;
+        transform: translateX(100%);
+        animation: moverTexto 15s linear infinite;       
+    }
+
+    @keyframes moverTexto {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
 }
