@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Author: Miguel Ledesma Palacios | Estación meteorológica privada de Linares (Jaén) España">
     <link rel=icon href='img/thermostat.svg' sizes="32x32" type="image/svg">
     <link rel="stylesheet" href="css/index.css">
     <title>MeteoDuino Monitor</title>
@@ -60,7 +61,7 @@
         
 
     <script src="./js/chart.js"></script>
-    <script src="./js/graph.js" type="module"></script>  
+    <script src="./js/graph.min.js" type="module"></script>  
     <script src="./js/index.js" type="module"></script>
 </body>
 </html>
