@@ -1,0 +1,206 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;   
+    font-family: System-ui; 
+}
+
+body {
+    width: 100vw;
+    background: #222;       
+    min-height: 100vh;    
+    display: grid;
+    grid-template-columns: 35% 65%;
+    overflow-x: hidden;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: #222;
+}
+
+form {
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: #555;
+    width: 250px;
+    height: 150px;
+    border-radius: 20px;
+    border-top: 2px solid #eee;
+    border-bottom: 2px solid #222;
+    box-shadow: 2px 2px 2px #222 inset;
+}
+
+form label {
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+select,
+form input {
+    width: 90%;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+div[id="graph"] {  
+    display: grid;
+    place-items: center;      
+    width: 95%;
+    height: 95%;
+}
+
+section[id="sDatos"] {
+    margin-top: 20px;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: flex-start;
+}
+
+
+section[id="sDatos"]  div {
+    position: relative;
+    top: 25px;
+    width: 100%;        
+    border: 2px solid #eee;
+    margin-top: 20px;
+    margin-bottom: 20px;    
+}
+
+section[id="sDatos"] div p {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;    
+}
+
+section[id="sDatos"] p:nth-child(odd) {
+    background: #555;
+}
+
+section[id="sDatos"] p:nth-child(even) {
+    background: #999;
+}
+
+span.titulo {
+    font-size: 1em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #222;
+}
+
+span.dato {
+    font-size: 1.3em;
+    font-weight: 400;
+    color: #ddd;    
+    width: 9ch;
+    text-align: right;
+}
+
+span.actual {
+    padding: 10px 0;
+    font-weight: 600;
+    text-align: center;    
+}
+
+span.time {
+    font-size: 0.8em;
+    font-weight: 400;
+    color: #ddd;
+}
+
+h2#titulo{
+    color: #eee;
+}
+
+@media screen and (max-width:1300px) {
+    body {          
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;        
+    }
+
+    aside {
+        width: 100%;
+        display:grid;
+        grid-template-columns: 35% 65%;
+        place-items: center;
+    }
+
+    section[id="sDatos"] p {
+        width: 80%;
+        padding: 0 20px;    
+    }
+
+    form {
+        margin: auto;
+        
+    }
+}
+
+@media screen and (min-width:400px) and (max-width:600px) {
+    body {          
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;        
+    }
+
+    aside {
+        width: 100%;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+@media screen and (max-width:400px) {
+    body {          
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;        
+    }
+
+    aside {
+        width: 100%;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    section[id="sDatos"] p {
+        width: 80%;
+        padding: 0 20px;          
+    }
+
+    form {
+        margin: auto;        
+    }
+
+    div[id="graph"] {
+        margin-top: 50px;
+    }
+}

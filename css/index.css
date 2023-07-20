@@ -2,205 +2,331 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;   
-    font-family: System-ui; 
+    font-family: System-ui;     
 }
 
 body {
     width: 100vw;
-    background: #222;       
-    min-height: 100vh;    
-    display: grid;
-    grid-template-columns: 35% 65%;
-    overflow-x: hidden;
-}
-
-aside {
+    background-image: linear-gradient(90deg, #595ef5, #f37bbb);
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;       
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    background: #222;
+    justify-content: center;
 }
 
-form {
-    margin-top: 50px;
-    padding: 20px;
-    text-align: center;
-    color: white;
+header {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100px;
+    background: #111;
+    color: #eee;
+
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background: #555;
-    width: 250px;
-    height: 150px;
-    border-radius: 20px;
-    border-top: 2px solid #eee;
-    border-bottom: 2px solid #222;
-    box-shadow: 2px 2px 2px #222 inset;
 }
 
-form label {
-    text-transform: uppercase;
-    font-size: 1em;
-    font-weight: 600;
-}
-
-select,
-form input {
-    width: 90%;
-    padding: 10px 20px;
-    border-radius: 10px;
+header img {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    filter: invert(1);
     cursor: pointer;
 }
 
-div[id="graph"] {  
-    display: grid;
-    place-items: center;      
-    width: 95%;
-    height: 95%;
+header ul{
+    position: absolute;
+    display: none;
+    top: 100px;
+    left: 30px;
+    padding: 10px 30px;
+    background:rgba(0,0,0,.8); 
+    z-index: 1;
 }
 
-section[id="sDatos"] {
-    margin-top: 20px;
-    width: 80%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
-    justify-content: flex-start;
+header ul li {
+    list-style: none;
+    text-align: left;
+    padding: 5px 30px;    
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+header ul li:hover {
+    background: rgba(255,255,255,.2);
+    transition: background .5s ease-in-out;
+}
+
+@keyframes showMenu {
+    0% {
+        opacity: 0;
+        height: 0;
+    }
+    100% {
+        opacity: 1;
+        height: 200px;
+    }    
+}
+
+.showMenu {
+    display: block;
+    transition: showMenu .5s ease-in-out;    
+    animation-fill-mode: forwards;
 }
 
 
-section[id="sDatos"]  div {
+header p {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 1.5rem;
+    width: 20ch;
+}
+
+main {
     position: relative;
     top: 25px;
-    width: 100%;        
-    border: 2px solid #eee;
-    margin-top: 20px;
-    margin-bottom: 20px;    
+    width: 80vw;
+    height: 80vh;
+    border: 1px solid #000;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    border-radius: 25px;
+    box-shadow: 2px 2px 20px #000;
 }
 
-section[id="sDatos"] div p {
+main div[id="superior"] {
+    color: #eee;
+    width: 100%;
+    height: 50%;
+    display: grid;
+    grid-template-columns: 60% 40%;    
+    background-repeat: no-repeat;
+    background-size: cover;    
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;   
+    padding-bottom: 25px; 
+}
+
+main div[id="superior"] div[id="localizacion"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main div[id="superior"] div[id="localizacion"] p {
+    width: 10ch;
+    position: relative;
+    top: -20%;
+    padding-bottom: 10px;
+    border-bottom: 5px solid #eee;
+    border-top: 5px solid #eee;
+    color: rgba(255,255,255, .8);    
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+
+main div[id="superior"] div[id="datos"] {
+    width: 100%;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+main div[id="superior"] div[id="datos"] div[id="temperatura"] {
+    color: #fff;
+    width: 100%;
+    font-size: 8em;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px 5px #111;
+}
+
+main div[id="superior"] div[id="datos"] div[id="estado"] p {
+    position: relative;
+    top: -40px;
+    color: rgba(255,255,255,.8);
+    width: 100%;
+    font-size: 2em;
+    font-weight: 400;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px 5px #111;
+}
+
+
+main div[id="superior"] div[id="datos"] div[id="masDatos"] {
+    width: 100%;
+    height: 100px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    flex-wrap: nowrap;
     align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 20px;    
+    justify-content: center;
 }
 
-section[id="sDatos"] p:nth-child(odd) {
-    background: #555;
+div[id="divPresion"] {
+    border-left: 3px solid #eee;
 }
 
-section[id="sDatos"] p:nth-child(even) {
-    background: #999;
+div[id="divPresion"],
+div[id="divHumedad"] {
+    display: flex;
+    height: 100%;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-span.titulo {
-    font-size: 1em;
-    font-weight: 600;
+div[id="divPresion"] p,
+div[id="divHumedad"] p {
+    color: rgba(255,255,255,.8);
+    font-size: 1.5em;
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+    text-shadow: 1px 1px 5px #111;
+}
+
+
+
+h3 {
     text-transform: uppercase;
-    color: #222;
+    font-size: 1.5em;
+    font-weight: 200;
+    color: rgba(255,255,255,.8);
 }
 
-span.dato {
-    font-size: 1.3em;
-    font-weight: 400;
-    color: #ddd;    
-    width: 9ch;
-    text-align: right;
+main div[id="inferior"] {
+    background: #222;
+    width: 100%;
+    height: 50%;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;   
 }
 
-span.actual {
-    padding: 10px 0;
-    font-weight: 600;
-    text-align: center;    
+main div[id="inferior"] canvas {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    margin: auto;
 }
 
-span.time {
-    font-size: 0.8em;
-    font-weight: 400;
-    color: #ddd;
+div[id="central"] {
+    width: 100%;
+    height: 50px;   
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;         
+    box-shadow: 1px 1px 10px #111 inset;
 }
 
-h2#titulo{
-    color: #eee;
+div[id="central"] span {     
+    font-size: 1.1em;
+    font-weight: 300;
+    color: rgba(255,255,255,.8);     
+    text-transform: uppercase;
+    transform: translateX(164ch);
+    animation: moverTexto 30s linear infinite;       
+    max-height: 24px;     
 }
 
-@media screen and (max-width:1300px) {
-    body {          
+@keyframes moverTexto {
+    0% {
+        transform: translateX(164ch);
+    }
+    100% {
+        transform: translateX(-164ch);
+    }
+}
+
+@media screen and (min-width:600px) and (max-width: 1050px) {
+
+    main div[id="superior"] {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;        
-    }
-
-    aside {
-        width: 100%;
-        display:grid;
-        grid-template-columns: 35% 65%;
-        place-items: center;
-    }
-
-    section[id="sDatos"] p {
-        width: 80%;
-        padding: 0 20px;    
-    }
-
-    form {
-        margin: auto;
-        
-    }
-}
-
-@media screen and (min-width:400px) and (max-width:600px) {
-    body {          
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;        
-    }
-
-    aside {
-        width: 100%;
-        display:flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding-bottom: 10px;
     }
+
+    main div[id="superior"] div[id="datos"] {
+        height: 100%;
+    }
+
+    main div[id="superior"] div[id="localizacion"] {
+        display: none;
+    }
+
+    main div[id="superior"] div[id="datos"] div[id="temperatura"] {
+        font-size: 7em;
+    }
+    
+    main div[id="superior"] div[id="datos"] div[id="estado"] p {
+        position: relative;
+        top: 0px;        
+    }
+    
 }
 
+@media screen and (max-width: 600px) {
 
-@media screen and (max-width:400px) {
-    body {          
+    main div[id="superior"] {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;        
-    }
-
-    aside {
-        width: 100%;
-        display:flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
+        padding-bottom: 10px;
     }
 
-    section[id="sDatos"] p {
-        width: 80%;
-        padding: 0 20px;          
+    main div[id="superior"] div[id="datos"] {
+        height: 100%;
     }
 
-    form {
-        margin: auto;        
+    main div[id="superior"] div[id="localizacion"] {
+        display: none;
     }
 
-    div[id="graph"] {
-        margin-top: 50px;
+    main div[id="superior"] div[id="datos"] div[id="temperatura"] {
+        font-size: 15vw;
     }
+
+    main div[id="superior"] div[id="datos"] div[id="estado"] p {
+        font-size: 1em;
+    }
+    
+    main div[id="superior"] div[id="datos"] div[id="estado"] p {
+        position: relative;
+        top: 0px;        
+    }
+
+    header p {
+        position: absolute;
+        right: 0px;
+        font-size: 1.5rem;   
+        width: 10ch;
+    }
+
+    main {
+        top: 45px;
+    }
+    
 }
