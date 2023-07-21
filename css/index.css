@@ -194,14 +194,15 @@ main div[id="superior"] div[id="datos"] div[id="masDatos"] {
     align-items: center;
     justify-content: center;
     gap: 20px;
+    margin-top:35px;
 }
 
 div[id="divPresion"],
 div[id="divHumedad"] {
-    background: rgba(0,0,0,.4);
+    background: rgba(0,0,0,.4);    
     display: flex;
     height: 100%;
-    width: 40%;
+    width: 35%;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
