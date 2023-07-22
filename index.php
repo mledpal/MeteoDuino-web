@@ -12,10 +12,22 @@
     <header>
         <img id="menu" src="img/menu.svg" alt="Icono para el menu">
         <ul id="menuOculto">
-            <li id="li24h">24 horas</li>
-            <li id="liTemperaturas">Temperaturas</li>
-            <li id="liOtros">Humedad / Presión</li>
-            <li id="li14dias">14 días atrás</li>
+            <li id="li24h">
+                <img src="img/clock.svg" alt="Icono de un reloj">
+                <span>24 horas</span>
+            </li>
+            <li id="liTemperaturas">
+                <img src="img/thermostat.svg" alt="Icono de un termómetro">
+                <span>Temperaturas</span>
+            </li>
+            <li id="liOtros">
+                <img src="img/humedad.svg" alt="Icono de humedad">
+                <span>Humedad / Presión</span>
+            </li>
+            <li id="li14dias">
+                <img src="img/history.svg" alt="Icono de un reloj">
+                <span>14 días atrás</span>
+            </li>
         </ul>        
         <p id="fecha"></p>        
     </header>
