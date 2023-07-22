@@ -153,8 +153,7 @@ async function drawGraph(modo) {
 
     
     btnMenu.addEventListener('click', () => {
-        toggleMenu();
-        setTimeout(toggleMenu, 5000);  
+        toggleMenu();        
     });
 
     li24h.addEventListener('click', () => {

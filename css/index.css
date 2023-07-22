@@ -224,7 +224,7 @@ main div[id="superior"] div[id="datos"] div[id="masDatos"] {
 
 div[id="divPresion"],
 div[id="divHumedad"] {
-    background: rgba(0,0,0,.4);    
+    background: rgba(0,0,0,.1);    
     display: flex;
     height: 100%;
     width: 35%;
