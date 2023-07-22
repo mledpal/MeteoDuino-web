@@ -57,9 +57,9 @@
                 </div>
             </div>
 
-            <div id="localizacion">
+            <!-- <div id="localizacion">
                 <p>Linares</p>
-            </div>
+            </div> -->
         </div>
 
         <div id="central">

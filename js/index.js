@@ -138,15 +138,19 @@ async function drawGraph(modo) {
     const superior = document.getElementById('superior');
 
     if(hora >= 6 && hora <= 8) {
-        superior.style.backgroundImage = "url('img/amanecer.webp')";   
+        superior.body.style.backgroundImage = "url('img/amanecer.webp')";   
+        document.body.style.background = 'linear-gradient(0deg, #9c9feb, #595ef5)';
     }
     else if(hora >= 9 && hora <= 18) { 
         superior.style.backgroundImage = "url('img/dia.webp')";
+        document.body.style.background = 'linear-gradient(0deg, #9c9feb, #595ef5)';        
     } 
     else if(hora >= 19 && hora <= 21) {
         superior.style.backgroundImage = "url('img/atardecer.webp')";
+        document.body.style.background = 'linear-gradient(0deg, #f0a274, #f37126)';
     } else {        
         superior.style.backgroundImage = "url('img/noche.webp')";
+        document.body.style.background = 'linear-gradient(0deg, #463d63, #140644)';
     }
 
 

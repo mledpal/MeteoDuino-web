@@ -9,7 +9,8 @@ body {
     max-width: 100vw;
     width: 100%;
     /* background: linear-gradient(0deg, #9c9feb, #595ef5); */
-    background: linear-gradient(0deg, #f0a274, #f37126);
+    /* background: linear-gradient(0deg, #f0a274, #f37126); */
+    /* background: linear-gradient(0deg, #463d63, #140644); */
     min-height: 100vh;       
     display: flex;
     flex-direction: column;
@@ -135,8 +136,9 @@ main div[id="superior"] {
     color: #eee;
     width: 100%;
     height: 50%;
-    display: grid;
-    grid-template-columns: 60% 40%;    
+    display: flex;
+    justify-content: center;
+    align-items: center;  
     background-repeat: no-repeat;
     background-size: cover;    
     box-shadow: 1px 1px 10px #111 inset;    
@@ -324,13 +326,6 @@ footer {
 
 
 @media screen and (min-width:600px) and (max-width: 1050px) {
-
-    main div[id="superior"] {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-bottom: 10px;
-    }
 
     main div[id="superior"] div[id="datos"] {
         height: 100%;
