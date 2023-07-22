@@ -71,6 +71,10 @@
         </div>
     </main>
         
+    <footer>
+        <p>Miguel Ledesma Palacios</p>
+        <p>Linares | 2023</p>
+    </footer>
 
     <script src="./js/chart.js"></script>
     <script src="./js/graph.js" type="module"></script>  
