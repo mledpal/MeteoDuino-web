@@ -137,8 +137,7 @@ main {
     margin-top: 100px;
     margin-bottom: 50px;
     width: 80vw;
-    max-width: 900px;
-    height: 80vh;   
+    max-width: 900px;   
 
     display: flex;
     flex-direction: column;
@@ -301,6 +300,7 @@ div[id="central"] {
     box-shadow: 1px 1px 10px #111 inset;
     padding: 20px 0px;
     width: 100%;
+    height: 50px;
 }
 
 div[id="central"] span { 
@@ -327,8 +327,6 @@ div[id="central"] span {
 
 
 footer {       
-    position: absolute;
-    bottom: 0; 
     width: 100%;
     height: 50px;
     background: #111;
@@ -345,6 +343,11 @@ footer {
 @media screen and (min-width:600px) and (max-width: 1050px) {
 
     main {
+        border-radius: 0;        
+    }
+
+    main div[id="inferior"],
+    main div[id="superior"] {
         border-radius: 0;
     }
 
@@ -371,24 +374,19 @@ footer {
 
     main {
         border-radius: 0;
+        width: 100vw;           
+        box-shadow: none; 
+        margin-top: 70px;
     }
 
     body {        
-        justify-content: start;
+        justify-content: start;        
     }
 
     header input[id="fecha"] {        
         right: 20px;
         font-size: 1.2rem;   
         padding: 5px 10px;        
-    }
-
-    main {
-        position: absolute;
-        top: 0px;
-        width: 100vw;   
-        min-height: 100vh;
-        box-shadow: none;                    
     }
 
     main div[id="superior"] {
@@ -403,7 +401,6 @@ footer {
         border-radius: 0;
         height: auto;
     }
-
 
     main div[id="superior"] div[id="datos"] {
         height: 100%;
