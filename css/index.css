@@ -263,7 +263,7 @@ div[id="divHumedad"] p {
     font-weight: 400;
     text-align: center;
     margin: 0;
-    text-shadow: 1px 1px 5px #111;
+    text-shadow: 1px 1px 5px #111;    
 }
 
 
@@ -442,6 +442,16 @@ footer {
     main div[id="inferior"] canvas {        
         padding: 0px;     
         margin: auto;   
+    }
+
+    div[id="masDatos"] div > h3 {
+        font-size: 1.3em;        
+    }
+
+    div[id="divPresion"] p,
+    div[id="divHumedad"] p {
+        font-size: 1.2em;
+        font-weight: 400;        
     }
 
     footer {
