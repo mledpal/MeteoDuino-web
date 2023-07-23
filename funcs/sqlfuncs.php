@@ -33,3 +33,10 @@
         return $datos;
     }
         
+    function checkFecha($fecha) {
+        if(strtotime($fecha)) {
+            return true;
+        } else {
+            return false;
+        }
+    }

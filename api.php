@@ -44,7 +44,7 @@ function devolverDatos($modo) {
                             id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, sensor1 as T1, sensor2 AS T2, p_mar as presion, humedad, t_sens as sensacion 
                             FROM `datos`"; 
                             
-            if($modo == "fecha" && isset($_POST['fecha'])) {
+            if($modo == "fecha" && isset($_POST['fecha']) && checkFecha($_POST['fecha'])) {
                 $query .= " WHERE fecha = '" . $_POST['fecha'] . "'";
             }
             
