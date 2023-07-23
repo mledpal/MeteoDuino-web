@@ -125,7 +125,12 @@ header input[id="fecha"] {
     border : none;
     background: rgba(255,255,255, .1);
     border-radius: 15px;
-    box-shadow: 1px 1px 10px #888 inset;
+    
+}
+
+header input[id="fecha"]:hover {
+    transition: box-shadow .5s;
+    box-shadow: 1px 1px 10px #eee inset;
 }
 
 main {
