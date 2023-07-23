@@ -33,6 +33,10 @@
         return $datos;
     }
         
+
+    // Devuelve true si la fecha es válida
+    // para evitar posibles ataques 
+    // Si es false, se ejecuta la consulta por defecto (24h)
     function checkFecha($fecha) {
         if(strtotime($fecha)) {
             return true;
