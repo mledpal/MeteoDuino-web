@@ -29,7 +29,7 @@
                 <span>14 días atrás</span>
             </li>
         </ul>        
-        <p id="fecha"></p>        
+        <input type="date" id="fecha"></input>
     </header>
 
     <main>

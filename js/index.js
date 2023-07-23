@@ -15,7 +15,9 @@ const li24h = document.getElementById('li24h');
 const liTemperaturas = document.getElementById('liTemperaturas');
 const liOtros = document.getElementById('liOtros');
 const li14dias = document.getElementById('li14dias');
+
 const fecha = document.getElementById('fecha');
+
 
 const txtDatos = document.getElementById('txtDatos');
 const txtEstado = document.getElementById('estadoActual');
@@ -32,29 +34,34 @@ function toggleMenu() {
  * @param {*} url URL a la que nos conectamos
  * @param {*} modo Tipo de datos que recuperamos * 
  */
-async function drawGraph(modo) {
+async function drawGraph(modo, fecha = null) {
 
     document.getElementById('grafico').remove();
     let canvas = document.createElement('canvas');
     canvas.setAttribute('id', 'grafico');
     document.getElementById('inferior').appendChild(canvas);  
 
+    let hora = [new Date().getHours(), new Date().getMinutes()];    
+
     const options = {
       method: "POST",
-      body: `modo=${modo}`,    
+      body: `modo=${modo}&fecha=${fecha}`,
       cors: 'no-cors',
       headers: {             
         'Content-type': 'application/x-www-form-urlencoded',        
         cache: 'no-cache'        
       }
     }
-  
+
     const response = await fetch(url, options);  
     const datos = await response.json();
-    
+
+    localStorage.setItem(`datos_${modo}`, JSON.stringify(datos));
+
     switch(modo) {
   
-      case '24h':        
+      case '24h':           
+      case 'fecha':     
         // Dibuja la gráfica
         //graph24(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);   
         graph24(...datos);
@@ -126,13 +133,16 @@ async function drawGraph(modo) {
         //graphLastDays(datos[0].reverse(), datos[1].reverse(), datos[2].reverse(), datos[3].reverse(), datos[4].reverse());
         graphLastDays(...datos);
         break;
+
     }; 
     
   };
   
   document.addEventListener('DOMContentLoaded', () => {
 
-    fecha.textContent = new Date().toLocaleDateString();
+    const fechaActual = new Date().toISOString().slice(0, 10);
+
+    fecha.value = fechaActual;
     
     let hora = new Date().getHours();
     const superior = document.getElementById('superior');
@@ -178,6 +188,10 @@ async function drawGraph(modo) {
     liTemperaturas.addEventListener('click', () => {
         toggleMenu();                 
         drawGraph('temperaturas');
+    });
+
+    fecha.addEventListener('change', () => {
+        drawGraph('fecha', fecha.value);
     });
 
   });

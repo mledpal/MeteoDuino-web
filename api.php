@@ -30,7 +30,8 @@ function devolverDatos($modo) {
     
     switch($modo) {
         case '24h':
-            //$datos = datos24h();
+        case 'fecha':
+            
             $horas = array();
             $temperaturas1 = array();
             $temperaturas2 = array();
@@ -41,12 +42,17 @@ function devolverDatos($modo) {
             $query = "SELECT subquery.* FROM (
                         SELECT 
                             id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, sensor1 as T1, sensor2 AS T2, p_mar as presion, humedad, t_sens as sensacion 
-                            FROM `datos`  
-                            ORDER BY id DESC 
-                            LIMIT 288
-                    ) as subquery 
-                    ORDER BY subquery.id ASC";
-    
+                            FROM `datos`"; 
+                            
+            if($modo == "fecha" && isset($_POST['fecha'])) {
+                $query .= " WHERE fecha = '" . $_POST['fecha'] . "'";
+            }
+            
+            $query .=  " ORDER BY id DESC 
+                        LIMIT 288
+                        ) as subquery 
+                        ORDER BY subquery.id ASC";
+
             $sql = $conn->prepare($query);
             $sql->execute(); 
     

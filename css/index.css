@@ -109,10 +109,16 @@ header ul li:hover {
     }    
 }
 
-header p {
+header input[id="fecha"] {
     position: absolute;    
     right: 30px;
-    font-size: 1.5rem;    
+    font-size: 1.5rem;   
+    padding: 10px 15px;
+    color: #eee;
+    border : none;
+    background: transparent;
+    border-radius: 15px;
+    box-shadow: 1px 1px 10px #888 inset;
 }
 
 main {
@@ -410,6 +416,10 @@ footer {
     main div[id="inferior"] canvas {        
         padding: 0px;     
         margin: auto;   
+    }
+
+    footer {
+        display: none;
     }
 
 }
