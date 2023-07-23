@@ -15,7 +15,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content:space-between;
 }
 
 header {
@@ -134,12 +134,11 @@ header input[id="fecha"]:hover {
 }
 
 main {
-    margin-top: 50px;
+    margin-top: 100px;
     margin-bottom: 50px;
     width: 80vw;
     max-width: 900px;
-    height: 80vh;
-    border: 1px solid #000;
+    height: 80vh;   
 
     display: flex;
     flex-direction: column;
@@ -345,6 +344,10 @@ footer {
 
 @media screen and (min-width:600px) and (max-width: 1050px) {
 
+    main {
+        border-radius: 0;
+    }
+
     main div[id="superior"] div[id="datos"] {
         height: 100%;
     }
@@ -366,6 +369,10 @@ footer {
 
 @media screen and (max-width: 600px) {
 
+    main {
+        border-radius: 0;
+    }
+
     body {        
         justify-content: start;
     }
@@ -378,7 +385,7 @@ footer {
 
     main {
         position: absolute;
-        top: 100px;
+        top: 0px;
         width: 100vw;   
         min-height: 100vh;
         box-shadow: none;                    
@@ -394,6 +401,7 @@ footer {
 
     main div[id="inferior"] {
         border-radius: 0;
+        height: auto;
     }
 
 
@@ -450,7 +458,7 @@ footer {
 
     main {
         position: absolute;
-        top: 100px;
+        top: 0px;
         width: 100vw;   
         min-height: 300vh;
         box-shadow: none;                    
@@ -466,6 +474,7 @@ footer {
 
     main div[id="inferior"] {
         border-radius: 0;
+        height: auto;
     }
 
 
