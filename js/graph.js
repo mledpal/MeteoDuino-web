@@ -13,7 +13,7 @@ export function graph24(horas, temperaturas1, temperaturas2, humedad, presion, s
             yAxisID: 'y-temperatura'
           },
           {
-            label: 'Temperatura DHT',
+            label: 'Temperatura GY-21',
             type: 'line',
             data: temperaturas2,
             borderWidth: 1,

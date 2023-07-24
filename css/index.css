@@ -311,17 +311,17 @@ div[id="central"] span {
     font-size: 1.1em;
     font-weight: 300;
     color: rgba(255,255,255,.8);         
-    transform: translateX(164ch);
-    animation: moverTexto 30s linear infinite;       
+    transform: translateX(110ch);
+    animation: moverTexto 20s linear infinite;       
     max-height: 24px;        
 }
 
 @keyframes moverTexto {
     0% {
-        transform: translateX(164ch);
+        transform: translateX(110ch);
     }
     100% {
-        transform: translateX(-164ch);
+        transform: translateX(-130ch);
     }
 }
 

@@ -145,13 +145,14 @@ async function drawGraph(modo, fecha = null) {
     fecha.value = fechaActual;
     
     let hora = new Date().getHours();
+    
     const superior = document.getElementById('superior');
 
     if(hora >= 6 && hora <= 8) {
-        superior.body.style.backgroundImage = "url('img/amanecer.webp')";   
+        superior.style.backgroundImage = "url('img/amanecer.webp')";   
         document.body.style.background = 'linear-gradient(0deg, #9c9feb, #595ef5)';
     }
-    else if(hora >= 9 && hora <= 18) { 
+    else if(hora >= 8 && hora <= 18) { 
         superior.style.backgroundImage = "url('img/dia.webp')";
         document.body.style.background = 'linear-gradient(0deg, #9c9feb, #595ef5)';        
     } 
@@ -162,8 +163,6 @@ async function drawGraph(modo, fecha = null) {
         superior.style.backgroundImage = "url('img/noche.webp')";
         document.body.style.background = 'linear-gradient(0deg, #463d63, #140644)';
     }
-
-
 
     
     btnMenu.addEventListener('click', () => {
