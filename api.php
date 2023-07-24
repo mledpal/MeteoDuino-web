@@ -1,8 +1,14 @@
 <?php
 
     switch($_SERVER['REQUEST_METHOD']) {
-    case 'POST':                        
-        devolverDatos($_POST['modo']);
+    case 'POST':
+
+        if(isset($_POST['modo'])) {
+            devolverDatos($_POST['modo']);
+        } else {
+            echo json_encode(['error'=>'ERROR POST']);
+        }
+        
         break;
     
     case 'GET':
@@ -15,16 +21,18 @@
     }
 
 
-
-// TODO: 
-// Intentar devolver todos los datos independientemente del modo usado
-// Y hacer los cálculos en el cliente
-
+/**
+ * Función que devuelve los datos de la base de datos
+ * dependiendo del modo, devuelve unos valores u otros
+ * Uso un enum para facilitar la lectura/modificación y escalabilidad del código 
+ *  
+ */
 function devolverDatos($modo) {
-
     
     include_once 'funcs/conexion.php';
     include_once 'funcs/sqlfuncs.php';
+    include_once 'funcs/consultas.php';
+
     $datos = array();    
     $modo = $_POST['modo'];
     
@@ -38,24 +46,24 @@ function devolverDatos($modo) {
             $humedad = array();
             $presion = array();
             $sensacion = array();
-    
-            $query = "SELECT subquery.* FROM (
-                        SELECT 
-                            id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, sensor1 as T1, sensor2 AS T2, p_mar as presion, humedad, t_sens as sensacion 
-                            FROM `datos`"; 
-                            
-            if($modo == "fecha" && isset($_POST['fecha']) && checkFecha($_POST['fecha'])) {
-                $query .= " WHERE fecha = '" . $_POST['fecha'] . "'";
+
+            $query = "";
+
+
+            /**
+             * Si el modo es fecha, compruebo que se haya enviado la fecha y que sea válida
+             * Si es válida, creo la query con la fecha, si no, devuelvo los datos de las últimas 24h
+             * Se sustituye una marca '#####' en la query por la fecha
+             */
+            if($modo == "fecha" && isset($_POST['fecha']) && checkFecha($_POST['fecha'])) {                
+                $query_fecha = " WHERE fecha = '" . $_POST['fecha'] . "'";
+                $query = str_replace('#####', $query_fecha, Consultas::fecha->value);
+            } else {
+                $query = Consultas::ultimas24h->value;
             }
-            
-            $query .=  " ORDER BY id DESC 
-                        LIMIT 288
-                        ) as subquery 
-                        ORDER BY subquery.id ASC";
 
             $sql = $conn->prepare($query);
             $sql->execute(); 
-    
     
             while($row = $sql->fetch()) {
                 array_push($horas , (string) $row['hora']);
@@ -79,15 +87,7 @@ function devolverDatos($modo) {
             $min2 = array();
             $med2 = array();
 
-            $query = "SELECT subquery.* from (
-                SELECT 
-                    id, fecha, max(sensor1) as MaxT1, min(sensor1) as MinT1, ROUND(AVG(sensor1),2) as MedT1, 
-                    MAX(sensor2) as MaxT2, MIN(sensor2) as MinT2, ROUND(AVG(sensor2), 2) as MedT2                    
-                    FROM `datos`  
-                    GROUP BY fecha
-                    ORDER BY fecha DESC
-                    LIMIT 60) as subquery
-                    ORDER BY subquery.id ASC";
+            $query = Consultas::temperaturas->value;
 
             $sql = $conn->prepare($query);
             $sql->execute(); 
@@ -111,23 +111,13 @@ function devolverDatos($modo) {
             $fecha = array();
             
             $maxP = array();
-            $minP = array();    
+            $minP = array();
             $medP = array();
             $maxH = array();
             $minH = array();
             $medH = array();
-            
 
-            $query = "SELECT subquery.* from (
-                SELECT 
-                    id, fecha, 
-                    MAX(p_mar) as MaxP, MIN(p_mar) as MinP, ROUND(AVG(p_mar), 2) AS MedP,
-                    MAX(humedad) as MaxH, MIN(humedad) as MinH, ROUND(AVG(humedad), 2) as MedH
-                    FROM `datos`  
-                    GROUP BY fecha
-                    ORDER BY fecha DESC
-                    LIMIT 60) as subquery
-                    ORDER BY subquery.id ASC";
+            $query = Consultas::otros->value;
 
             $sql = $conn->prepare($query);
             $sql->execute(); 
@@ -154,10 +144,8 @@ function devolverDatos($modo) {
             $sensor2 = array();
             $presion = array();
             $humedad = array();
-            $query = "SELECT fecha, sensor1, sensor2, p_mar, humedad FROM datos 
-                where DATE_FORMAT(hora, '%k:%i') = ( select DATE_FORMAT(hora, '%k:%i') as hora from datos ORDER BY id DESC limit 1) 
-                ORDER BY id DESC
-                LIMIT 14;";
+
+            $query = Consultas::last14days->value;
 
             $sql = $conn->prepare($query);
             $sql->execute();
