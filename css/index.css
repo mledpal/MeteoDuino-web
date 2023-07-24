@@ -466,8 +466,7 @@ footer {
     main {
         position: absolute;
         top: 0px;
-        width: 100vw;   
-        min-height: 300vh;
+        width: 100vw;           
         box-shadow: none;                    
     }
 
@@ -526,24 +525,22 @@ footer {
         margin: auto;   
     }
 
-    div[id="central"] {    
-        height: 100px;     
+    div[id="central"] {            
         background: transparent;              
     }
 
-    div[id="central"] span {  
-        background-color: #eee;       
-        color: #111;
-        transform: translateX(100%);
+    div[id="central"] span {               
+        color: #EEE;
+        transform: translateX(110%);
         animation: moverTexto 15s linear infinite;       
     }
 
     @keyframes moverTexto {
         0% {
-            transform: translateX(100%);
+            transform: translateX(110%);
         }
         100% {
-            transform: translateX(-100%);
+            transform: translateX(-135%);
         }
     }
 
