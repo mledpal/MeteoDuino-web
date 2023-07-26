@@ -10,7 +10,7 @@
 > Y otro sensor, DHT11 para medir la humedad (y también la sensación térmica) (DEPRECATED)
 
 <p>Ahora uso un sensor GY-11 para la medición de la humedad (y temperatura)</p>
-<p>El repositorio para programar el microcontrolador <a href="https://github.com/mledpal/MeteoDuino" target="_blank">está aqui</a></p>
+<p>El repositorio para programar el microcontrolador <a href="[https://github.com/mledpal/MeteoDuino](https://github.com/mledpal/meteoduino-firmware)" target="_blank">está aqui</a></p>
 
 > Más adelante publicaré un gráfico con el conexionado
 
