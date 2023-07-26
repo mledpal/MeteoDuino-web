@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Author: Miguel Ledesma Palacios | Estación meteorológica privada de Linares (Jaén) España">
+    
     <link rel=icon href='img/meteo.ico.webp' sizes="32x32">
+
+    <meta property="og:title" content="Interfaz web MeteoDuino">
+    <meta property="og:description" content="Logotipo de MeteoDuino">
+    <meta property="og:image" content="img/meteo.ico.webp">
+
     <link rel="stylesheet" href="css/index.css">
     <title>MeteoDuino Linares</title>
 </head>
