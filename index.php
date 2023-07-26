@@ -72,8 +72,14 @@
     </main>
         
     <footer>
-        <p>Miguel Ledesma Palacios</p>
-        <p>Linares | 2023</p>
+        <p>Miguel Ledesma Palacios | Linares | 2023</p>
+ 
+
+        <ul>
+            <li><a href="https://github.com/mledpal" target="_blank">Github personal</a></li>
+            <li><a href="https://github.com/mledpal/MeteoDuino-web" target="_blank">Github Interfaz web</a></li>
+            <li><a href="https://github.com/mledpal/meteoduino-firmware" target="_blank">Github firmware ESP8266</a></li>
+        </ul>
     </footer>
 
     <script src="./js/chart.js"></script>
