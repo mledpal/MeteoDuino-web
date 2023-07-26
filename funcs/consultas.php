@@ -45,7 +45,7 @@ enum Consultas: string
                     SELECT 
                     id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, sensor1 as T1, sensor2 AS T2, p_mar as presion, humedad, t_sens as sensacion 
                     FROM `datos` 
-                    #####
+                    WHERE fecha = '#####' 
                     ORDER BY id DESC                     
                     LIMIT 288                    
                     ) as subquery 

@@ -55,8 +55,8 @@ function devolverDatos($modo) {
              * Si es válida, creo la query con la fecha, si no, devuelvo los datos de las últimas 24h
              * Se sustituye una marca '#####' en la query por la fecha
              */
-            if($modo == "fecha" && isset($_POST['fecha']) && checkFecha($_POST['fecha'])) {                
-                $query_fecha = " WHERE fecha = '" . $_POST['fecha'] . "'";
+            if($modo == "fecha" && isset($_POST['fecha']) && checkFecha($_POST['fecha'])) {   
+                $query_fecha = $_POST['fecha'];
                 $query = str_replace('#####', $query_fecha, Consultas::fecha->value);
             } else {
                 $query = Consultas::ultimas24h->value;
