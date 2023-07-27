@@ -23,6 +23,8 @@ const txtDatos = document.getElementById('txtDatos');
 const txtEstado = document.getElementById('estadoActual');
 const txtSensacion = document.getElementById('sensacionTermica');
 
+const chartGraph = document.getElementById('grafico');
+
 
 function toggleMenu() {
     menu.classList.contains("showMenu") ? ((menu.style.cssText = "display: hidden;"), menu.classList.remove("showMenu")) : ((menu.style.cssText = "display: block;"), menu.classList.add("showMenu"));
@@ -140,9 +142,9 @@ async function drawGraph(modo, fecha = null) {
   
   document.addEventListener('DOMContentLoaded', () => {
 
-    const fechaActual = new Date().toISOString().slice(0, 10);
-
-    fecha.value = fechaActual;
+    const fechaActual = new Date().toLocaleDateString().split('/');
+    
+    fecha.value = `${fechaActual[2]}-${fechaActual[1].length==1 ? '0': ''}${fechaActual[1]}-${fechaActual[0]}`;
     
     let hora = new Date().getHours();
     
