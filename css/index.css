@@ -116,9 +116,12 @@ header ul li:hover {
     }    
 }
 
-header input[id="fecha"] {
+header label {
     position: absolute;    
-    right: 30px;
+    right: 50px;        
+}
+
+header label input[id="fecha"] {
     font-size: 1.5rem;   
     padding: 10px 15px;
     color: #eee;
@@ -128,7 +131,7 @@ header input[id="fecha"] {
     
 }
 
-header input[id="fecha"]:hover {
+header label input[id="fecha"]:hover {
     transition: box-shadow .5s;
     box-shadow: 1px 1px 10px #eee inset;
 }
@@ -408,7 +411,7 @@ footer ul li a:hover {
         justify-content: start;        
     }
 
-    header input[id="fecha"] {        
+    header label input[id="fecha"] {        
         right: 20px;
         font-size: 1.2rem;   
         padding: 5px 10px;        
