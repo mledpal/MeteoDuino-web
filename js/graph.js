@@ -1,8 +1,35 @@
+
+/**
+ * Con esta función obligamos al gráfico a redimensionarse cuando cambia el tamaño de la pantalla o su orientación
+ * @param {*} graph Referencia al gráfico
+ */
+const resize = (graph) => {
+
+  // Evento que se dispara cuando cambia el tamaño de la pantalla
+  window.addEventListener('resize', () => { 
+    funciones(graph);
+  });
+
+  // Evento que se dispara cuando cambia la orientación de la pantalla
+  screen.orientation.addEventListener("change", function(e) {
+    funciones(graph);
+  });
+
+  // Función que se encarga de redimensionar el gráfico
+  const funciones = (graph) => {
+    document.getElementById('grafico').style.width = '100%';     
+    document.getElementById('grafico').style.height= '100%';
+    graph.resize();
+    graph.update();    
+  } 
+}
+
+
 export function graph24(horas, temperaturas1, temperaturas2, humedad, presion, sensacion)  {
   
   const ctx = document.getElementById('grafico');
   
-  new Chart(ctx, {   
+  const graph = new Chart(ctx, {   
         data: {
           labels: horas,            
           datasets: [{
@@ -70,13 +97,16 @@ export function graph24(horas, temperaturas1, temperaturas2, humedad, presion, s
           } 
         }
       });
+
+      resize(graph);
+  
 }
 
 export function graphTemperaturas(fecha, max1, min1, med1, max2, min2, med2)  {
   
   const ctx = document.getElementById('grafico');
   
-  new Chart(ctx, {    
+  const graph = new Chart(ctx, {    
         data: {
           labels: fecha,            
           datasets: [{
@@ -152,6 +182,9 @@ export function graphTemperaturas(fecha, max1, min1, med1, max2, min2, med2)  {
           } 
         }
       });
+
+      resize(graph);
+  
 }
 
 
@@ -159,7 +192,7 @@ export function graphOtros(fecha, maxp, minp, medp, maxh, minh, medh )  {
   
   const ctx = document.getElementById('grafico');
   
-  new Chart(ctx, {    
+  const graph = new Chart(ctx, {    
         data: {
           labels: fecha,            
           datasets: [{
@@ -229,6 +262,9 @@ export function graphOtros(fecha, maxp, minp, medp, maxh, minh, medh )  {
           } 
         }
       });
+
+      resize(graph);
+  
 }
 
 
@@ -295,4 +331,6 @@ export function graphLastDays(fecha, t1, t2, p, h)  {
           } 
         }
       });
+
+      resize(graph);  
 }

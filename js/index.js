@@ -23,8 +23,7 @@ const txtDatos = document.getElementById('txtDatos');
 const txtEstado = document.getElementById('estadoActual');
 const txtSensacion = document.getElementById('sensacionTermica');
 
-const chartGraph = document.getElementById('grafico');
-
+const ctx = document.getElementById('grafico');
 
 function toggleMenu() {
     menu.classList.contains("showMenu") ? ((menu.style.cssText = "display: hidden;"), menu.classList.remove("showMenu")) : ((menu.style.cssText = "display: block;"), menu.classList.add("showMenu"));
@@ -168,9 +167,9 @@ async function drawGraph(modo, fecha = null) {
 
     
     btnMenu.addEventListener('click', () => {
-        toggleMenu();        
+      toggleMenu();
     });
-
+    
     li24h.addEventListener('click', () => {
         toggleMenu();                
         drawGraph('24h');
