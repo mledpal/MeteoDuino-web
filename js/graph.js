@@ -272,7 +272,7 @@ export function graphLastDays(fecha, t1, t2, p, h)  {
   
   const ctx = document.getElementById('grafico');
   
-  new Chart(ctx, {    
+  const graph = new Chart(ctx, {    
         data: {
           labels: fecha,            
           datasets: [{
