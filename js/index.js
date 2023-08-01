@@ -191,7 +191,16 @@ async function drawGraph(modo, fecha = null) {
     });
 
     fecha.addEventListener('change', () => {
+      
+      const hoy = new Date();
+      const fechaSeleccionada = new Date(fecha.value);
+
+      if(fechaSeleccionada <= hoy) {
         drawGraph('fecha', fecha.value);
+      } else {
+        alert('La fecha seleccionada no puede ser mayor que la fecha actual');
+        drawGraph('24h');
+      }
     });
 
   });
