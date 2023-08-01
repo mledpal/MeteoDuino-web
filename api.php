@@ -30,8 +30,8 @@
 function devolverDatos($modo) {
     
     include_once 'funcs/conexion.php';
-    include_once 'funcs/sqlfuncs.php';
     include_once 'funcs/consultas.php';
+    include_once 'funcs/sqlfuncs.php';    
 
     $datos = array();    
     $modo = $_POST['modo'];
@@ -49,7 +49,6 @@ function devolverDatos($modo) {
         case 'otros':            
             $datos = humedadYPresion($conn);
             break;
-
 
         case 'last14days':
             $datos = last14days($conn);            
