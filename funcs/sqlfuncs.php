@@ -11,7 +11,10 @@
         }
     }
 
-
+    /**
+     * Devuelve los datos de las últimas 24h o de una fecha concreta
+     * 
+     */
     function datos24h($conn, $modo) {
 
         $datos = array();
@@ -55,6 +58,9 @@
     }
         
 
+    /**
+     * Devuelve los datos de temperatura 
+     */
     function temperaturas($conn) {
         $datos = array();
 
@@ -86,7 +92,9 @@
         return $datos;
     }
 
-
+    /**
+     * Devuelve los datos de humedad y presión
+     */
     function humedadYPresion($conn) {
         $datos = array();
 
@@ -119,6 +127,10 @@
         return $datos;
     }
 
+
+    /**
+     * Devuelve los datos de los últimos 14 días a hora actual
+     */
     function last14days($conn) {
 
         $datos = array();
