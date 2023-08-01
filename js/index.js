@@ -78,11 +78,11 @@ async function drawGraph(modo, fecha = null) {
         txtSensacion.textContent = `Sensacion térmica : ${sensacionTermica}`;
         
         // Muestra el estado meteorológico actual en texto
-        if(humedad < 35) {
-          txtEstado.textContent = 'Soleado';
+        if(humedad < 20) {
+          txtEstado.textContent = 'Seco';
         }
 
-        if(humedad > 80 && humedad < 90) {
+        if(humedad > 70 && humedad < 90) {
           txtEstado.textContent = 'Nuboso';
         }
         
@@ -142,9 +142,9 @@ async function drawGraph(modo, fecha = null) {
   document.addEventListener('DOMContentLoaded', () => {
 
     const fechaActual = new Date().toLocaleDateString().split('/');
-    
-    fecha.value = `${fechaActual[2]}-${fechaActual[1].length==1 ? '0': ''}${fechaActual[1]}-${fechaActual[0]}`;
-    
+
+    fecha.value = `${fechaActual[2]}-${fechaActual[1].length==1 ? '0': ''}${fechaActual[1]}-${fechaActual[0].length==1 ? '0': ''}${fechaActual[0]}`;
+
     let hora = new Date().getHours();
     
     const superior = document.getElementById('superior');
