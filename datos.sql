@@ -16,7 +16,16 @@ SELECT fecha, sensor1, sensor2,p_mar, humedad FROM datos
 	SET t1.sensor1 = t2.sensor2
 	WHERE t1.id BETWEEN 66706 AND 66729;*/
 
-# UPDATE datos set p_mar=1012 WHERE id = 66584;
+-- use meteo;
+
+-- COMMIT;
+
+-- UPDATE datos AS t1
+-- 	INNER JOIN datos t2 ON t1.id = t2.id
+-- 	SET t1.p_mar = 1011, t1.p_local = 962, t1.altura = 437.71
+-- 	WHERE t1.p_mar < 1000;
+
+-- # UPDATE datos set p_mar=1012 WHERE id = 66584;
 
 /*
 SELECT 

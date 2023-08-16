@@ -14,6 +14,17 @@
     <link rel="stylesheet" href="css/index.css">
     <title>MeteoDuino Linares</title>
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L37KSEKXSV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-L37KSEKXSV');
+</script>
+
 <body>
     <header>
         <img id="menu" src="img/menu.svg" alt="Icono para el menu">
