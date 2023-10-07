@@ -63,6 +63,7 @@ header ul li img {
     height: 30px;
     width: 30px;
     padding: 2px;
+    color: yellow;
 }
 
 header ul li {
@@ -127,8 +128,11 @@ header label input[id="fecha"] {
     color: #eee;
     border : none;
     background: rgba(255,255,255, .1);
-    border-radius: 15px;
-    
+    border-radius: 15px;        
+}
+
+header label input[id="fecha"]::-webkit-calendar-picker-indicator {
+    filter:invert(1);
 }
 
 header label input[id="fecha"]:hover {
@@ -216,7 +220,9 @@ main div[id="superior"] div[id="datos"] div[id="estado"] {
 }
 
 #sensacionTermica {    
-    font-size: .8em;
+    color: white;    
+    /* -webkit-text-stroke: .5px navy; */
+    font-size: 1.2rem;
     font-weight: 400;
 }
 
