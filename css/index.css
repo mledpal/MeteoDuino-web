@@ -36,9 +36,11 @@ header {
 header img {
     position: absolute;    
     border-radius: 50%;
+    height: 50px;
+    width: 50px;
     padding: 5px;
     left: 30px;
-    filter: invert(1);
+    /* filter: invert(1); */
     cursor: pointer;
 }
 
@@ -59,11 +61,10 @@ header ul{
     box-shadow: 3px 3px 20px #000;
 }
 
-header ul li img {
+li > img {
     height: 30px;
     width: 30px;
-    padding: 2px;
-    color: yellow;
+    padding: 2px;    
 }
 
 header ul li {
