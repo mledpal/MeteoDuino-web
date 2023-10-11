@@ -14,3 +14,6 @@
 
 > Más adelante publicaré un gráfico con el conexionado
 
+## Por hacer
+- Pasar a React toda la interfaz
+- Integrar varios sensores en la gráfica
