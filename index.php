@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,11 +19,14 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L37KSEKXSV"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'G-L37KSEKXSV');
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-L37KSEKXSV');
 </script>
 
 <body>
@@ -45,8 +49,8 @@
                 <img src="img/history.svg" alt="Icono de un reloj">
                 <span>14 días atrás</span>
             </li>
-        </ul>        
-        
+        </ul>
+
         <label for="fecha">
             <input type="date" name="fecha" id="fecha"></input>
         </label>
@@ -55,25 +59,25 @@
 
     <main>
         <div id="superior">
-            <div id="datos">                
+            <div id="datos">
                 <div id="temperatura">
-                    <p id="temperaturaActual"></p>                      
+                    <p id="temperaturaActual"></p>
                 </div>
-                
+
                 <div id="estado">
                     <p id="estadoActual"></p>
-                    <p id="sensacionTermica"></p>                    
+                    <p id="sensacionTermica"></p>
                 </div>
 
                 <div id="masDatos">
                     <div id="divHumedad">
                         <h3>Humedad</h3>
-                        <p id="humedad"></p>                        
+                        <p id="humedad"></p>
                     </div>
-                    
+
                     <div id="divPresion">
                         <h3>Presión</h3>
-                        <p id="presion"></p>                        
+                        <p id="presion"></p>
                     </div>
                 </div>
             </div>
@@ -88,10 +92,15 @@
             <canvas id="grafico"></canvas>
         </div>
     </main>
-        
+
     <footer>
         <p>Miguel Ledesma Palacios | Linares | 2023</p>
- 
+        <ul>
+            <li><a target="_blank" href="https://www.eltiempo.es/linares.html?q=linares">El Tiempo Linares</a></li>
+            <li><a target="_blank" href="http://www.aemet.es/es/eltiempo/prediccion/municipios/linares-id23055">AEMET Linares</a></li>
+            <li><a target="_blank" href="https://www.meteoclimatic.net/perfil/ESAND2300000023700C?screen_width=2560">Otra Meteorológica Linares</a></li>
+        </ul>
+
 
         <ul>
             <li><a href="https://github.com/mledpal" target="_blank">Github personal</a></li>
@@ -101,7 +110,8 @@
     </footer>
 
     <script src="./js/chart.js"></script>
-    <script src="./js/graph.js" type="module"></script>  
+    <script src="./js/graph.js" type="module"></script>
     <script src="./js/index.js" type="module"></script>
 </body>
+
 </html>
