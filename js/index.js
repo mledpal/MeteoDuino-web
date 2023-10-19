@@ -87,15 +87,12 @@ async function drawGraph(modo, fecha = null) {
 				txtEstado.textContent = "Seco";
 			}
 
-			if (humedad > 70 && humedad < 85) {
+			if (humedad > 65 && humedad < 70) {
 				txtEstado.textContent = "Nuboso";
-			}
-
-			if (humedad > 85) {
+			} else if (humedad >= 70) {
 				txtEstado.textContent = "Lluvia";
 				superior.style.backgroundImage = "url('img/lluvia.gif')";
-				document.body.style.background =
-					"linear-gradient(0deg, #9c9feb, #595ef5)";
+				document.body.style.background = "linear-gradient(0deg, #9c9c9c, #555)";
 			}
 
 			// Muestra los datos de la tabla y del roll-over
