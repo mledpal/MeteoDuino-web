@@ -210,36 +210,6 @@ main div[id="superior"] div[id="datos"] div[id="temperatura"] {
     text-shadow: 1px 1px 5px #111;
 }
 
-
-
-main div[id="superior"] div[id="datos"] div[id="estado"] {
-    
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-}
-
-#sensacionTermica {    
-    color: white;    
-    /* -webkit-text-stroke: .5px navy; */
-    font-size: 1.2rem;
-    font-weight: 400;
-}
-
-main div[id="superior"] div[id="datos"] div[id="estado"] p {
-    
-    color: rgba(255,255,255,.8);
-    width: 100%;
-    font-size: 2em;
-    font-weight: 400;
-    display: flex;    
-    align-items: center;
-    justify-content: center;
-    text-shadow: 1px 1px 5px #111;
-}
-
-
 main div[id="superior"] div[id="datos"] div[id="masDatos"] {
     width: 100%;
     height: 100px;
@@ -248,27 +218,30 @@ main div[id="superior"] div[id="datos"] div[id="masDatos"] {
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 100px;
     margin-top:35px;
 }
 
+div[id="divSensacion"],
 div[id="divPresion"],
 div[id="divHumedad"] {
-    background: rgba(0,0,0,.1);    
+    /* background: linear-gradient(0deg, var(--clr) 0%, var(--clr) 50%, transparent 50%, transparent 100%); */
     display: flex;
-    height: 100%;
-    width: 35%;
+    height: 150px;
+    width: 150px;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    border-radius: 20px;    
+    border-radius: 50%;
     box-shadow: 1px 1px 3px #eee inset, -2px -2px 5px #000 inset;
+
 }
 
+div[id="divSensacion"] p,
 div[id="divPresion"] p,
 div[id="divHumedad"] p {
     color: rgba(255,255,255,.8);
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: 400;
     text-align: center;
     margin: 0;
@@ -276,10 +249,9 @@ div[id="divHumedad"] p {
 }
 
 
-
 h3 {
     text-transform: uppercase;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: 200;
     color: rgba(255,255,255,.8);
     text-shadow: 1px 1px 5px #111;

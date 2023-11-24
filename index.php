@@ -64,18 +64,19 @@
                     <p id="temperaturaActual"></p>
                 </div>
 
-                <div id="estado">
-                    <p id="estadoActual"></p>
-                    <p id="sensacionTermica"></p>
-                </div>
-
                 <div id="masDatos">
-                    <div id="divHumedad">
+
+                    <div id="divSensacion" style="--clr:rgba(255,0,0,.3)">
+                        <h3>Sensación</h3>
+                        <p id="sensacionTermica"></p>
+                    </div>
+
+                    <div id="divHumedad" style="--clr:rgba(0,0,255,.3)">
                         <h3>Humedad</h3>
                         <p id="humedad"></p>
                     </div>
 
-                    <div id="divPresion">
+                    <div id="divPresion" style="--clr:rgba(0,255,0,.3)">
                         <h3>Presión</h3>
                         <p id="presion"></p>
                     </div>

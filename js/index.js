@@ -27,6 +27,10 @@ const txtDatos = document.getElementById("txtDatos");
 const txtEstado = document.getElementById("estadoActual");
 const txtSensacion = document.getElementById("sensacionTermica");
 
+const divHumedad = document.getElementById("divHumedad");
+const divSensacion = document.getElementById("divSensacion");
+const divPresion = document.getElementById("divPresion");
+
 const ctx = document.getElementById("grafico");
 
 function toggleMenu() {
@@ -77,10 +81,11 @@ async function drawGraph(modo, fecha = null) {
 			let humedad = `${datos[3][datos[3].length - 1]}`;
 			let presion = `${datos[4][datos[4].length - 1]} hPa`;
 			let sensacionTermica = `${datos[5][datos[5].length - 1]} ºC`;
+
 			txtTemperatura.textContent = temperatura;
 			txtHumedad.textContent = humedad + "  %";
 			txtPresion.textContent = presion;
-			txtSensacion.textContent = `Sensacion térmica : ${sensacionTermica}`;
+			txtSensacion.textContent = `${sensacionTermica}ºC`;
 
 			// Muestra el estado meteorológico actual en texto
 			if (humedad < 20) {
@@ -129,6 +134,25 @@ async function drawGraph(modo, fecha = null) {
 			txtDatos.textContent = `Última actualización: ${tiempo} - T: ${tMaxima} (${tMaxT}) / ${tMinima} (${tMinT}) / ${tMedia} - H: ${hMaxima} (${hMaxT}) / ${hMinima} (${hMinT}) / ${hMedia} - P: ${pMaxima} (${pMaxT}) / ${pMinima} (${pMinT}) / ${pMedia} `;
 
 			let largo = txtDatos.textContent.length;
+
+			// Calcula los porcentajes entre los máximos y mínimos y dibuja el fondo de color en los divs
+			let valorT = ((datos[5][datos[5].length - 1] - -10) / (55 - -10)) * 100;
+			let valorP = ((datos[4][datos[4].length - 1] - 990) / (1030 - 990)) * 100;
+
+			divHumedad.style.setProperty(
+				"background",
+				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${humedad}%, transparent ${humedad}%, transparent 100%)`
+			);
+
+			divPresion.style.setProperty(
+				"background",
+				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${valorP}%, transparent ${valorP}%, transparent 100%)`
+			);
+
+			divSensacion.style.setProperty(
+				"background",
+				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${valorT}%, transparent ${valorT}%, transparent 100%)`
+			);
 
 			break;
 
