@@ -1,3 +1,7 @@
+root {
+    --bg-gray: rgba(0,0,0,.5);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -168,7 +172,7 @@ main div[id="superior"] {
     box-shadow: 1px 1px 10px #111 inset;    
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;   
-    padding-bottom: 25px; 
+    padding-bottom: 50px; 
 }
 
 main div[id="superior"] div[id="localizacion"] {
@@ -252,7 +256,7 @@ div[id="divHumedad"] p {
 h3 {
     text-transform: uppercase;
     font-size: 1.2em;
-    font-weight: 200;
+    font-weight: 800;
     color: rgba(255,255,255,.8);
     text-shadow: 1px 1px 5px #111;
 }

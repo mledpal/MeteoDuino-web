@@ -141,17 +141,17 @@ async function drawGraph(modo, fecha = null) {
 
 			divHumedad.style.setProperty(
 				"background",
-				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${humedad}%, transparent ${humedad}%, transparent 100%)`
+				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${humedad}%, rgba(0,0,0,.5) ${humedad}%, rgba(0,0,0,.5) 100%)`
 			);
 
 			divPresion.style.setProperty(
 				"background",
-				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${valorP}%, transparent ${valorP}%, transparent 100%)`
+				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${valorP}%, rgba(0,0,0,.5) ${valorP}%, rgba(0,0,0,.5) 100%)`
 			);
 
 			divSensacion.style.setProperty(
 				"background",
-				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${valorT}%, transparent ${valorT}%, transparent 100%)`
+				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${valorT}%, rgba(0,0,0,.5) ${valorT}%, rgba(0,0,0,.5) 100%)`
 			);
 
 			break;
