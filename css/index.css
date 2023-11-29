@@ -20,6 +20,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content:space-between;
+    user-select: none;
 }
 
 header {
@@ -211,7 +212,7 @@ main div[id="superior"] div[id="datos"] div[id="temperatura"] {
     display: flex;    
     align-items: center;
     justify-content: center;
-    text-shadow: 1px 1px 5px #111;
+    text-shadow: 1px 1px 5px #111;    
 }
 
 main div[id="superior"] div[id="datos"] div[id="masDatos"] {
@@ -238,7 +239,6 @@ div[id="divHumedad"] {
     justify-content: space-evenly;
     border-radius: 50%;
     box-shadow: 1px 1px 3px #eee inset, -2px -2px 5px #000 inset;
-
 }
 
 div[id="divSensacion"] p,
@@ -452,19 +452,33 @@ footer ul li a:hover {
         margin: auto;   
     }
 
-    div[id="masDatos"] div > h3 {
-        font-size: 1.3em;        
+    div#masDatos{
+        gap: 10px;
+    }
+    div[id="masDatos"] div > h3 {   
+        font-weight: 400;     
+        font-size: .8em;        
     }
 
     div[id="divPresion"] p,
     div[id="divHumedad"] p {
-        font-size: 1.2em;
+        font-size: .8em;
         font-weight: 400;        
     }
 
     footer {
         display: none;
     }
+
+    div[id="divSensacion"],
+    div[id="divPresion"],
+    div[id="divHumedad"] {
+        
+        height: 90px;
+        width: 90px;
+        
+    }
+
 
 }
 

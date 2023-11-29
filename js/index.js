@@ -77,15 +77,15 @@ async function drawGraph(modo, fecha = null) {
 			graph24(...datos);
 
 			// Muestra los datos actuales
-			let temperatura = `${datos[1][datos[1].length - 1]} ºC`;
+			let temperatura = `${datos[1][datos[1].length - 1]}`;
 			let humedad = `${datos[3][datos[3].length - 1]}`;
-			let presion = `${datos[4][datos[4].length - 1]} hPa`;
-			let sensacionTermica = `${datos[5][datos[5].length - 1]} ºC`;
+			let presion = `${datos[4][datos[4].length - 1]}`;
+			let sensacionTermica = `${datos[5][datos[5].length - 1]}`;
 
-			txtTemperatura.textContent = temperatura;
-			txtHumedad.textContent = humedad + "  %";
-			txtPresion.textContent = presion;
-			txtSensacion.textContent = `${sensacionTermica}ºC`;
+			txtTemperatura.textContent = `${temperatura} ºC`;
+			txtHumedad.textContent = `${humedad} %`;
+			txtPresion.textContent = presion + " hPa";
+			txtSensacion.textContent = `${sensacionTermica} ºC`;
 
 			// Muestra el estado meteorológico actual en texto
 			if (humedad < 20) {
