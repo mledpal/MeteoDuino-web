@@ -24,7 +24,7 @@ const li14dias = document.getElementById("li14dias");
 const fecha = document.getElementById("fecha");
 
 const txtDatos = document.getElementById("txtDatos");
-const txtEstado = document.getElementById("estadoActual");
+// const txtEstado = document.getElementById("estadoActual"); // No existe
 const txtSensacion = document.getElementById("sensacionTermica");
 
 const divHumedad = document.getElementById("divHumedad");
@@ -89,13 +89,13 @@ async function drawGraph(modo, fecha = null) {
 
 			// Muestra el estado meteorológico actual en texto
 			if (humedad < 20) {
-				txtEstado.textContent = "Seco";
+				// txtEstado.textContent = "Seco";
 			}
 
 			if (humedad > 65 && humedad < 70) {
-				txtEstado.textContent = "Nuboso";
+				// txtEstado.textContent = "Nuboso";
 			} else if (humedad >= 70 && presion <= 1000) {
-				txtEstado.textContent = "Lluvia";
+				// txtEstado.textContent = "Lluvia";
 				superior.style.backgroundImage = "url('img/lluvia.gif')";
 				document.body.style.background = "linear-gradient(0deg, #9c9c9c, #555)";
 			}

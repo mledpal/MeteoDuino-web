@@ -229,8 +229,7 @@ main div[id="superior"] div[id="datos"] div[id="masDatos"] {
 
 div[id="divSensacion"],
 div[id="divPresion"],
-div[id="divHumedad"] {
-    /* background: linear-gradient(0deg, var(--clr) 0%, var(--clr) 50%, transparent 50%, transparent 100%); */
+div[id="divHumedad"] {    
     display: flex;
     height: 150px;
     width: 150px;
