@@ -35,6 +35,8 @@ function devolverDatos($modo) {
 
     $datos = array();    
     $modo = $_POST['modo'];
+    $fecha1 = $_POST['fecha1'] ?? null;
+    $fecha2 = $_POST['fecha2'] ?? null;
     
     switch($modo) {
         case '24h':
@@ -52,6 +54,10 @@ function devolverDatos($modo) {
 
         case 'last14days':
             $datos = last14days($conn);            
+            break;
+
+        case 'comparar':
+            $datos = comparar($conn, $modo, $fecha1, $fecha2);
             break;
 
         default:

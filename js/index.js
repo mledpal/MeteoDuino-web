@@ -5,6 +5,7 @@ import {
 	graphTemperaturas,
 	graphOtros,
 	graphLastDays,
+	graphComparar,
 } from "./graph.js";
 
 const url = "./api.php";
@@ -20,8 +21,10 @@ const li24h = document.getElementById("li24h");
 const liTemperaturas = document.getElementById("liTemperaturas");
 const liOtros = document.getElementById("liOtros");
 const li14dias = document.getElementById("li14dias");
+const liComparar = document.getElementById("liComparar");
 
 const fecha = document.getElementById("fecha");
+const fecha2 = document.getElementById("fecha2");
 
 const txtDatos = document.getElementById("txtDatos");
 // const txtEstado = document.getElementById("estadoActual"); // No existe
@@ -46,7 +49,7 @@ function toggleMenu() {
  * @param {*} url URL a la que nos conectamos
  * @param {*} modo Tipo de datos que recuperamos *
  */
-async function drawGraph(modo, fecha = null) {
+async function drawGraph(modo, fecha = null, fecha2 = null) {
 	document.getElementById("grafico").remove();
 	let canvas = document.createElement("canvas");
 	canvas.setAttribute("id", "grafico");
@@ -56,7 +59,7 @@ async function drawGraph(modo, fecha = null) {
 
 	const options = {
 		method: "POST",
-		body: `modo=${modo}&fecha=${fecha}`,
+		body: `modo=${modo}&fecha=${fecha}&fecha2=${fecha2}`,
 		cors: "no-cors",
 		headers: {
 			"Content-type": "application/x-www-form-urlencoded",
@@ -137,7 +140,7 @@ async function drawGraph(modo, fecha = null) {
 
 			// Calcula los porcentajes entre los máximos y mínimos y dibuja el fondo de color en los divs
 			let valorT = ((datos[5][datos[5].length - 1] - -10) / (55 - -10)) * 100;
-			let valorP = ((datos[4][datos[4].length - 1] - 990) / (1030 - 990)) * 100;
+			let valorP = ((datos[4][datos[4].length - 1] - 990) / (1040 - 980)) * 100;
 
 			divHumedad.style.setProperty(
 				"background",
@@ -170,6 +173,11 @@ async function drawGraph(modo, fecha = null) {
 			//graphLastDays(datos[0].reverse(), datos[1].reverse(), datos[2].reverse(), datos[3].reverse(), datos[4].reverse());
 			graphLastDays(...datos);
 			break;
+
+		case "comparar":
+			//graphTemperaturas(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
+			graphComparar(datos);
+			break;
 	}
 }
 
@@ -179,6 +187,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	fecha.value = `${fechaActual[2]}-${fechaActual[1].length == 1 ? "0" : ""}${
 		fechaActual[1]
 	}-${fechaActual[0].length == 1 ? "0" : ""}${fechaActual[0]}`;
+
+	fecha2.value = fecha.value;
 
 	let hora = new Date().getHours();
 
@@ -222,12 +232,30 @@ document.addEventListener("DOMContentLoaded", () => {
 		drawGraph("temperaturas");
 	});
 
+	liComparar.addEventListener("click", () => {
+		toggleMenu();
+		fecha2.attributes.removeNamedItem("hidden");
+		drawGraph("comparar", fecha.value, fecha2.value);
+	});
+
 	fecha.addEventListener("change", () => {
 		const hoy = new Date();
 		const fechaSeleccionada = new Date(fecha.value);
 
 		if (fechaSeleccionada <= hoy) {
 			drawGraph("fecha", fecha.value);
+		} else {
+			alert("La fecha seleccionada no puede ser mayor que la fecha actual");
+			drawGraph("24h");
+		}
+	});
+
+	fecha2.addEventListener("change", () => {
+		const hoy = new Date();
+		const fechaSeleccionada = new Date(fecha2.value);
+
+		if (fechaSeleccionada <= hoy) {
+			drawGraph("comparar", fecha.value, fecha2.value);
 		} else {
 			alert("La fecha seleccionada no puede ser mayor que la fecha actual");
 			drawGraph("24h");

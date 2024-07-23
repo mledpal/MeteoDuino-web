@@ -123,11 +123,19 @@ header ul li:hover {
     }    
 }
 
-header label {
+header div.fechas {
     position: absolute;    
-    right: 50px;        
+    right: 50px;   
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: end;  
+    gap: 20px;    
 }
 
+header label input[id="fecha2"],
 header label input[id="fecha"] {
     font-size: 1.5rem;   
     padding: 10px 15px;
@@ -141,6 +149,11 @@ header label input[id="fecha"]::-webkit-calendar-picker-indicator {
     filter:invert(1);
 }
 
+header label input[id="fecha2"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+header label input[id="fecha2"]:hover,
 header label input[id="fecha"]:hover {
     transition: box-shadow .5s;
     box-shadow: 1px 1px 10px #eee inset;
@@ -393,10 +406,21 @@ footer ul li a:hover {
         justify-content: start;        
     }
 
-    header label input[id="fecha"] {        
-        right: 20px;
-        font-size: 1.2rem;   
-        padding: 5px 10px;        
+    header div.fechas {        
+        right: 5px;
+        width: 50%;        
+        flex-direction: column;
+        align-items: end;
+        justify-content: center;
+        gap: 2px;
+    }
+
+    header label input[id="fecha2"],
+    header label input[id="fecha"] {
+        right: 2px;
+        font-size: 1rem;
+        padding: 2px 5px;        
+        border-radius: 10px;
     }
 
     main div[id="superior"] {

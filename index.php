@@ -49,11 +49,21 @@
                 <img src="img/history.svg" alt="Icono de un reloj">
                 <span>14 días atrás</span>
             </li>
+            <li id="liComparar">
+                <img src="img/compare.svg" alt="Icono de un comparador">
+                <span>Comparar</span>
+            </li>
         </ul>
 
-        <label for="fecha">
-            <input type="date" name="fecha" id="fecha"></input>
-        </label>
+        <div class="fechas">
+            <label for="fecha2">
+                <input type="date" name="fecha2" id="fecha2" hidden></input>
+            </label>
+
+            <label for="fecha">
+                <input type="date" name="fecha" id="fecha"></input>
+            </label>
+        </div>
 
     </header>
 
