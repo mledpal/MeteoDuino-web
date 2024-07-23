@@ -209,32 +209,37 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	btnMenu.addEventListener("click", () => {
+		fecha2.style.visibility = "hidden";
 		toggleMenu();
 	});
 
 	li24h.addEventListener("click", () => {
 		toggleMenu();
+		fecha2.style.visibility = "hidden";
 		drawGraph("24h");
 	});
 
 	li14dias.addEventListener("click", () => {
 		toggleMenu();
+		fecha2.style.visibility = "hidden";
 		drawGraph("last14days");
 	});
 
 	liOtros.addEventListener("click", () => {
 		toggleMenu();
+		fecha2.style.visibility = "hidden";
 		drawGraph("otros");
 	});
 
 	liTemperaturas.addEventListener("click", () => {
 		toggleMenu();
+		fecha2.style.visibility = "hidden";
 		drawGraph("temperaturas");
 	});
 
 	liComparar.addEventListener("click", () => {
 		toggleMenu();
-		fecha2.attributes.removeNamedItem("hidden");
+		fecha2.style.visibility = "visible";
 		drawGraph("comparar", fecha.value, fecha2.value);
 	});
 

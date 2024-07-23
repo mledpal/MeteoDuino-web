@@ -57,7 +57,7 @@
 
         <div class="fechas">
             <label for="fecha2">
-                <input type="date" name="fecha2" id="fecha2" hidden></input>
+                <input type="date" name="fecha2" id="fecha2"></input>
             </label>
 
             <label for="fecha">
