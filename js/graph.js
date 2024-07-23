@@ -366,7 +366,7 @@ export function graphComparar(datos) {
 					data: t1a,
 					borderWidth: 1,
 					hidden: false,
-					xAxisID: "x1",
+					xAxisID: "x2",
 					yAxisID: "y-temperatura",
 				},
 				{
@@ -374,7 +374,7 @@ export function graphComparar(datos) {
 					type: "line",
 					data: t2a,
 					borderWidth: 1,
-					xAxisID: "x1",
+					xAxisID: "x2",
 					yAxisID: "y-temperatura",
 					hidden: true,
 				},
@@ -383,7 +383,7 @@ export function graphComparar(datos) {
 					label: "Presión",
 					data: p,
 					borderWidth: 1,
-					xAxisID: "x1",
+					xAxisID: "x2",
 					yAxisID: "y-presion",
 					hidden: true,
 				},
@@ -393,7 +393,7 @@ export function graphComparar(datos) {
 					data: h,
 					borderWidth: 1,
 					hidden: true,
-					xAxisID: "x1",
+					xAxisID: "x2",
 					yAxisID: "y-humedad",
 				},
 				{
@@ -436,14 +436,9 @@ export function graphComparar(datos) {
 		},
 		options: {
 			pointStyle: false,
-			scales: {
-				x1: {
-					type: "category",
-					labels: hora1,
-				},
-				x2: {
-					type: "category",
-					labels: hora2,
+			scales: {				
+				x2: {					
+          labels: hora2,        
 				},
 				"y-temperatura": {
 					type: "linear",
