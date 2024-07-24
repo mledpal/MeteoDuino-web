@@ -86,6 +86,11 @@ header ul li {
     cursor: pointer;
     height: 50px;
     width: 100%;
+    transition: background .5s ease-in-out;
+}
+
+header ul li:hover {
+    background: rgba(255, 255, 255, .2);     
 }
 
 header ul li span {
@@ -97,12 +102,6 @@ header ul li span {
     color: #eee;
     text-shadow: 1px 1px 5px #111;
     padding: 10px;
-}
-
-
-header ul li:hover {
-    background: rgba(255,255,255,.2);
-    transition: background .5s ease-in-out;
 }
 
 .showMenu {
