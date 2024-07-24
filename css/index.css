@@ -406,10 +406,21 @@ footer ul li a:hover {
         justify-content: start;        
     }
 
+    header img {
+        position: absolute;
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
+        padding: 5px;
+        left: 10px;
+        /* filter: invert(1); */
+        cursor: pointer;
+    }
+
     header div.fechas {        
         right: 5px;
-        width: 50%;        
-        flex-direction: column;
+        width: 80%;        
+        flex-direction: row;
         align-items: end;
         justify-content: center;
         gap: 2px;
@@ -418,7 +429,7 @@ footer ul li a:hover {
     header label input[id="fecha2"],
     header label input[id="fecha"] {
         right: 2px;
-        font-size: 1rem;
+        font-size: .8rem;
         padding: 2px 5px;        
         border-radius: 10px;
     }
