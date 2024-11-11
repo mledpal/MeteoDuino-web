@@ -97,7 +97,7 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 
 			if (humedad > 65 && humedad < 70) {
 				// txtEstado.textContent = "Nuboso";
-			} else if (humedad >= 60 && presion <= 1025) {
+			} else if (humedad >= 75 && presion <= 1020) {
 				// txtEstado.textContent = "Lluvia";
 				superior.style.backgroundImage = "url('img/lluvia.gif')";
 				document.body.style.background = "linear-gradient(0deg, #9c9c9c, #555)";
