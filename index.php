@@ -37,6 +37,10 @@
                 <img src="img/clock.svg" alt="Icono de un reloj">
                 <span>24 horas</span>
             </li>
+            <li id="liExterna">
+                <img src="img/clock.svg" alt="Icono de un reloj">
+                <span>24 horas ext*</span>
+            </li>
             <li id="liTemperaturas">
                 <img src="img/thermostat.svg" alt="Icono de un termómetro">
                 <span>Temperaturas</span>

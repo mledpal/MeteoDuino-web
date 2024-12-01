@@ -17,3 +17,5 @@
 ## Por hacer
 - Pasar a React toda la interfaz
 - Integrar varios sensores en la gráfica
+- Integrar un sensor de lluvia
+- Cambiar la librería de gráficos

@@ -22,14 +22,7 @@ const resize = (graph) => {
 	};
 };
 
-export function graph24(
-	horas,
-	temperaturas1,
-	temperaturas2,
-	humedad,
-	presion,
-	sensacion
-) {
+export function graph24(horas, temperaturas1, temperaturas2, humedad, presion, sensacion) {
 	const ctx = document.getElementById("grafico");
 
 	const graph = new Chart(ctx, {
@@ -340,15 +333,15 @@ export function graphLastDays(fecha, t1, t2, p, h) {
 export function graphComparar(datos) {
 	const { datos1, datos2 } = datos;
 
-  const fecha1 = datos1[0];
-  const hora1 = datos1[1];
+	const fecha1 = datos1[0];
+	const hora1 = datos1[1];
 	const t1a = datos1[2];
 	const t2a = datos1[3];
 	const p = datos1[4];
 	const h = datos1[5];
 
-  const fecha2 = datos2[0];
-  const hora2 = datos2[1];
+	const fecha2 = datos2[0];
+	const hora2 = datos2[1];
 	const t1b = datos2[2];
 	const t2b = datos2[3];
 	const pb = datos2[4];
@@ -436,9 +429,120 @@ export function graphComparar(datos) {
 		},
 		options: {
 			pointStyle: false,
-			scales: {				
-				x2: {					
-          labels: hora2,        
+			scales: {
+				x2: {
+					labels: hora2,
+				},
+				"y-temperatura": {
+					type: "linear",
+					position: "left",
+				},
+				"y-humedad": {
+					label: "Humedad",
+					min: 0,
+					max: 100,
+					type: "linear",
+					position: "right",
+					step: 20,
+				},
+				"y-presion": {
+					label: "Presión",
+					min: 960,
+					max: 1050,
+					position: "right",
+				},
+			},
+		},
+	});
+
+	resize(graph);
+}
+
+export function graphExterna(...datos) {
+	const hora = datos[0];
+	const temperatura = datos[1];
+	const humedad = datos[2];
+	const presion = datos[3];
+	const precipitacion = datos[4];
+	const radiacion_solar = datos[5];
+	const velocidad_viento = datos[6];
+	// const direccion_viento = datos[7];
+
+	const ctx = document.getElementById("grafico");
+	const graph = new Chart(ctx, {
+		data: {
+			labels: fecha,
+			datasets: [
+				{
+					label: "Temperatura",
+					type: "line",
+					data: temperatura,
+					borderWidth: 1,
+					hidden: false,
+					xAxisID: "x2",
+					yAxisID: "y-temperatura",
+				},
+				{
+					label: "Humedad",
+					type: "line",
+					data: humedad,
+					borderWidth: 1,
+					xAxisID: "x2",
+					yAxisID: "y-humedad",
+					hidden: true,
+				},
+				{
+					type: "line",
+					label: "Presión",
+					data: presion,
+					borderWidth: 1,
+					xAxisID: "x2",
+					yAxisID: "y-presion",
+					hidden: true,
+				},
+				{
+					label: "Precipitación",
+					type: "line",
+					data: precipitacion,
+					borderWidth: 1,
+					hidden: true,
+					xAxisID: "x2",
+					yAxisID: "y-temperatura",
+				},
+				{
+					label: "Radiación Solar",
+					type: "line",
+					data: radiacion_solar,
+					borderWidth: 1,
+					hidden: true,
+					xAxisID: "x2",
+					yAxisID: "y-temperatura",
+				},
+				{
+					label: "Velocidad Viento",
+					type: "line",
+					data: velocidad_viento,
+					borderWidth: 1,
+					hidden: true,
+					xAxisID: "x2",
+					yAxisID: "y-temperatura",
+				},
+				// {
+				// 	label: "Dirección Viento",
+				// 	type: "line",
+				// 	data: direccion_viento,
+				// 	borderWidth: 1,
+				// 	hidden: true,
+				// 	xAxisID: "x2",
+				// 	yAxisID: "y-temperatura",
+				// },
+			],
+		},
+		options: {
+			pointStyle: false,
+			scales: {
+				x2: {
+					labels: hora,
 				},
 				"y-temperatura": {
 					type: "linear",

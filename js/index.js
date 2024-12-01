@@ -1,12 +1,6 @@
 "use strict";
 
-import {
-	graph24,
-	graphTemperaturas,
-	graphOtros,
-	graphLastDays,
-	graphComparar,
-} from "./graph.js";
+import { graph24, graphTemperaturas, graphOtros, graphLastDays, graphComparar, graphExterna } from "./graph.js";
 
 const url = "./api.php";
 
@@ -22,12 +16,12 @@ const liTemperaturas = document.getElementById("liTemperaturas");
 const liOtros = document.getElementById("liOtros");
 const li14dias = document.getElementById("li14dias");
 const liComparar = document.getElementById("liComparar");
+const liExterna = document.getElementById("liExterna");
 
 const fecha = document.getElementById("fecha");
 const fecha2 = document.getElementById("fecha2");
 
 const txtDatos = document.getElementById("txtDatos");
-// const txtEstado = document.getElementById("estadoActual"); // No existe
 const txtSensacion = document.getElementById("sensacionTermica");
 
 const divHumedad = document.getElementById("divHumedad");
@@ -38,10 +32,8 @@ const ctx = document.getElementById("grafico");
 
 function toggleMenu() {
 	menu.classList.contains("showMenu")
-		? ((menu.style.cssText = "display: hidden;"),
-		  menu.classList.remove("showMenu"))
-		: ((menu.style.cssText = "display: block;"),
-		  menu.classList.add("showMenu"));
+		? ((menu.style.cssText = "display: hidden;"), menu.classList.remove("showMenu"))
+		: ((menu.style.cssText = "display: block;"), menu.classList.add("showMenu"));
 }
 
 /**
@@ -111,28 +103,19 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 
 			let tMinima = `${Math.min(...datos[1])} ºC`;
 			let tMinT = datos[0][datos[1].indexOf(Math.min(...datos[1]))];
-			let tMedia = `${Math.round(
-				datos[1].reduce((a, b) => a + b, 0) / datos[1].length,
-				2
-			)} ºC`;
+			let tMedia = `${Math.round(datos[1].reduce((a, b) => a + b, 0) / datos[1].length, 2)} ºC`;
 
 			let hMaxima = `${Math.max(...datos[3])} %`;
 			let hMaxT = datos[0][datos[3].indexOf(Math.max(...datos[3]))];
 			let hMinima = `${Math.min(...datos[3])} %`;
 			let hMinT = datos[0][datos[3].indexOf(Math.min(...datos[3]))];
-			let hMedia = `${Math.round(
-				datos[3].reduce((a, b) => a + b, 0) / datos[3].length,
-				2
-			)} %`;
+			let hMedia = `${Math.round(datos[3].reduce((a, b) => a + b, 0) / datos[3].length, 2)} %`;
 
 			let pMaxima = `${Math.max(...datos[4])} hPa`;
 			let pMaxT = `${datos[0][datos[4].indexOf(Math.max(...datos[4]))]}`;
 			let pMinima = `${Math.min(...datos[4])} hPa`;
 			let pMinT = `${datos[0][datos[4].indexOf(Math.min(...datos[4]))]}`;
-			let pMedia = `${Math.round(
-				datos[4].reduce((a, b) => a + b, 0) / datos[4].length,
-				2
-			)} hPa`;
+			let pMedia = `${Math.round(datos[4].reduce((a, b) => a + b, 0) / datos[4].length, 2)} hPa`;
 
 			txtDatos.textContent = `Última actualización: ${tiempo} - T: ${tMaxima} (${tMaxT}) / ${tMinima} (${tMinT}) / ${tMedia} - H: ${hMaxima} (${hMaxT}) / ${hMinima} (${hMinT}) / ${hMedia} - P: ${pMaxima} (${pMaxT}) / ${pMinima} (${pMinT}) / ${pMedia} `;
 
@@ -142,20 +125,11 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 			let valorT = ((datos[5][datos[5].length - 1] - -10) / (55 - -10)) * 100;
 			let valorP = ((datos[4][datos[4].length - 1] - 990) / (1040 - 980)) * 100;
 
-			divHumedad.style.setProperty(
-				"background",
-				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${humedad}%, rgba(0,0,0,.5) ${humedad}%, rgba(0,0,0,.5) 100%)`
-			);
+			divHumedad.style.setProperty("background", `linear-gradient(0deg, var(--clr) 0%, var(--clr) ${humedad}%, rgba(0,0,0,.5) ${humedad}%, rgba(0,0,0,.5) 100%)`);
 
-			divPresion.style.setProperty(
-				"background",
-				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${valorP}%, rgba(0,0,0,.5) ${valorP}%, rgba(0,0,0,.5) 100%)`
-			);
+			divPresion.style.setProperty("background", `linear-gradient(0deg, var(--clr) 0%, var(--clr) ${valorP}%, rgba(0,0,0,.5) ${valorP}%, rgba(0,0,0,.5) 100%)`);
 
-			divSensacion.style.setProperty(
-				"background",
-				`linear-gradient(0deg, var(--clr) 0%, var(--clr) ${valorT}%, rgba(0,0,0,.5) ${valorT}%, rgba(0,0,0,.5) 100%)`
-			);
+			divSensacion.style.setProperty("background", `linear-gradient(0deg, var(--clr) 0%, var(--clr) ${valorT}%, rgba(0,0,0,.5) ${valorT}%, rgba(0,0,0,.5) 100%)`);
 
 			break;
 
@@ -178,15 +152,17 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 			//graphTemperaturas(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
 			graphComparar(datos);
 			break;
+
+		case "externa":			
+			graphExterna(...datos);
+			break;
 	}
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 	const fechaActual = new Date().toLocaleDateString().split("/");
 
-	fecha.value = `${fechaActual[2]}-${fechaActual[1].length == 1 ? "0" : ""}${
-		fechaActual[1]
-	}-${fechaActual[0].length == 1 ? "0" : ""}${fechaActual[0]}`;
+	fecha.value = `${fechaActual[2]}-${fechaActual[1].length == 1 ? "0" : ""}${fechaActual[1]}-${fechaActual[0].length == 1 ? "0" : ""}${fechaActual[0]}`;
 
 	fecha2.value = fecha.value;
 
@@ -241,6 +217,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		toggleMenu();
 		fecha2.style.opacity = 1;
 		drawGraph("comparar", fecha.value, fecha2.value);
+	});
+
+	liExterna.addEventListener("click", () => {
+		toggleMenu();
+		fecha2.style.opacity = 0;
+		drawGraph("externa");
 	});
 
 	fecha.addEventListener("change", () => {

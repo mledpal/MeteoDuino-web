@@ -60,6 +60,10 @@ function devolverDatos($modo) {
             $datos = comparar($conn, $modo, $fecha1, $fecha2);
             break;
 
+        case 'externa':
+            $datos = externa($conn, $modo);
+            break;
+
         default:
             echo json_encode(['error'=>'MODE ERROR']);
             break;

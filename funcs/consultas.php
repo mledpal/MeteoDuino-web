@@ -50,4 +50,13 @@ enum Consultas: string
                     LIMIT 288                    
                     ) as subquery 
                     ORDER BY subquery.id ASC";
+
+    case externa = "SELECT subquery.* FROM (
+                        SELECT 
+                        id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, temperatura, presion, humedad, velocidad_viento, orientacion_viento, radiacion_solar, precipitacion, precipitacion_dias
+                        FROM `datosEXT`                         
+                        ORDER BY id DESC 
+                        LIMIT 288
+                        ) as subquery 
+                        ORDER BY subquery.id ASC";
 }
