@@ -16,6 +16,10 @@
 
 ## Por hacer
 - Pasar a React toda la interfaz
-- Integrar varios sensores en la gráfica
 - Integrar un sensor de lluvia
 - Cambiar la librería de gráficos
+
+
+## Últimos cambios
+- 1/10/2024. Modificación del código que controla la zona horaria para el ESP8266
+- 1/12/2024. Inclusión de datos de una meteorológica externa (no propia)
