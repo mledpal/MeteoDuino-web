@@ -153,7 +153,39 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 			graphComparar(datos);
 			break;
 
-		case "externa":			
+		case "externa":
+			let ultimoRegistro = datos[0].length - 1;
+			const reg = {
+				hora: datos[0][ultimoRegistro],
+				temperatura: datos[1][ultimoRegistro],
+				humedad: datos[2][ultimoRegistro],
+				presion: datos[3][ultimoRegistro],
+				precipitacion: datos[4][ultimoRegistro],
+				radiacion_solar: datos[5][ultimoRegistro],
+				velocidad_viento: datos[6][ultimoRegistro],
+				direccion_viento: datos[7][ultimoRegistro],
+			};
+
+			if (reg.precipitacion > 0) {
+				superior.style.backgroundImage = "url('img/lluvia.gif')";
+				document.body.style.background = "linear-gradient(0deg, #9c9c9c, #555)";
+			} else {
+				if (reg.radiacion_solar > 10) {
+					superior.style.backgroundImage = "url('img/dia.webp')";
+					document.body.style.background = "linear-gradient(0deg, #9c9feb, #595ef5)";
+				} else if (reg.radiacion_solar > 0 && reg.radiacion_solar <= 10) {
+					superior.style.backgroundImage = "url('img/atardecer.webp')";
+					document.body.style.background = "linear-gradient(0deg, #f0a274, #f37126)";
+				} else {
+					superior.style.backgroundImage = "url('img/noche.webp')";
+					document.body.style.background = "linear-gradient(0deg, #463d63, #140644";
+				}
+			}
+
+			txtTemperatura.textContent = `${reg.temperatura} ºC`;
+			txtHumedad.textContent = `${reg.humedad} %`;
+			txtPresion.textContent = reg.presion + " hPa";
+
 			graphExterna(...datos);
 			break;
 	}
