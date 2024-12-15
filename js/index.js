@@ -23,6 +23,7 @@ const fecha2 = document.getElementById("fecha2");
 
 const txtDatos = document.getElementById("txtDatos");
 const txtSensacion = document.getElementById("sensacionTermica");
+const txtbateria = document.getElementById("bateria");
 
 const divHumedad = document.getElementById("divHumedad");
 const divSensacion = document.getElementById("divSensacion");
@@ -76,11 +77,14 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 			let humedad = `${datos[3][datos[3].length - 1]}`;
 			let presion = `${datos[4][datos[4].length - 1]}`;
 			let sensacionTermica = `${datos[5][datos[5].length - 1]}`;
+			let bateria = `${datos[6][datos[6].length - 1]}`;
+			
 
 			txtTemperatura.textContent = `${temperatura} ºC`;
 			txtHumedad.textContent = `${humedad} %`;
 			txtPresion.textContent = presion + " hPa";
 			txtSensacion.textContent = `${sensacionTermica} ºC`;
+			txtbateria.textContent = `${bateria} V`;
 
 			// Muestra el estado meteorológico actual en texto
 			if (humedad < 20) {

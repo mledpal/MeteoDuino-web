@@ -68,7 +68,6 @@
                 <input type="date" name="fecha" id="fecha"></input>
             </label>
         </div>
-
     </header>
 
     <main>
@@ -109,7 +108,10 @@
     </main>
 
     <footer>
-        <p>Miguel Ledesma Palacios | Linares | 2023</p>
+        <ul>
+            <li>Miguel Ledesma Palacios | Linares | 2024</li>
+            <li>Batería <span id="bateria"></span></li>
+        </ul>
         <ul>
             <li><a target="_blank" href="https://www.eltiempo.es/linares.html?q=linares">El Tiempo Linares</a></li>
             <li><a target="_blank" href="http://www.aemet.es/es/eltiempo/prediccion/municipios/linares-id23055">AEMET Linares</a></li>

@@ -9,7 +9,7 @@ enum Consultas: string
 
     case ultimas24h = "SELECT subquery.* FROM (
                             SELECT 
-                            id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, sensor1 as T1, sensor2 AS T2, p_mar as presion, humedad, t_sens as sensacion 
+                            id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, sensor1 as T1, sensor2 AS T2, p_mar as presion, humedad, t_sens as sensacion , bateria
                             FROM `datos` ORDER BY id DESC 
                             LIMIT 288
                             ) as subquery 
@@ -43,7 +43,7 @@ enum Consultas: string
 
     case fecha = "SELECT subquery.* FROM (
                     SELECT 
-                    id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, sensor1 as T1, sensor2 AS T2, p_mar as presion, humedad, t_sens as sensacion 
+                    id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, sensor1 as T1, sensor2 AS T2, p_mar as presion, humedad, t_sens as sensacion, bateria 
                     FROM `datos` 
                     WHERE fecha = '#####' 
                     ORDER BY id DESC                     

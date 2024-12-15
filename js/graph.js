@@ -22,7 +22,7 @@ const resize = (graph) => {
 	};
 };
 
-export function graph24(horas, temperaturas1, temperaturas2, humedad, presion, sensacion) {
+export function graph24(horas, temperaturas1, temperaturas2, humedad, presion, sensacion, bateria) {
 	const ctx = document.getElementById("grafico");
 
 	const graph = new Chart(ctx, {
