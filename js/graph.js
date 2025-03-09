@@ -568,3 +568,40 @@ export function graphExterna(...datos) {
 
 	resize(graph);
 }
+
+export function graphPrecipitacion(...datos) {
+	const fecha = datos[0];
+	const precipitacion = datos[1];
+
+	const ctx = document.getElementById("grafico");
+	const graph = new Chart(ctx, {
+		data: {
+			labels: fecha,
+			datasets: [
+				{
+					label: "Precipitación",
+					type: "bar",
+					data: precipitacion,
+					borderWidth: 1,
+					hidden: false,
+					xAxisID: "x2",
+					yAxisID: "y-precipitacion",
+				},
+			],
+		},
+		options: {
+			pointStyle: false,
+			scales: {
+				x2: {
+					labels: fecha,
+				},
+				"y-precipitacion": {
+					type: "linear",
+					position: "left",
+				},
+			},
+		},
+	});
+
+	resize(graph);
+}

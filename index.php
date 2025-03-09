@@ -53,6 +53,10 @@
                 <img src="img/history.svg" alt="Icono de un reloj">
                 <span>14 días atrás</span>
             </li>
+            <li id="liprecipitacion">
+                <img src="img/history.svg" alt="Icono de un reloj">
+                <span>Lluvia 14 días</span>
+            </li>
             <li id="liComparar">
                 <img src="img/compare.svg" alt="Icono de un comparador">
                 <span>Comparar</span>
@@ -126,9 +130,9 @@
         </ul>
     </footer>
 
-    <script src="./js/chart.js"></script>
-    <script src="./js/graph.js" type="module"></script>
-    <script src="./js/index.js" type="module"></script>
+    <script src="./js/chart.js?v=20250309"></script>
+    <script src="./js/graph.js?v=20250309" type="module"></script>
+    <script src="./js/index.js?v=20250309" type="module"></script>
 </body>
 
 </html>

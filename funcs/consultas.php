@@ -59,4 +59,20 @@ enum Consultas: string
                         LIMIT 288
                         ) as subquery 
                         ORDER BY subquery.id ASC";
+
+    case lluvia = "SELECT * FROM (
+            SELECT fecha, max(precipitacion) 
+            FROM datosEXT 
+            WHERE DATE_FORMAT(hora, '%k:%i') = (
+                SELECT DATE_FORMAT(hora, '%k:%i') 
+                FROM datos 
+                ORDER BY id DESC 
+                LIMIT 1
+            ) 
+            GROUP BY fecha 
+            ORDER BY fecha DESC 
+            LIMIT 14
+        ) AS subconsulta
+        ORDER BY fecha ASC;
+        ";
 }

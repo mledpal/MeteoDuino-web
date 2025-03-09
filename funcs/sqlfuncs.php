@@ -206,7 +206,7 @@ function comparar($conn, $modo, $fecha1, $fecha2)
     $sql = $conn->prepare($query1);
     $sql->execute();
 
-    while ($row = $sql->fetch()) {        
+    while ($row = $sql->fetch()) {
         array_push($fecha1, (string) $row['fecha']);
         array_push($hora1, (string) $row['hora']);
         array_push($sensor1_1, (float) $row['T1']);
@@ -234,7 +234,8 @@ function comparar($conn, $modo, $fecha1, $fecha2)
     return ['comparar' => true, 'datos1' => $datos1, 'datos2' => $datos2];
 }
 
-function externa($conn) { 
+function externa($conn)
+{
     $datos = array();
 
     $horas = array();
@@ -244,17 +245,17 @@ function externa($conn) {
     $velocidad_viento = array();
     $direccion_viento = array();
     $radiacion_solar = array();
-    $precipitacion = array();    
+    $precipitacion = array();
 
     $query = "";
-   
+
     $query = Consultas::externa->value;
 
     $sql = $conn->prepare($query);
     $sql->execute();
 
     while ($row = $sql->fetch()) {
-        array_push($horas, (string) $row['hora']);        
+        array_push($horas, (string) $row['hora']);
         array_push($temperatura, (float) $row['temperatura']);
         array_push($humedad, (int) $row['humedad']);
         array_push($presion, (int) $row['presion']);
@@ -265,6 +266,28 @@ function externa($conn) {
     }
 
     array_push($datos, $horas, $temperatura, $humedad, $presion, $precipitacion, $radiacion_solar, $velocidad_viento, $direccion_viento);
+
+    return $datos;
+}
+
+function precipitacion($conn)
+{
+    $datos = array();
+
+    $fecha = array();
+    $lluvia = array();
+
+    $query = Consultas::lluvia->value;
+
+    $sql = $conn->prepare($query);
+    $sql->execute();
+
+    while ($row = $sql->fetch()) {
+        array_push($fecha, (string) $row['fecha']);
+        array_push($lluvia, (float) $row['max(precipitacion)']);
+    }
+
+    array_push($datos, $fecha, $lluvia);
 
     return $datos;
 }

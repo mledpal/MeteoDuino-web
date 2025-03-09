@@ -1,6 +1,6 @@
 "use strict";
 
-import { graph24, graphTemperaturas, graphOtros, graphLastDays, graphComparar, graphExterna } from "./graph.js";
+import { graph24, graphTemperaturas, graphOtros, graphLastDays, graphComparar, graphExterna, graphPrecipitacion } from "./graph.js";
 
 const url = "./api.php";
 
@@ -17,6 +17,7 @@ const liOtros = document.getElementById("liOtros");
 const li14dias = document.getElementById("li14dias");
 const liComparar = document.getElementById("liComparar");
 const liExterna = document.getElementById("liExterna");
+const liPrecipitacion = document.getElementById("liprecipitacion");
 
 const fecha = document.getElementById("fecha");
 const fecha2 = document.getElementById("fecha2");
@@ -78,7 +79,6 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 			let presion = `${datos[4][datos[4].length - 1]}`;
 			let sensacionTermica = `${datos[5][datos[5].length - 1]}`;
 			let bateria = `${datos[6][datos[6].length - 1]}`;
-			
 
 			txtTemperatura.textContent = `${temperatura} ºC`;
 			txtHumedad.textContent = `${humedad} %`;
@@ -150,6 +150,10 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 		case "last14days":
 			//graphLastDays(datos[0].reverse(), datos[1].reverse(), datos[2].reverse(), datos[3].reverse(), datos[4].reverse());
 			graphLastDays(...datos);
+			break;
+
+		case "precipitacion":
+			graphPrecipitacion(...datos);
 			break;
 
 		case "comparar":
@@ -259,6 +263,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		toggleMenu();
 		fecha2.style.opacity = 0;
 		drawGraph("externa");
+	});
+
+	liPrecipitacion.addEventListener("click", () => {
+		toggleMenu();
+		fecha2.style.opacity = 0;
+		drawGraph("precipitacion");
 	});
 
 	fecha.addEventListener("change", () => {

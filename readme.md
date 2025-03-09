@@ -1,7 +1,7 @@
 # Estación Meteorológica con ESP8266
 ## Interfaz Web 
 
-> <a href="http://ledemar.ddns.net/meteo" target="_new">Acceder desde aquí</a>
+> <a href="https://meteo.ledemar.es" target="_new">Acceder desde aquí</a>
 
 
 <p>Repositorio de la interfaz web de una estación meteorológica creada con un ESP8266 ___(Arduino)___ </p>
@@ -21,5 +21,6 @@
 
 
 ## Últimos cambios
-- 1/10/2024. Modificación del código que controla la zona horaria para el ESP8266
+- 09/03/2025. Añado un nuevo menu para observar las precipitaciones de lluvia de los últimos días
 - 1/12/2024. Inclusión de datos de una meteorológica externa (no propia)
+- 1/10/2024. Modificación del código que controla la zona horaria para el ESP8266
