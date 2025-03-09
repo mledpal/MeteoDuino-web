@@ -54,7 +54,7 @@
                 <span>14 días atrás</span>
             </li>
             <li id="liprecipitacion">
-                <img src="img/history.svg" alt="Icono de un reloj">
+                <img src="img/rain.svg" alt="Icono de lluvia">
                 <span>Lluvia 14 días</span>
             </li>
             <li id="liComparar">
