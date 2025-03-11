@@ -60,19 +60,20 @@ enum Consultas: string
                         ) as subquery 
                         ORDER BY subquery.id ASC";
 
-    case lluvia = "SELECT * FROM (
-            SELECT fecha, max(precipitacion) 
-            FROM datosEXT 
-            WHERE DATE_FORMAT(hora, '%k:%i') = (
-                SELECT DATE_FORMAT(hora, '%k:%i') 
-                FROM datos 
-                ORDER BY id DESC 
-                LIMIT 1
-            ) 
-            GROUP BY fecha 
-            ORDER BY fecha DESC 
-            LIMIT 14
-        ) AS subconsulta
-        ORDER BY fecha ASC;
-        ";
+    case lluvia = "(
+                    SELECT fecha, hora, precipitacion
+                    FROM datosEXT
+                    WHERE DATE_FORMAT(hora, '%H:%i') = '01:15'
+                    ORDER BY fecha DESC
+                    LIMIT 14
+                        )
+                        UNION ALL
+                        (
+                    SELECT DATE_ADD(fecha, INTERVAL 1 DAY) AS fecha, hora, precipitacion
+                    FROM datosEXT
+                    ORDER BY fecha DESC, hora DESC
+                    LIMIT 1
+                        )
+                        ORDER BY fecha ASC;
+                        ";
 }

@@ -284,7 +284,7 @@ function precipitacion($conn)
 
     while ($row = $sql->fetch()) {
         array_push($fecha, (string) $row['fecha']);
-        array_push($lluvia, (float) $row['max(precipitacion)']);
+        array_push($lluvia, (float) $row['precipitacion']);
     }
 
     array_push($datos, $fecha, $lluvia);
