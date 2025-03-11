@@ -51,14 +51,31 @@ enum Consultas: string
                     ) as subquery 
                     ORDER BY subquery.id ASC";
 
-    case externa = "SELECT subquery.* FROM (
+    case externa = "SELECT subquery.id, subquery.hora, subquery.fecha, subquery.temperatura, subquery.presion, 
+                        subquery.humedad, subquery.velocidad_viento, subquery.orientacion_viento, 
+                        subquery.radiacion_solar, 
+                        subquery.precipitacion,  -- Mantienes la columna de precipitación tal como está
+                        GREATEST(0, ROUND(COALESCE(subquery.precipitacion - LAG(subquery.precipitacion) OVER (ORDER BY subquery.id ASC), 0), 2)) AS precipitacion_puntual,  -- Cálculo de la precipitación puntual
+                        subquery.precipitacion_dias
+                    FROM (
                         SELECT 
-                        id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, temperatura, presion, humedad, velocidad_viento, orientacion_viento, radiacion_solar, precipitacion, precipitacion_dias
+                            id, 
+                            DATE_FORMAT(hora, '%k:%i') AS hora, 
+                            fecha, 
+                            temperatura, 
+                            presion, 
+                            humedad, 
+                            velocidad_viento, 
+                            orientacion_viento, 
+                            radiacion_solar, 
+                            precipitacion, 
+                            precipitacion_dias
                         FROM `datosEXT`                         
                         ORDER BY id DESC 
                         LIMIT 288
-                        ) as subquery 
-                        ORDER BY subquery.id ASC";
+                    ) AS subquery 
+                    ORDER BY subquery.id ASC;
+                    ";
 
     case lluvia = "(
                     SELECT fecha, hora, precipitacion

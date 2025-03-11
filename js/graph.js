@@ -464,8 +464,9 @@ export function graphExterna(...datos) {
 	const humedad = datos[2];
 	const presion = datos[3];
 	const precipitacion = datos[4];
-	const radiacion_solar = datos[5];
-	const velocidad_viento = datos[6];
+	const precipitacion_puntual = datos[5];
+	const radiacion_solar = datos[6];
+	const velocidad_viento = datos[7];
 	// const direccion_viento = datos[7];
 
 	const ctx = document.getElementById("grafico");
@@ -507,7 +508,16 @@ export function graphExterna(...datos) {
 					borderWidth: 1,
 					hidden: true,
 					xAxisID: "x2",
-					yAxisID: "y-temperatura",
+					yAxisID: "y-precipitacion",
+				},
+				{
+					label: "Precipitación Puntual",
+					type: "bar",
+					data: precipitacion_puntual,
+					borderWidth: 1,
+					hidden: true,
+					xAxisID: "x2",
+					yAxisID: "y-precipitacion2",
 				},
 				{
 					label: "Radiación Solar",
@@ -561,6 +571,20 @@ export function graphExterna(...datos) {
 					min: 960,
 					max: 1050,
 					position: "right",
+				},
+				"y-precipitacion": {
+					label: "Precipitación",
+					min: 0,					
+					type: "linear",
+					position: "right",
+					step: 1,
+				},
+				"y-precipitacion2": {
+					label: "Precipitación Puntual",
+					min: 0,					
+					type: "linear",
+					position: "right",
+					step: .25,
 				},
 			},
 		},

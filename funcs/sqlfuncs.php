@@ -246,6 +246,7 @@ function externa($conn)
     $direccion_viento = array();
     $radiacion_solar = array();
     $precipitacion = array();
+    $precipitacion_puntual = array();
 
     $query = "";
 
@@ -260,12 +261,13 @@ function externa($conn)
         array_push($humedad, (int) $row['humedad']);
         array_push($presion, (int) $row['presion']);
         array_push($precipitacion, (float) $row['precipitacion']);
+        array_push($precipitacion_puntual, (float) $row['precipitacion_puntual']);
         array_push($radiacion_solar, (int) $row['radiacion_solar']);
         array_push($velocidad_viento, (int) $row['velocidad_viento']);
         array_push($direccion_viento, (string) $row['orientacion_viento']);
     }
 
-    array_push($datos, $horas, $temperatura, $humedad, $presion, $precipitacion, $radiacion_solar, $velocidad_viento, $direccion_viento);
+    array_push($datos, $horas, $temperatura, $humedad, $presion, $precipitacion, $precipitacion_puntual, $radiacion_solar, $velocidad_viento, $direccion_viento);
 
     return $datos;
 }
