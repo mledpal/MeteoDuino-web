@@ -130,9 +130,9 @@
         </ul>
     </footer>
 
-    <script src="./js/chart.js?v=20250309"></script>
-    <script src="./js/graph.js?v=20250309" type="module"></script>
-    <script src="./js/index.js?v=20250309" type="module"></script>
+    <script src="./js/chart.js?v=20250311"></script>
+    <script src="./js/graph.js?v=20250311" type="module"></script>
+    <script src="./js/index.js?v=20250311" type="module"></script>
 </body>
 
 </html>
