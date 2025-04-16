@@ -80,7 +80,7 @@ enum Consultas: string
     case lluvia = "(
                     SELECT fecha, hora, precipitacion
                     FROM datosEXT
-                    WHERE DATE_FORMAT(hora, '%H:%i') = '01:15'
+                    WHERE DATE_FORMAT(hora, '%H:%i') = '02:15'
                     ORDER BY fecha DESC
                     LIMIT 14
                         )
