@@ -69,6 +69,10 @@ function devolverDatos($modo)
             $datos = precipitacion($conn);
             break;
 
+        case 'status':
+            $datos = status($conn, $modo);
+            break;
+
         default:
             echo json_encode(['error' => 'MODE ERROR']);
             break;

@@ -174,22 +174,6 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 				direccion_viento: datos[7][ultimoRegistro],
 			};
 
-			if (reg.precipitacion > 0) {
-				superior.style.backgroundImage = "url('img/lluvia.gif')";
-				document.body.style.background = "linear-gradient(0deg, #9c9c9c, #555)";
-			} else {
-				if (reg.radiacion_solar > 10) {
-					superior.style.backgroundImage = "url('img/dia.webp')";
-					document.body.style.background = "linear-gradient(0deg, #9c9feb, #595ef5)";
-				} else if (reg.radiacion_solar > 0 && reg.radiacion_solar <= 10) {
-					superior.style.backgroundImage = "url('img/atardecer.webp')";
-					document.body.style.background = "linear-gradient(0deg, #f0a274, #f37126)";
-				} else {
-					superior.style.backgroundImage = "url('img/noche.webp')";
-					document.body.style.background = "linear-gradient(0deg, #463d63, #140644";
-				}
-			}
-
 			txtTemperatura.textContent = `${reg.temperatura} ºC`;
 			txtHumedad.textContent = `${reg.humedad} %`;
 			txtPresion.textContent = reg.presion + " hPa";
@@ -199,7 +183,51 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 	}
 }
 
+// Espera a que el DOM esté completamente cargado antes de ejecutar el código
+// y asigna los valores iniciales a los campos de fecha y hora
 document.addEventListener("DOMContentLoaded", () => {
+	
+	// Obtiene datos meteorológicos puntuales para mostrar si llueve o no o si hace sol
+	// y asigna el fondo correspondiente a la página
+	// Si hay algún tipo de error, se asignan los fondos con los datos internos
+
+	estadoActual();
+
+	const superior = document.getElementById("superior");
+	const estado = JSON.parse(localStorage.getItem("estado"));
+
+	if (estado) {
+		if (estado.llueve) {
+			superior.style.backgroundImage = "url('img/lluvia.gif')";
+			document.body.style.background = "linear-gradient(0deg, #9c9c9c, #555)";
+		} else if (estado.radiacion > 10) {
+			superior.style.backgroundImage = "url('img/dia.webp')";
+			document.body.style.background = "linear-gradient(0deg, #9c9feb, #595ef5)";
+		} else if (estado.radiacion > 0 && estado.radiacion <= 10) {
+			superior.style.backgroundImage = "url('img/atardecer.webp')";
+			document.body.style.background = "linear-gradient(0deg, #f0a274, #f37126)";
+		} else {
+			superior.style.backgroundImage = "url('img/noche.webp')";
+			document.body.style.background = "linear-gradient(0deg, #463d63, #140644)";
+		}
+	} else {
+		if (reg.precipitacion > 0) {
+			superior.style.backgroundImage = "url('img/lluvia.gif')";
+			document.body.style.background = "linear-gradient(0deg, #9c9c9c, #555)";
+		} else {
+			if (reg.radiacion_solar > 10) {
+				superior.style.backgroundImage = "url('img/dia.webp')";
+				document.body.style.background = "linear-gradient(0deg, #9c9feb, #595ef5)";
+			} else if (reg.radiacion_solar > 0 && reg.radiacion_solar <= 10) {
+				superior.style.backgroundImage = "url('img/atardecer.webp')";
+				document.body.style.background = "linear-gradient(0deg, #f0a274, #f37126)";
+			} else {
+				superior.style.backgroundImage = "url('img/noche.webp')";
+				document.body.style.background = "linear-gradient(0deg, #463d63, #140644";
+			}
+		}
+	}
+
 	const fechaActual = new Date().toLocaleDateString().split("/");
 
 	fecha.value = `${fechaActual[2]}-${fechaActual[1].length == 1 ? "0" : ""}${fechaActual[1]}-${fechaActual[0].length == 1 ? "0" : ""}${fechaActual[0]}`;
@@ -207,22 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	fecha2.value = fecha.value;
 
 	let hora = new Date().getHours();
-
-	const superior = document.getElementById("superior");
-
-	if (hora >= 6 && hora <= 8) {
-		superior.style.backgroundImage = "url('img/amanecer.webp')";
-		document.body.style.background = "linear-gradient(0deg, #9c9feb, #595ef5)";
-	} else if (hora >= 8 && hora <= 18) {
-		superior.style.backgroundImage = "url('img/dia.webp')";
-		document.body.style.background = "linear-gradient(0deg, #9c9feb, #595ef5)";
-	} else if (hora >= 19 && hora <= 21) {
-		superior.style.backgroundImage = "url('img/atardecer.webp')";
-		document.body.style.background = "linear-gradient(0deg, #f0a274, #f37126)";
-	} else {
-		superior.style.backgroundImage = "url('img/noche.webp')";
-		document.body.style.background = "linear-gradient(0deg, #463d63, #140644)";
-	}
 
 	btnMenu.addEventListener("click", () => {
 		fecha2.style.opacity = 0;
@@ -297,3 +309,31 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 drawGraph("24h"); // Dibuja el gráfico por defecto al cargar la página
+
+const estadoActual = async () => {
+	const options = {
+		method: "POST",
+		body: `modo=status`,
+		cors: "no-cors",
+		headers: {
+			"Content-type": "application/x-www-form-urlencoded",
+			cache: "no-cache",
+		},
+	};
+
+	const response = await fetch(url, options);
+	const datos = await response.json();
+
+	let estado = {
+		temperatura: datos.temperatura[1],
+		humedad: datos.humedad[1],
+		presion: datos.presion[1],
+		llueve: datos.precipitacion[1] > datos.precipitacion[0] ? true : false,
+		radiacion: datos.radiacion_solar[1],
+		viento: datos.velocidad_viento[1],
+		direccion: datos.direccion_viento[1],
+	};
+
+	localStorage.setItem("estado", JSON.stringify(estado));
+	return 1;
+};

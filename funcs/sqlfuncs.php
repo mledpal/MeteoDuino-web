@@ -293,3 +293,51 @@ function precipitacion($conn)
 
     return $datos;
 }
+
+function status($conn)
+{
+    $datos = array();
+
+    $horas = array();
+    $temperatura = array();
+    $humedad = array();
+    $presion = array();
+    $velocidad_viento = array();
+    $direccion_viento = array();
+    $radiacion_solar = array();
+    $precipitacion = array();
+    $precipitacion_puntual = array();
+
+    $query = Consultas::status->value;
+
+    $sql = $conn->prepare($query);
+    $sql->execute();
+
+    while ($row = $sql->fetch()) {
+        array_push($horas, (string) $row['hora']);
+        array_push($temperatura, (float) $row['temperatura']);
+        array_push($humedad, (int) $row['humedad']);
+        array_push($presion, (int) $row['presion']);
+        array_push($precipitacion, (float) $row['precipitacion']);
+        array_push($precipitacion_puntual, (float) $row['precipitacion_puntual']);
+        array_push($radiacion_solar, (int) $row['radiacion_solar']);
+        array_push($velocidad_viento, (int) $row['velocidad_viento']);
+        array_push($direccion_viento, (string) $row['orientacion_viento']);
+    }
+
+    // array_push($datos, $horas, $temperatura, $humedad, $presion, $precipitacion, $precipitacion_puntual, $radiacion_solar, $velocidad_viento, $direccion_viento);
+
+    $datos = [
+        'hora' => $horas,
+        'temperatura' => $temperatura,
+        'humedad' => $humedad,
+        'presion' => $presion,
+        'precipitacion' => $precipitacion,
+        'precipitacion_puntual' => $precipitacion_puntual,
+        'radiacion_solar' => $radiacion_solar,
+        'velocidad_viento' => $velocidad_viento,
+        'direccion_viento' => $direccion_viento
+    ];
+
+    return $datos;
+}

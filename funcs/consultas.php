@@ -93,4 +93,6 @@ enum Consultas: string
                         )
                         ORDER BY fecha ASC;
                         ";
+
+    case status = "select * from datosEXT order by id desc limit 2";
 }
