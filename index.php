@@ -83,19 +83,28 @@
 
                 <div id="masDatos">
 
-                    <div id="divSensacion" style="--clr:rgba(255,0,0,.3)">
+                    <div class="marcador" id="divSensacion" style="--clr:rgba(255,0,0,.3)">
                         <h3>Sensación</h3>
                         <p id="sensacionTermica"></p>
                     </div>
 
-                    <div id="divHumedad" style="--clr:rgba(0,0,255,.3)">
+                    <div class="marcador" id="divHumedad" style="--clr:rgba(0,0,255,.3)">
                         <h3>Humedad</h3>
                         <p id="humedad"></p>
                     </div>
 
-                    <div id="divPresion" style="--clr:rgba(0,255,0,.3)">
+                    <div class="marcador" id="divPresion" style="--clr:rgba(0,255,0,.3)">
                         <h3>Presión</h3>
                         <p id="presion"></p>
+                    </div>
+
+                    <div class="marcador" id="divVelocidad" style="--clr:rgba(214, 214, 1, 0.3)">
+                        <h3>Vel. Viento</h3>
+                        <p id="velocidad"></p>
+                    </div>
+
+                    <div class="marcador" id="divDireccion" style="--deg:0">
+                        <img id="direccion" src="img/aguja.png" width="100px" height="100px"></img>
                     </div>
                 </div>
             </div>

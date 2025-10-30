@@ -1,12 +1,15 @@
 "use strict";
 
 import { graph24, graphTemperaturas, graphOtros, graphLastDays, graphComparar, graphExterna, graphPrecipitacion } from "./graph.js";
+import { degree } from "./degree.js";
 
 const url = "./api.php";
 
 const txtTemperatura = document.getElementById("temperatura");
 const txtHumedad = document.getElementById("humedad");
 const txtPresion = document.getElementById("presion");
+const txtVelocidad = document.getElementById("velocidad");
+const txtDireccion = document.getElementById("direccion");
 
 const btnMenu = document.getElementById("menu");
 const menu = document.getElementById("menuOculto");
@@ -29,6 +32,7 @@ const txtbateria = document.getElementById("bateria");
 const divHumedad = document.getElementById("divHumedad");
 const divSensacion = document.getElementById("divSensacion");
 const divPresion = document.getElementById("divPresion");
+const divVelocidad = document.getElementById("divVelocidad");
 
 const ctx = document.getElementById("grafico");
 
@@ -183,10 +187,7 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 	}
 }
 
-// Espera a que el DOM esté completamente cargado antes de ejecutar el código
-// y asigna los valores iniciales a los campos de fecha y hora
 document.addEventListener("DOMContentLoaded", () => {
-	
 	// Obtiene datos meteorológicos puntuales para mostrar si llueve o no o si hace sol
 	// y asigna el fondo correspondiente a la página
 	// Si hay algún tipo de error, se asignan los fondos con los datos internos
@@ -310,30 +311,96 @@ document.addEventListener("DOMContentLoaded", () => {
 
 drawGraph("24h"); // Dibuja el gráfico por defecto al cargar la página
 
+const obtenerPosicion = () => {
+	return new Promise((resolve, reject) => {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					resolve({
+						latitud: position.coords.latitude,
+						longitud: position.coords.longitude,
+					});
+				},
+				(error) => {
+					reject("Error al obtener la ubicación: " + error.message);
+				}
+			);
+		} else {
+			reject("La geolocalización no es compatible con este navegador.");
+		}
+	});
+};
+
 const estadoActual = async () => {
-	const options = {
-		method: "POST",
-		body: `modo=status`,
-		cors: "no-cors",
-		headers: {
-			"Content-type": "application/x-www-form-urlencoded",
-			cache: "no-cache",
-		},
-	};
+	try {
+		const posicion = await obtenerPosicion();
 
-	const response = await fetch(url, options);
-	const datos = await response.json();
+		// Obtener estado meteorológico
 
-	let estado = {
-		temperatura: datos.temperatura[1],
-		humedad: datos.humedad[1],
-		presion: datos.presion[1],
-		llueve: datos.precipitacion[1] > datos.precipitacion[0] ? true : false,
-		radiacion: datos.radiacion_solar[1],
-		viento: datos.velocidad_viento[1],
-		direccion: datos.direccion_viento[1],
-	};
+		const options = {
+			method: "POST",
+			body: `modo=status`,
+			headers: {
+				"Content-type": "application/x-www-form-urlencoded",
+				cache: "no-cache",
+			},
+		};
 
-	localStorage.setItem("estado", JSON.stringify(estado));
-	return 1;
+		const response = await fetch(url, options);
+		const datos = await response.json();
+
+		let estado = {
+			temperatura: datos.temperatura[1],
+			humedad: datos.humedad[1],
+			presion: datos.presion[1],
+			llueve: datos.precipitacion[1] > datos.precipitacion[0],
+			radiacion: datos.radiacion_solar[1],
+			viento: datos.velocidad_viento[1],
+			direccion: datos.direccion_viento[1],
+			latitud: posicion.latitud,
+			longitud: posicion.longitud,
+		};
+
+		// Obtener horario solar
+		const urlSol = `https://api.sunrise-sunset.org/json?lat=${posicion.latitud}&lng=${posicion.longitud}&formatted=0`;
+		const solResponse = await fetch(urlSol);
+		const solData = await solResponse.json();
+
+		const sunrise = new Date(solData.results.sunrise);
+		const sunset = new Date(solData.results.sunset);
+		const now = new Date();
+		const timezoneOffset = now.getTimezoneOffset() * 60 * 1000;
+
+		const sunriseLocal = new Date(sunrise.getTime() + timezoneOffset);
+		const sunsetLocal = new Date(sunset.getTime() + timezoneOffset);
+		const currentTime = new Date(now.getTime() + timezoneOffset);
+		const isDaytime = currentTime >= sunriseLocal && currentTime <= sunsetLocal;
+
+		const daylightDuration = sunsetLocal - sunriseLocal;
+		const daylightHours = Math.floor(daylightDuration / (1000 * 60 * 60));
+		const daylightMinutes = Math.floor((daylightDuration % (1000 * 60 * 60)) / (1000 * 60));
+		const daylightSeconds = Math.floor((daylightDuration % (1000 * 60)) / 1000);
+		const daylightString = `${daylightHours} horas, ${daylightMinutes} minutos y ${daylightSeconds} segundos`;
+
+		// Agregar datos solares al estado
+		estado.amanecer = sunriseLocal.toLocaleTimeString();
+		estado.atardecer = sunsetLocal.toLocaleTimeString();
+		estado.duracion_dia = daylightString;
+		estado.es_dia = isDaytime;
+		
+		localStorage.setItem("estado", JSON.stringify(estado));
+
+		txtVelocidad.textContent = `${estado.viento} Km/h`;
+		txtDireccion.textContent = `${estado.direccion} º`;
+
+		divVelocidad.style.setProperty("background", `linear-gradient(0deg, var(--clr) 0%, var(--clr) ${estado.viento}%, rgba(0,0,0,.5) ${estado.viento}%, rgba(0,0,0,.5) 100%)`);
+
+		// Gira el png tantos grados como la dirección del viento
+		txtDireccion.style.transform = `rotate(${degree(estado.direccion)}deg)`;
+
+		return estado;
+	} catch (error) {
+		console.error("Error en estadoActual:", error);
+		return null;
+	}
 };

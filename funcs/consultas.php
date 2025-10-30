@@ -77,7 +77,8 @@ enum Consultas: string
                     ORDER BY subquery.id ASC;
                     ";
 
-    case lluvia = "(
+
+		 case lluvia = "(	
                     SELECT fecha, hora, precipitacion
                     FROM datosEXT
                     WHERE DATE_FORMAT(hora, '%H:%i') = '02:15'

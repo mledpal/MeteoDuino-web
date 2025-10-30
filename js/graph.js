@@ -1,3 +1,5 @@
+let currentChart = null;
+
 /**
  * Con esta función obligamos al gráfico a redimensionarse cuando cambia el tamaño de la pantalla o su orientación
  * @param {*} graph Referencia al gráfico
@@ -469,8 +471,12 @@ export function graphExterna(...datos) {
 	const velocidad_viento = datos[7];
 	// const direccion_viento = datos[7];
 
-	const ctx = document.getElementById("grafico");
-	const graph = new Chart(ctx, {
+	if (currentChart) {
+		currentChart.destroy();
+	}
+
+	const ctx = document.getElementById("grafico");	
+	currentChart = new Chart(ctx, {
 		data: {
 			labels: fecha,
 			datasets: [
