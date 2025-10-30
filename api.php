@@ -68,6 +68,10 @@ function devolverDatos($modo)
         case 'precipitacion':
             $datos = precipitacion($conn);
             break;
+        
+        case 'precipitacion_anio':
+            $datos = precipitacion_anio($conn);
+            break;
 
         case 'status':
             $datos = status($conn, $modo);

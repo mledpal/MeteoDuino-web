@@ -298,6 +298,27 @@ function precipitacion($conn)
     return $datos;
 }
 
+function precipitacion_anio($conn) {
+    $datos = array();
+
+    $mes = array();
+    $lluvia_total = array();
+
+    $query = Consultas::lluvia_year->value;
+
+    $sql = $conn->prepare($query);
+    $sql->execute();
+    
+    while ($row = $sql->fetch()) {        
+        array_push($mes, (string) $row['mes']);
+        array_push($lluvia_total, (float) $row['precipitacion_total']);
+    }
+
+    array_push($datos, $mes, $lluvia_total);
+
+    return $datos;
+}
+
 function status($conn)
 {
     $datos = array();

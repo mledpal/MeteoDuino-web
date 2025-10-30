@@ -88,5 +88,24 @@ enum Consultas: string
                         LIMIT 14;
                         ";
 
+    case lluvia_year = "
+                    SELECT 
+                        DATE_FORMAT(fecha_lluvia, '%Y-%m') AS mes,
+                        SUM(precipitacion_maxima) AS precipitacion_total
+                        FROM (
+                        SELECT 
+                            CASE 
+                            WHEN TIME(hora) < '02:15:00' THEN DATE_SUB(fecha, INTERVAL 1 DAY)
+                            ELSE fecha
+                            END AS fecha_lluvia,
+                            MAX(precipitacion) AS precipitacion_maxima
+                        FROM datosEXT
+                        WHERE fecha >= '2025-01-01' AND fecha < '2026-01-01'
+                        GROUP BY fecha_lluvia
+                        ) t
+                        GROUP BY mes
+                        ORDER BY mes;
+                        ";
+
     case status = "select * from datosEXT order by id desc limit 2";
 }

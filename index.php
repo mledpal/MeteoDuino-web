@@ -57,6 +57,10 @@
                 <img src="img/rain.svg" alt="Icono de lluvia">
                 <span>Lluvia 14 días</span>
             </li>
+            <li id="liprecipitacion_anio">
+                <img src="img/rain.svg" alt="Icono de lluvia">
+                <span>Lluvia 1 año</span>
+            </li>
             <li id="liComparar">
                 <img src="img/compare.svg" alt="Icono de un comparador">
                 <span>Comparar</span>
@@ -122,7 +126,7 @@
 
     <footer>
         <ul>
-            <li>Miguel Ledesma Palacios | Linares | 2024</li>
+            <li>Miguel Ledesma Palacios | Linares | 2025</li>
             <li>Batería <span id="bateria"></span></li>
         </ul>
         <ul>
@@ -139,9 +143,9 @@
         </ul>
     </footer>
 
-    <script src="./js/chart.js?v=20250311"></script>
-    <script src="./js/graph.js?v=20250311" type="module"></script>
-    <script src="./js/index.js?v=20250311" type="module"></script>
+    <script src="./js/chart.js?v=20251030"></script>
+    <script src="./js/graph.js?v=20251030" type="module"></script>
+    <script src="./js/index.js?v=20251030" type="module"></script>
 </body>
 
 </html>

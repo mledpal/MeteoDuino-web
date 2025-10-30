@@ -642,3 +642,41 @@ export function graphPrecipitacion(...datos) {
 
 	resize(graph);
 }
+
+
+export function graphPrecipitacionYear(...datos) {
+	const mes = datos[0];
+	const precipitacion = datos[1];
+
+	const ctx = document.getElementById("grafico");
+	const graph = new Chart(ctx, {
+		data: {
+			labels: mes,
+			datasets: [
+				{
+					label: "Precipitación",
+					type: "bar",
+					data: precipitacion,
+					borderWidth: 1,
+					hidden: false,
+					xAxisID: "x2",
+					yAxisID: "y-precipitacion",
+				},
+			],
+		},
+		options: {
+			pointStyle: false,
+			scales: {
+				x2: {
+					labels: mes,
+				},
+				"y-precipitacion": {
+					type: "linear",
+					position: "left",
+				},
+			},
+		},
+	});
+
+	resize(graph);
+}

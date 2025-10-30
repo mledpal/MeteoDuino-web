@@ -1,6 +1,6 @@
 "use strict";
 
-import { graph24, graphTemperaturas, graphOtros, graphLastDays, graphComparar, graphExterna, graphPrecipitacion } from "./graph.js";
+import { graph24, graphTemperaturas, graphOtros, graphLastDays, graphComparar, graphExterna, graphPrecipitacion, graphPrecipitacionYear } from "./graph.js";
 import { degree } from "./degree.js";
 
 const url = "./api.php";
@@ -21,6 +21,7 @@ const li14dias = document.getElementById("li14dias");
 const liComparar = document.getElementById("liComparar");
 const liExterna = document.getElementById("liExterna");
 const liPrecipitacion = document.getElementById("liprecipitacion");
+const liPrecipitacionAnio = document.getElementById("liprecipitacion_anio");
 
 const fecha = document.getElementById("fecha");
 const fecha2 = document.getElementById("fecha2");
@@ -160,6 +161,10 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
 			graphPrecipitacion(...datos);
 			break;
 
+		case "precipitacion_anio":			
+			graphPrecipitacionYear(...datos);
+			break;
+
 		case "comparar":
 			//graphTemperaturas(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
 			graphComparar(datos);
@@ -284,6 +289,12 @@ document.addEventListener("DOMContentLoaded", () => {
 		drawGraph("precipitacion");
 	});
 
+	liPrecipitacionAnio.addEventListener("click", () => {
+		toggleMenu();
+		fecha2.style.opacity = 0;
+		drawGraph("precipitacion_anio");
+	});
+
 	fecha.addEventListener("change", () => {
 		const hoy = new Date();
 		const fechaSeleccionada = new Date(fecha.value);
@@ -387,7 +398,7 @@ const estadoActual = async () => {
 		estado.atardecer = sunsetLocal.toLocaleTimeString();
 		estado.duracion_dia = daylightString;
 		estado.es_dia = isDaytime;
-		
+
 		localStorage.setItem("estado", JSON.stringify(estado));
 
 		txtVelocidad.textContent = `${estado.viento} Km/h`;
