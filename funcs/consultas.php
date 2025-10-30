@@ -78,21 +78,14 @@ enum Consultas: string
                     ";
 
 
-		 case lluvia = "(	
-                    SELECT fecha, hora, precipitacion
-                    FROM datosEXT
-                    WHERE DATE_FORMAT(hora, '%H:%i') = '02:15'
-                    ORDER BY fecha DESC
-                    LIMIT 14
-                        )
-                        UNION ALL
-                        (
-                    SELECT DATE_ADD(fecha, INTERVAL 1 DAY) AS fecha, hora, precipitacion
-                    FROM datosEXT
-                    ORDER BY fecha DESC, hora DESC
-                    LIMIT 1
-                        )
-                        ORDER BY fecha ASC;
+    case lluvia = "SELECT CASE WHEN TIME(hora) < '02:15:00' THEN DATE_SUB(fecha, INTERVAL 1 DAY)
+                        ELSE fecha
+                            END AS fecha, MAX(precipitacion) AS precipitacion
+                        FROM datosEXT
+                        WHERE fecha >= DATE_SUB(CURDATE(), INTERVAL 15 DAY)
+                        GROUP BY fecha
+                        ORDER BY fecha DESC
+                        LIMIT 14;
                         ";
 
     case status = "select * from datosEXT order by id desc limit 2";

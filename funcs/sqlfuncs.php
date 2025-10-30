@@ -283,13 +283,17 @@ function precipitacion($conn)
 
     $sql = $conn->prepare($query);
     $sql->execute();
-
-    while ($row = $sql->fetch()) {
+    
+    while ($row = $sql->fetch()) {        
         array_push($fecha, (string) $row['fecha']);
         array_push($lluvia, (float) $row['precipitacion']);
     }
 
     array_push($datos, $fecha, $lluvia);
+
+    // Invertir los resultados de $datos
+    $datos[0] = array_reverse($datos[0]);
+    $datos[1] = array_reverse($datos[1]);
 
     return $datos;
 }
