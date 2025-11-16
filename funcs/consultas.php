@@ -78,33 +78,36 @@ enum Consultas: string
                     ";
 
 
-    case lluvia = "SELECT CASE WHEN TIME(hora) < '02:15:00' THEN DATE_SUB(fecha, INTERVAL 1 DAY)
-                        ELSE fecha
-                            END AS fecha, MAX(precipitacion) AS precipitacion
-                        FROM datosEXT
-                        WHERE fecha >= DATE_SUB(CURDATE(), INTERVAL 15 DAY)
-                        GROUP BY fecha
-                        ORDER BY fecha DESC
-                        LIMIT 14;
+    case lluvia = "SELECT 
+                        DATE_SUB(fecha, INTERVAL 1 DAY) AS fecha,
+                        precipitacion
+                    FROM datosEXT
+                    WHERE hora LIKE '01:15:%'
+                    ORDER BY fecha DESC
+                    LIMIT 14;
                         ";
 
     case lluvia_year = "
                     SELECT 
                         DATE_FORMAT(fecha_lluvia, '%Y-%m') AS mes,
                         SUM(precipitacion_maxima) AS precipitacion_total
-                        FROM (
+                    FROM (
                         SELECT 
+                            /* Mantengo el alias: fecha_lluvia */
                             CASE 
-                            WHEN TIME(hora) < '02:15:00' THEN DATE_SUB(fecha, INTERVAL 1 DAY)
-                            ELSE fecha
+                                WHEN TIME(hora) < '02:15:00' THEN DATE_SUB(fecha, INTERVAL 1 DAY)
+                                ELSE fecha
                             END AS fecha_lluvia,
+
+                            /* Mantengo el alias: precipitacion_maxima */
                             MAX(precipitacion) AS precipitacion_maxima
                         FROM datosEXT
-                        WHERE fecha >= '2025-01-01' AND fecha < '2026-01-01'
+                        WHERE fecha >= '2025-01-01'
+                        AND fecha <  '2026-01-01'
                         GROUP BY fecha_lluvia
-                        ) t
-                        GROUP BY mes
-                        ORDER BY mes;
+                    ) t
+                    GROUP BY mes
+                    ORDER BY mes;
                         ";
 
     case status = "select * from datosEXT order by id desc limit 2";

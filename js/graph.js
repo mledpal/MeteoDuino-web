@@ -476,7 +476,7 @@ export function graphExterna(...datos) {
 	}
 
 	const ctx = document.getElementById("grafico");	
-	currentChart = new Chart(ctx, {
+	const graph = new Chart(ctx, {
 		data: {
 			labels: fecha,
 			datasets: [
