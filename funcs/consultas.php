@@ -7,13 +7,31 @@
 enum Consultas: string
 {
 
-    case ultimas24h = "SELECT subquery.* FROM (
-                            SELECT 
-                            id, DATE_FORMAT(hora, '%k:%i') as hora, fecha, sensor1 as T1, sensor2 AS T2, p_mar as presion, humedad, t_sens as sensacion , bateria
-                            FROM `datos` ORDER BY id DESC 
-                            LIMIT 288
-                            ) as subquery 
-                            ORDER BY subquery.id ASC";
+    case ultimas24h = "SELECT 
+    subquery.*,
+    (
+        SELECT precipitacion
+        FROM datosEXT
+        ORDER BY id DESC
+        LIMIT 1
+    ) AS precipitacion
+FROM (
+    SELECT 
+        id,
+        DATE_FORMAT(hora, '%k:%i') AS hora,
+        fecha,
+        sensor1 AS T1,
+        sensor2 AS T2,
+        p_mar AS presion,
+        humedad,
+        t_sens AS sensacion,
+        bateria
+    FROM datos
+    ORDER BY id DESC 
+    LIMIT 288
+) AS subquery
+ORDER BY subquery.id ASC
+";
 
     case temperaturas = "SELECT subquery.* from (
                             SELECT 
@@ -78,14 +96,30 @@ enum Consultas: string
                     ";
 
 
-    case lluvia = "SELECT 
+    case lluvia = "
+                (
+                    SELECT 
                         DATE_SUB(fecha, INTERVAL 1 DAY) AS fecha,
                         precipitacion
                     FROM datosEXT
                     WHERE hora LIKE '01:15:%'
                     ORDER BY fecha DESC
-                    LIMIT 14;
-                        ";
+                    LIMIT 14
+                )
+
+                UNION ALL
+
+                (
+                    SELECT 
+                        fecha,
+                        MAX(precipitacion) AS precipitacion
+                    FROM datosEXT
+                    WHERE fecha = (SELECT MAX(fecha) FROM datosEXT)
+                    AND TIME(hora) > '01:20:00'
+                    GROUP BY fecha
+                )
+
+                ORDER BY fecha DESC";
 
     case lluvia_year = "
                     SELECT 
@@ -110,5 +144,5 @@ enum Consultas: string
                     ORDER BY mes;
                         ";
 
-    case status = "select * from datosEXT order by id desc limit 2";
+    case status = "select * from datosEXT order by id desc limit 4";
 }

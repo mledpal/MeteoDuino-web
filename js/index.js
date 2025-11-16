@@ -19,6 +19,7 @@ const txtHumedad = document.getElementById('humedad');
 const txtPresion = document.getElementById('presion');
 const txtVelocidad = document.getElementById('velocidad');
 const txtDireccion = document.getElementById('direccion');
+const txtPrecipitacion = document.getElementById('precipitacion');
 
 const btnMenu = document.getElementById('menu');
 const menu = document.getElementById('menuOculto');
@@ -43,6 +44,7 @@ const divHumedad = document.getElementById('divHumedad');
 const divSensacion = document.getElementById('divSensacion');
 const divPresion = document.getElementById('divPresion');
 const divVelocidad = document.getElementById('divVelocidad');
+const divPrecipitacion = document.getElementById('divPrecipitacion');
 
 const ctx = document.getElementById('grafico');
 
@@ -95,6 +97,12 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
             let presion = `${datos[4][datos[4].length - 1]}`;
             let sensacionTermica = `${datos[5][datos[5].length - 1]}`;
             let bateria = `${datos[6][datos[6].length - 1]}`;
+            let precipitacion = `${datos[7][datos[7].length - 1]}`;
+
+            if (precipitacion > 0) {
+                divPrecipitacion.style.display = 'flex';
+                txtPrecipitacion.textContent = `${precipitacion} mm`;
+            }
 
             txtTemperatura.textContent = `${temperatura} ºC`;
             txtHumedad.textContent = `${humedad} %`;
@@ -103,18 +111,10 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
             txtbateria.textContent = `${bateria} V`;
 
             // Muestra el estado meteorológico actual en texto
-            if (humedad < 20) {
-                // txtEstado.textContent = "Seco";
-            }
-
-            // if (humedad > 65 && humedad < 70) {
-            //     // txtEstado.textContent = "Nuboso";
-            // } else if (humedad >= 75 && presion <= 1020) {
-            //     // txtEstado.textContent = "Lluvia";
-            //     superior.style.backgroundImage = "url('img/lluvia.gif')";
-            //     document.body.style.background =
-            //         'linear-gradient(0deg, #9c9c9c, #555)';
+            // if (humedad < 20) {
+            //     // txtEstado.textContent = "Seco";
             // }
+            
 
             // Muestra los datos de la tabla y del roll-over
             let tiempo = datos[0][datos[0].length - 1];
@@ -215,6 +215,10 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
                 direccion_viento: datos[7][ultimoRegistro],
             };
 
+            if (reg.precipitacion > 0) {        
+                divPrecipitacion.style.display = 'flex';
+                txtPrecipitacion.textContent = `${reg.precipitacion} mm`;
+            }
             txtTemperatura.textContent = `${reg.temperatura} ºC`;
             txtHumedad.textContent = `${reg.humedad} %`;
             txtPresion.textContent = reg.presion + ' hPa';
@@ -234,9 +238,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const superior = document.getElementById('superior');
     const estado = JSON.parse(localStorage.getItem('estado'));
 
-    if (estado) {        
-		superior.style.backgroundImage = estado.fondo;
-		document.body.style.background = estado.background;
+    if (estado) {
+        superior.style.backgroundImage = estado.fondo;
+        document.body.style.background = estado.background;
     }
 
     const fechaActual = new Date().toLocaleDateString().split('/');
@@ -375,7 +379,7 @@ const estadoActual = async () => {
             temperatura: datos.temperatura[1],
             humedad: datos.humedad[1],
             presion: datos.presion[1],
-            llueve: datos.precipitacion[1] > datos.precipitacion[0],
+            llueve: datos.precipitacion[0] > datos.precipitacion[3],
             radiacion: datos.radiacion_solar[1],
             viento: datos.velocidad_viento[1],
             direccion: datos.direccion_viento[1],
@@ -426,22 +430,26 @@ const estadoActual = async () => {
             estado.background = 'linear-gradient(0deg, #9c9c9c, #555)';
         } else {
             if (estado.es_dia) {
-                if (estado.radiacion > 400 && estado.humedad <= 75) {
+                if (estado.radiacion > 500 && estado.humedad <= 75) {
                     estado.fondo = "url('img/dia.webp')";
                     estado.background =
                         'linear-gradient(0deg, #9c9feb, #595ef5)';
                 } else if (
                     estado.radiacion > 0 &&
-                    estado.radiacion <= 400 &&
+                    estado.radiacion <= 600 &&
                     estado.humedad <= 75
                 ) {
                     estado.fondo = "url('img/atardecer.webp')";
                     estado.background =
                         'linear-gradient(0deg, #f0a274, #f37126)';
-                } else if (estado.radiacion <= 400 && estado.humedad > 75) {
+                } else if (estado.radiacion <= 500 && estado.humedad > 75) {
                     estado.fondo = "url('img/nublado.webp')";
                     estado.background =
                         'linear-gradient(0deg, #757575, #3e3e3e)';
+                } else {
+                    estado.fondo = "url('img/dia.webp')";
+                    estado.background =
+                        'linear-gradient(0deg, #9c9feb, #595ef5)';
                 }
             } else {
                 estado.fondo = "url('img/noche.webp')";
@@ -456,9 +464,9 @@ const estadoActual = async () => {
 
         // Gira el png tantos grados como la dirección del viento
         txtDireccion.style.transform = `rotate(${degree(estado.direccion)}deg)`;
-		
+
         localStorage.setItem('estado', JSON.stringify(estado));
-		
+
         return estado;
     } catch (error) {
         console.error('Error en estado actual:', error);

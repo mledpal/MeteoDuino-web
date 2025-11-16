@@ -28,6 +28,7 @@ function datos24h($conn, $modo)
     $presion = array();
     $sensacion = array();
     $bateria = array();
+    $precipitacion = array();
 
     $query = "";
 
@@ -54,9 +55,10 @@ function datos24h($conn, $modo)
         array_push($presion, $row['presion']);
         array_push($sensacion, $row['sensacion']);
         array_push($bateria, $row['bateria']);
+        array_push($precipitacion, (float) $row['precipitacion']);
     }
 
-    array_push($datos, $horas, $temperaturas1, $temperaturas2, $humedad, $presion, $sensacion, $bateria);
+    array_push($datos, $horas, $temperaturas1, $temperaturas2, $humedad, $presion, $sensacion, $bateria, $precipitacion);
 
     return $datos;
 }

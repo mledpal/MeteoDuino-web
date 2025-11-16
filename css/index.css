@@ -243,8 +243,8 @@ main #masDatos {
 
 .marcador {
     display: flex;
-    height: 125px;
-    width: 125px;
+    height: 100px;
+    width: 100px;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
@@ -252,9 +252,14 @@ main #masDatos {
     box-shadow: 1px 1px 3px #eee inset, -2px -2px 5px #000 inset;
 }
 
+#divPrecipitacion {
+    display: none;
+    background-color: rgba(100, 100, 200, .3);
+}
+
 .marcador p {
     color: rgba(255, 255, 255, .8);
-    font-size: 1em;
+    font-size: .8em;
     font-weight: 400;
     text-align: center;
     margin: 0;
@@ -267,7 +272,7 @@ main #masDatos {
 
 .marcador h3 {
     text-transform: uppercase;
-    font-size: 1em;
+    font-size: .8em;
     font-weight: 600;
     color: rgba(255, 255, 255, .8);
     text-shadow: 1px 1px 5px #111;
