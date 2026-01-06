@@ -126,23 +126,22 @@ ORDER BY subquery.id ASC
                         DATE_FORMAT(fecha_lluvia, '%Y-%m') AS mes,
                         SUM(precipitacion_maxima) AS precipitacion_total
                     FROM (
-                        SELECT 
-                            /* Mantengo el alias: fecha_lluvia */
+                        SELECT                             
                             CASE 
-                                WHEN TIME(hora) < '02:15:00' THEN DATE_SUB(fecha, INTERVAL 1 DAY)
+                                WHEN TIME(hora) < '02:15:00' 
+                                    THEN DATE_SUB(fecha, INTERVAL 1 DAY)
                                 ELSE fecha
                             END AS fecha_lluvia,
 
                             /* Mantengo el alias: precipitacion_maxima */
                             MAX(precipitacion) AS precipitacion_maxima
                         FROM datosEXT
-                        WHERE fecha >= '2025-01-01'
-                        AND fecha <  '2026-01-01'
+                        WHERE fecha >= DATE_SUB(DATE_FORMAT(CURDATE(), '%Y-%m-01'), INTERVAL 12 MONTH)
+                        AND fecha <  DATE_FORMAT(DATE_ADD(CURDATE(), INTERVAL 1 MONTH), '%Y-%m-01')
                         GROUP BY fecha_lluvia
                     ) t
                     GROUP BY mes
-                    ORDER BY mes;
-                        ";
+                    ORDER BY mes;";
 
     case status = "select * from datosEXT order by id desc limit 4";
 }

@@ -114,7 +114,6 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
             // if (humedad < 20) {
             //     // txtEstado.textContent = "Seco";
             // }
-            
 
             // Muestra los datos de la tabla y del roll-over
             let tiempo = datos[0][datos[0].length - 1];
@@ -215,7 +214,7 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
                 direccion_viento: datos[7][ultimoRegistro],
             };
 
-            if (reg.precipitacion > 0) {        
+            if (reg.precipitacion > 0) {
                 divPrecipitacion.style.display = 'flex';
                 txtPrecipitacion.textContent = `${reg.precipitacion} mm`;
             }
@@ -402,6 +401,7 @@ const estadoActual = async () => {
         const sunriseLocal = new Date(sunrise.getTime() + timezoneOffset);
         const sunsetLocal = new Date(sunset.getTime() + timezoneOffset);
         const currentTime = new Date(now.getTime() + timezoneOffset);
+       
         const isDaytime =
             currentTime >= sunriseLocal && currentTime <= sunsetLocal;
 
@@ -430,19 +430,19 @@ const estadoActual = async () => {
             estado.background = 'linear-gradient(0deg, #9c9c9c, #555)';
         } else {
             if (estado.es_dia) {
-                if (estado.radiacion > 500 && estado.humedad <= 75) {
+                if (estado.radiacion > 100 && estado.humedad <= 75) {
                     estado.fondo = "url('img/dia.webp')";
                     estado.background =
                         'linear-gradient(0deg, #9c9feb, #595ef5)';
                 } else if (
                     estado.radiacion > 0 &&
-                    estado.radiacion <= 600 &&
+                    estado.radiacion <= 100 &&
                     estado.humedad <= 75
                 ) {
                     estado.fondo = "url('img/atardecer.webp')";
                     estado.background =
                         'linear-gradient(0deg, #f0a274, #f37126)';
-                } else if (estado.radiacion <= 500 && estado.humedad > 75) {
+                } else if (estado.radiacion <= 100 && estado.humedad > 75) {
                     estado.fondo = "url('img/nublado.webp')";
                     estado.background =
                         'linear-gradient(0deg, #757575, #3e3e3e)';
