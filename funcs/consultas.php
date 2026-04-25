@@ -102,7 +102,7 @@ ORDER BY subquery.id ASC
                         DATE_SUB(fecha, INTERVAL 1 DAY) AS fecha,
                         precipitacion
                     FROM datosEXT
-                    WHERE hora LIKE '01:15:%'
+                    WHERE hora LIKE '02:15:%'
                     ORDER BY fecha DESC
                     LIMIT 14
                 )
@@ -115,7 +115,7 @@ ORDER BY subquery.id ASC
                         MAX(precipitacion) AS precipitacion
                     FROM datosEXT
                     WHERE fecha = (SELECT MAX(fecha) FROM datosEXT)
-                    AND TIME(hora) > '01:20:00'
+                    AND TIME(hora) > '02:20:00'
                     GROUP BY fecha
                 )
 
