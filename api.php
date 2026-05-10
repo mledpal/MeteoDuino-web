@@ -1,14 +1,18 @@
 <?php
 
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Permissions-Policy: browsing-context="self"');
+
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
-
         if (isset($_POST['modo'])) {
             devolverDatos($_POST['modo']);
         } else {
             echo json_encode(['error' => 'ERROR POST']);
         }
-
         break;
 
     case 'GET':
@@ -17,16 +21,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
     default:
         echo json_encode(['error' => 'ERROR default']);
-        header("HTTP/1.1 200 OK");
 }
 
 
-/**
- * Función que devuelve los datos de la base de datos
- * dependiendo del modo, devuelve unos valores u otros
- * Uso un enum para facilitar la lectura/modificación y escalabilidad del código 
- *  
- */
 function devolverDatos($modo)
 {
 
@@ -35,9 +32,6 @@ function devolverDatos($modo)
     include_once 'funcs/sqlfuncs.php';
 
     $datos = array();
-    $modo = $_POST['modo'];
-    $fecha1 = $_POST['fecha1'] ?? null;
-    $fecha2 = $_POST['fecha2'] ?? null;
 
     switch ($modo) {
         case '24h':
@@ -58,42 +52,31 @@ function devolverDatos($modo)
             break;
 
         case 'comparar':
-            $datos = comparar($conn, $modo, $fecha1, $fecha2);
+            $fecha1 = $_POST['fecha'] ?? null;
+            $fecha2 = $_POST['fecha2'] ?? null;
+            $datos = comparar($conn, $fecha1, $fecha2);
             break;
 
         case 'externa':
-            $datos = externa($conn, $modo);
+            $datos = externa($conn);
             break;
 
         case 'precipitacion':
             $datos = precipitacion($conn);
             break;
-        
+
         case 'precipitacion_anio':
             $datos = precipitacion_anio($conn);
             break;
 
         case 'status':
-            $datos = status($conn, $modo);
+            $datos = status($conn);
             break;
 
         default:
             echo json_encode(['error' => 'MODE ERROR']);
-            break;
+            return;
     }
-
-
-
-
-    // Cabeceras de respuesta
-    header('Content-Type: application/json');
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Methods: POST');
-    header('Access-Control-Allow-Headers: Content-Type, Authorization');
-    header('Permissions-Policy: browsing-context="self"');
 
     echo json_encode($datos);
 }
-
-
-header("HTTP/1.1 200 OK");

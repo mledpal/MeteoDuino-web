@@ -171,33 +171,28 @@ function last14days($conn)
 /**
  * Devuelve los datos de las dos fechas seleccionadas
  */
-function comparar($conn, $modo, $fecha1, $fecha2)
+function comparar($conn, $fecha1, $fecha2)
 {
 
-    if ($modo == "comparar" && isset($_POST['fecha']) && checkFecha($_POST['fecha']) && isset($_POST['fecha2']) && checkFecha($_POST['fecha2'])) {
-        $fecha1 = $_POST['fecha'];
-        $fecha2 = $_POST['fecha2'];
-
-        $query1 = Consultas::fecha->value;
-        $query1 = str_replace('#####', $fecha1, $query1);
-
-        $query2 = Consultas::fecha->value;
-        $query2 = str_replace('#####', $fecha2, $query2);
+    if (!isset($fecha1) || !isset($fecha2) || !checkFecha($fecha1) || !checkFecha($fecha2)) {
+        $query1 = Consultas::ultimas24h->value;
+        $query2 = Consultas::ultimas24h->value;
     } else {
-        $query = Consultas::ultimas24h->value;
+        $query1 = str_replace('#####', $fecha1, Consultas::fecha->value);
+        $query2 = str_replace('#####', $fecha2, Consultas::fecha->value);
     }
 
     $datos1 = array();
     $datos2 = array();
 
-    $fecha1 = array();
+    $fecha1Arr = array();
     $hora1 = array();
     $sensor1_1 = array();
     $sensor2_1 = array();
     $presion1 = array();
     $humedad1 = array();
 
-    $fecha2 = array();
+    $fecha2Arr = array();
     $hora2 = array();
     $sensor1_2 = array();
     $sensor2_2 = array();
@@ -209,21 +204,21 @@ function comparar($conn, $modo, $fecha1, $fecha2)
     $sql->execute();
 
     while ($row = $sql->fetch()) {
-        array_push($fecha1, (string) $row['fecha']);
+        array_push($fecha1Arr, (string) $row['fecha']);
         array_push($hora1, (string) $row['hora']);
         array_push($sensor1_1, (float) $row['T1']);
         array_push($sensor2_1, (float) $row['T2']);
         array_push($presion1, (float) $row['presion']);
         array_push($humedad1, (float) $row['humedad']);
     }
-    array_push($datos1, $fecha1, $hora1, $sensor1_1, $sensor2_1, $presion1, $humedad1);
+    array_push($datos1, $fecha1Arr, $hora1, $sensor1_1, $sensor2_1, $presion1, $humedad1);
 
 
     $sql = $conn->prepare($query2);
     $sql->execute();
 
     while ($row = $sql->fetch()) {
-        array_push($fecha2, (string) $row['hora']);
+        array_push($fecha2Arr, (string) $row['fecha']);
         array_push($hora2, (string) $row['hora']);
         array_push($sensor1_2, (float) $row['T1']);
         array_push($sensor2_2, (float) $row['T2']);
@@ -231,7 +226,7 @@ function comparar($conn, $modo, $fecha1, $fecha2)
         array_push($humedad2, (float) $row['humedad']);
     }
 
-    array_push($datos2, $fecha2, $hora2, $sensor1_2, $sensor2_2, $presion2, $humedad2);
+    array_push($datos2, $fecha2Arr, $hora2, $sensor1_2, $sensor2_2, $presion2, $humedad2);
 
     return ['comparar' => true, 'datos1' => $datos1, 'datos2' => $datos2];
 }
@@ -285,8 +280,8 @@ function precipitacion($conn)
 
     $sql = $conn->prepare($query);
     $sql->execute();
-    
-    while ($row = $sql->fetch()) {        
+
+    while ($row = $sql->fetch()) {
         array_push($fecha, (string) $row['fecha']);
         array_push($lluvia, (float) $row['precipitacion']);
     }
@@ -300,7 +295,8 @@ function precipitacion($conn)
     return $datos;
 }
 
-function precipitacion_anio($conn) {
+function precipitacion_anio($conn)
+{
     $datos = array();
 
     $mes = array();
@@ -310,8 +306,8 @@ function precipitacion_anio($conn) {
 
     $sql = $conn->prepare($query);
     $sql->execute();
-    
-    while ($row = $sql->fetch()) {        
+
+    while ($row = $sql->fetch()) {
         array_push($mes, (string) $row['mes']);
         array_push($lluvia_total, (float) $row['precipitacion_total']);
     }

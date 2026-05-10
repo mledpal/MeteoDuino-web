@@ -49,11 +49,7 @@ const divPrecipitacion = document.getElementById('divPrecipitacion');
 const ctx = document.getElementById('grafico');
 
 function toggleMenu() {
-    menu.classList.contains('showMenu')
-        ? ((menu.style.cssText = 'display: hidden;'),
-          menu.classList.remove('showMenu'))
-        : ((menu.style.cssText = 'display: block;'),
-          menu.classList.add('showMenu'));
+    menu.classList.toggle('showMenu');
 }
 
 /**
@@ -330,6 +326,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 'La fecha seleccionada no puede ser mayor que la fecha actual'
             );
             drawGraph('24h');
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !btnMenu.contains(e.target)) {
+            menu.classList.remove('showMenu');
         }
     });
 });
