@@ -638,7 +638,7 @@ export function graphPrecipitacion(...datos) {
             pointStyle: false,
             scales: {
                 x2: {
-                    labels: hora,
+                    labels: fecha,
                 },
                 'y-precipitacion': {
                     type: 'linear',
