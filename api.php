@@ -80,3 +80,6 @@ function devolverDatos($modo)
 
     echo json_encode($datos);
 }
+
+
+header("HTTP/1.1 200 OK");

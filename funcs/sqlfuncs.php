@@ -280,8 +280,8 @@ function precipitacion($conn)
 
     $sql = $conn->prepare($query);
     $sql->execute();
-    
-    while ($row = $sql->fetch()) {        
+
+    while ($row = $sql->fetch()) {
         array_push($fecha, (string) $row['fecha']);
         array_push($lluvia, (float) $row['precipitacion']);
     }
@@ -295,7 +295,8 @@ function precipitacion($conn)
     return $datos;
 }
 
-function precipitacion_anio($conn) {
+function precipitacion_anio($conn)
+{
     $datos = array();
 
     $mes = array();
@@ -305,8 +306,8 @@ function precipitacion_anio($conn) {
 
     $sql = $conn->prepare($query);
     $sql->execute();
-    
-    while ($row = $sql->fetch()) {        
+
+    while ($row = $sql->fetch()) {
         array_push($mes, (string) $row['mes']);
         array_push($lluvia_total, (float) $row['precipitacion_total']);
     }
