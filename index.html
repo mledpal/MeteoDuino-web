@@ -12,7 +12,7 @@
     <meta property="og:description" content="Estación meteorológica casera con ESP8266 (Arduino) en Linares (Jaén/Andalucía/España)">
     <meta property="og:image" content="img/meteo.ico.webp">
 
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index.css?v=20260524">
     <title>MeteoDuino Linares</title>
 </head>
 
@@ -122,7 +122,34 @@
         </div>
 
         <div id="central">
-            <span id="txtDatos"></>
+            <div class="stat-cell" id="statUpdate">
+                <span class="stat-label">Actualización</span>
+                <span id="txtUltima" class="stat-value">—</span>
+            </div>
+            <div class="stat-cell stat-grupo">
+                <span class="stat-label">Temperatura</span>
+                <div class="stat-row">
+                    <span class="stat-max" id="txtTMax">—</span>
+                    <span class="stat-min" id="txtTMin">—</span>
+                    <span class="stat-med" id="txtTMed">—</span>
+                </div>
+            </div>
+            <div class="stat-cell stat-grupo">
+                <span class="stat-label">Humedad</span>
+                <div class="stat-row">
+                    <span class="stat-max" id="txtHMax">—</span>
+                    <span class="stat-min" id="txtHMin">—</span>
+                    <span class="stat-med" id="txtHMed">—</span>
+                </div>
+            </div>
+            <div class="stat-cell stat-grupo">
+                <span class="stat-label">Presión</span>
+                <div class="stat-row">
+                    <span class="stat-max" id="txtPMax">—</span>
+                    <span class="stat-min" id="txtPMin">—</span>
+                    <span class="stat-med" id="txtPMed">—</span>
+                </div>
+            </div>
         </div>
 
         <div id="inferior">
@@ -151,7 +178,7 @@
 
     <script src="./js/chart.js?v=20251030"></script>
     <script src="./js/graph.js?v=20251030" type="module"></script>
-    <script src="./js/index.js?v=20251030" type="module"></script>
+    <script src="./js/index.js?v=20260524" type="module"></script>
 </body>
 
 </html>

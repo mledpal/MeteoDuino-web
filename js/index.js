@@ -36,7 +36,16 @@ const liPrecipitacionAnio = document.getElementById('liprecipitacion_anio');
 const fecha = document.getElementById('fecha');
 const fecha2 = document.getElementById('fecha2');
 
-const txtDatos = document.getElementById('txtDatos');
+const txtUltima = document.getElementById('txtUltima');
+const txtTMax = document.getElementById('txtTMax');
+const txtTMin = document.getElementById('txtTMin');
+const txtTMed = document.getElementById('txtTMed');
+const txtHMax = document.getElementById('txtHMax');
+const txtHMin = document.getElementById('txtHMin');
+const txtHMed = document.getElementById('txtHMed');
+const txtPMax = document.getElementById('txtPMax');
+const txtPMin = document.getElementById('txtPMin');
+const txtPMed = document.getElementById('txtPMed');
 const txtSensacion = document.getElementById('sensacionTermica');
 const txtbateria = document.getElementById('bateria');
 
@@ -142,9 +151,16 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
                 2
             )} hPa`;
 
-            txtDatos.textContent = `Última actualización: ${tiempo} - T: ${tMaxima} (${tMaxT}) / ${tMinima} (${tMinT}) / ${tMedia} - H: ${hMaxima} (${hMaxT}) / ${hMinima} (${hMinT}) / ${hMedia} - P: ${pMaxima} (${pMaxT}) / ${pMinima} (${pMinT}) / ${pMedia} `;
-
-            let largo = txtDatos.textContent.length;
+            txtUltima.textContent = tiempo;
+            txtTMax.textContent = `↑ ${tMaxima} (${tMaxT})`;
+            txtTMin.textContent = `↓ ${tMinima} (${tMinT})`;
+            txtTMed.textContent = `~ ${tMedia}`;
+            txtHMax.textContent = `↑ ${hMaxima} (${hMaxT})`;
+            txtHMin.textContent = `↓ ${hMinima} (${hMinT})`;
+            txtHMed.textContent = `~ ${hMedia}`;
+            txtPMax.textContent = `↑ ${pMaxima} (${pMaxT})`;
+            txtPMin.textContent = `↓ ${pMinima} (${pMinT})`;
+            txtPMed.textContent = `~ ${pMedia}`;
 
             // Calcula los porcentajes entre los máximos y mínimos y dibuja el fondo de color en los divs
             let valorT =
