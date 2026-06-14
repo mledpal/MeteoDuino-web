@@ -67,20 +67,18 @@ function toggleMenu() {
  * @param {*} modo Tipo de datos que recuperamos *
  */
 async function drawGraph(modo, fecha = null, fecha2 = null) {
-    document.getElementById('grafico').remove();
-    let canvas = document.createElement('canvas');
-    canvas.setAttribute('id', 'grafico');
-    document.getElementById('inferior').appendChild(canvas);
-
+    divPrecipitacion.style.display = 'none';
     let hora = [new Date().getHours(), new Date().getMinutes()];
+
+    const params = new URLSearchParams({ modo });
+    if (fecha) params.append('fecha', fecha);
+    if (fecha2) params.append('fecha2', fecha2);
 
     const options = {
         method: 'POST',
-        body: `modo=${modo}&fecha=${fecha}&fecha2=${fecha2}`,
-        cors: 'no-cors',
+        body: params.toString(),
         headers: {
             'Content-type': 'application/x-www-form-urlencoded',
-            cache: 'no-cache',
         },
     };
 
@@ -92,8 +90,6 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
     switch (modo) {
         case '24h':
         case 'fecha':
-            // Dibuja la gráfica
-            //graph24(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);
             graph24(...datos);
 
             // Muestra los datos actuales
@@ -186,17 +182,14 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
             break;
 
         case 'temperaturas':
-            //graphTemperaturas(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
             graphTemperaturas(...datos);
             break;
 
         case 'otros':
-            //graphOtros(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5], datos[6]);
             graphOtros(...datos);
             break;
 
         case 'last14days':
-            //graphLastDays(datos[0].reverse(), datos[1].reverse(), datos[2].reverse(), datos[3].reverse(), datos[4].reverse());
             graphLastDays(...datos);
             break;
 
@@ -254,11 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.background = estado.background;
     }
 
-    const fechaActual = new Date().toLocaleDateString().split('/');
-
-    fecha.value = `${fechaActual[2]}-${fechaActual[1].length == 1 ? '0' : ''}${
-        fechaActual[1]
-    }-${fechaActual[0].length == 1 ? '0' : ''}${fechaActual[0]}`;
+    fecha.value = new Date().toISOString().slice(0, 10);
 
     fecha2.value = fecha.value;
 
@@ -416,9 +405,9 @@ const estadoActual = async () => {
         const now = new Date();
         const timezoneOffset = now.getTimezoneOffset() * 60 * 1000;
 
-        const sunriseLocal = new Date(sunrise.getTime() + timezoneOffset);
-        const sunsetLocal = new Date(sunset.getTime() + timezoneOffset);
-        const currentTime = new Date(now.getTime() + timezoneOffset);
+        const sunriseLocal = new Date(sunrise.getTime() - timezoneOffset);
+        const sunsetLocal = new Date(sunset.getTime() - timezoneOffset);
+        const currentTime = new Date(now.getTime() - timezoneOffset);
        
         const isDaytime =
             currentTime >= sunriseLocal && currentTime <= sunsetLocal;
@@ -440,7 +429,6 @@ const estadoActual = async () => {
         estado.es_dia = isDaytime;
 
         txtVelocidad.textContent = `${estado.viento} Km/h`;
-        txtDireccion.textContent = `${estado.direccion} º`;
 
         // Asigna el fondo según el estado meteorológico
         if (estado.llueve) {

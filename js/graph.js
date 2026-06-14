@@ -1,28 +1,12 @@
 let currentChart = null;
 
-/**
- * Con esta función obligamos al gráfico a redimensionarse cuando cambia el tamaño de la pantalla o su orientación
- * @param {*} graph Referencia al gráfico
- */
-const resize = (graph) => {
-    // Evento que se dispara cuando cambia el tamaño de la pantalla
-    window.addEventListener('resize', () => {
-        funciones(graph);
-    });
-
-    // Evento que se dispara cuando cambia la orientación de la pantalla
-    screen.orientation.addEventListener('change', function (e) {
-        funciones(graph);
-    });
-
-    // Función que se encarga de redimensionar el gráfico
-    const funciones = (graph) => {
-        document.getElementById('grafico').style.width = '100%';
-        document.getElementById('grafico').style.height = '100%';
-        graph.resize();
-        graph.update();
-    };
-};
+// Listener global único para redimensionar el gráfico actual
+window.addEventListener('resize', () => {
+    if (currentChart) {
+        currentChart.resize();
+        currentChart.update();
+    }
+});
 
 export function graph24(
     horas,
@@ -34,6 +18,10 @@ export function graph24(
     bateria
 ) {
     const ctx = document.getElementById('grafico');
+
+    if (currentChart) {
+        currentChart.destroy();
+    }
 
     const graph = new Chart(ctx, {
         data: {
@@ -105,11 +93,16 @@ export function graph24(
         },
     });
 
-    resize(graph);
+    currentChart = graph;
+
 }
 
 export function graphTemperaturas(fecha, max1, min1, med1, max2, min2, med2) {
     const ctx = document.getElementById('grafico');
+
+    if (currentChart) {
+        currentChart.destroy();
+    }
 
     const graph = new Chart(ctx, {
         data: {
@@ -190,11 +183,16 @@ export function graphTemperaturas(fecha, max1, min1, med1, max2, min2, med2) {
         },
     });
 
-    resize(graph);
+    currentChart = graph;
+
 }
 
 export function graphOtros(fecha, maxp, minp, medp, maxh, minh, medh) {
     const ctx = document.getElementById('grafico');
+
+    if (currentChart) {
+        currentChart.destroy();
+    }
 
     const graph = new Chart(ctx, {
         data: {
@@ -268,11 +266,16 @@ export function graphOtros(fecha, maxp, minp, medp, maxh, minh, medh) {
         },
     });
 
-    resize(graph);
+    currentChart = graph;
+
 }
 
 export function graphLastDays(fecha, t1, t2, p, h) {
     const ctx = document.getElementById('grafico');
+
+    if (currentChart) {
+        currentChart.destroy();
+    }
 
     const graph = new Chart(ctx, {
         data: {
@@ -337,112 +340,109 @@ export function graphLastDays(fecha, t1, t2, p, h) {
         },
     });
 
-    resize(graph);
+    currentChart = graph;
+
 }
 
 export function graphComparar(datos) {
     const { datos1, datos2 } = datos;
 
-    const fecha1 = datos1[0];
+    const fecha1 = datos1[0][0];
     const hora1 = datos1[1];
     const t1a = datos1[2];
     const t2a = datos1[3];
     const p = datos1[4];
     const h = datos1[5];
 
-    const fecha2 = datos2[0];
-    const hora2 = datos2[1];
+    const fecha2 = datos2[0][0];
     const t1b = datos2[2];
     const t2b = datos2[3];
     const pb = datos2[4];
     const hb = datos2[5];
 
     const ctx = document.getElementById('grafico');
+
+    if (currentChart) {
+        currentChart.destroy();
+    }
+
     const graph = new Chart(ctx, {
         data: {
-            labels: fecha1,
-            fecha2,
+            labels: hora1,
             datasets: [
                 {
-                    label: 'T1',
+                    label: `T1 (${fecha1})`,
                     type: 'line',
                     data: t1a,
                     borderWidth: 1,
                     hidden: false,
-                    xAxisID: 'x2',
                     yAxisID: 'y-temperatura',
                 },
                 {
-                    label: 'T2',
+                    label: `T2 (${fecha1})`,
                     type: 'line',
                     data: t2a,
                     borderWidth: 1,
-                    xAxisID: 'x2',
-                    yAxisID: 'y-temperatura',
                     hidden: true,
+                    yAxisID: 'y-temperatura',
                 },
                 {
                     type: 'line',
-                    label: 'Presión',
+                    label: `Presión (${fecha1})`,
                     data: p,
                     borderWidth: 1,
-                    xAxisID: 'x2',
-                    yAxisID: 'y-presion',
                     hidden: true,
+                    yAxisID: 'y-presion',
                 },
                 {
-                    label: 'Humedad',
+                    label: `Humedad (${fecha1})`,
                     type: 'line',
                     data: h,
                     borderWidth: 1,
                     hidden: true,
-                    xAxisID: 'x2',
                     yAxisID: 'y-humedad',
                 },
                 {
-                    label: 'T1B',
+                    label: `T1 (${fecha2})`,
                     type: 'line',
                     data: t1b,
                     borderWidth: 1,
                     hidden: false,
-                    xAxisID: 'x2',
                     yAxisID: 'y-temperatura',
+                    borderDash: [5, 5],
                 },
                 {
-                    label: 'T2B',
+                    label: `T2 (${fecha2})`,
                     type: 'line',
                     data: t2b,
                     borderWidth: 1,
-                    xAxisID: 'x2',
-                    yAxisID: 'y-temperatura',
                     hidden: true,
+                    yAxisID: 'y-temperatura',
+                    borderDash: [5, 5],
                 },
                 {
                     type: 'line',
-                    label: 'Presión',
+                    label: `Presión (${fecha2})`,
                     data: pb,
                     borderWidth: 1,
-                    xAxisID: 'x2',
-                    yAxisID: 'y-presion',
                     hidden: true,
+                    yAxisID: 'y-presion',
+                    borderDash: [5, 5],
                 },
                 {
-                    label: 'Humedad',
+                    label: `Humedad (${fecha2})`,
                     type: 'line',
                     data: hb,
                     borderWidth: 1,
                     hidden: true,
-                    xAxisID: 'x2',
                     yAxisID: 'y-humedad',
+                    borderDash: [5, 5],
                 },
             ],
         },
         options: {
             pointStyle: false,
             scales: {
-                x2: {
-                    labels: hora2,
-                },
                 'y-temperatura': {
                     type: 'linear',
                     position: 'left',
@@ -465,7 +465,8 @@ export function graphComparar(datos) {
         },
     });
 
-    resize(graph);
+    currentChart = graph;
+
 }
 
 export function graphExterna(...datos) {
@@ -484,9 +485,10 @@ export function graphExterna(...datos) {
     }
 
     const ctx = document.getElementById('grafico');
+
     const graph = new Chart(ctx, {
         data: {
-            labels: fecha,
+            labels: hora,
             datasets: [
                 {
                     label: 'Temperatura',
@@ -494,7 +496,6 @@ export function graphExterna(...datos) {
                     data: temperatura,
                     borderWidth: 1,
                     hidden: false,
-                    xAxisID: 'x2',
                     yAxisID: 'y-temperatura',
                 },
                 {
@@ -502,7 +503,6 @@ export function graphExterna(...datos) {
                     type: 'line',
                     data: humedad,
                     borderWidth: 1,
-                    xAxisID: 'x2',
                     yAxisID: 'y-humedad',
                     hidden: true,
                 },
@@ -511,7 +511,6 @@ export function graphExterna(...datos) {
                     label: 'Presión',
                     data: presion,
                     borderWidth: 1,
-                    xAxisID: 'x2',
                     yAxisID: 'y-presion',
                     hidden: true,
                 },
@@ -521,7 +520,6 @@ export function graphExterna(...datos) {
                     data: precipitacion,
                     borderWidth: 1,
                     hidden: true,
-                    xAxisID: 'x2',
                     yAxisID: 'y-precipitacion',
                 },
                 {
@@ -530,7 +528,6 @@ export function graphExterna(...datos) {
                     data: precipitacion_puntual,
                     borderWidth: 1,
                     hidden: true,
-                    xAxisID: 'x2',
                     yAxisID: 'y-precipitacion2',
                 },
                 {
@@ -539,7 +536,6 @@ export function graphExterna(...datos) {
                     data: radiacion_solar,
                     borderWidth: 1,
                     hidden: true,
-                    xAxisID: 'x2',
                     yAxisID: 'y-radiacion',
                 },
                 {
@@ -548,26 +544,13 @@ export function graphExterna(...datos) {
                     data: velocidad_viento,
                     borderWidth: 1,
                     hidden: true,
-                    xAxisID: 'x2',
                     yAxisID: 'y-temperatura',
                 },
-                // {
-                // 	label: "Dirección Viento",
-                // 	type: "line",
-                // 	data: direccion_viento,
-                // 	borderWidth: 1,
-                // 	hidden: true,
-                // 	xAxisID: "x2",
-                // 	yAxisID: "y-temperatura",
-                // },
             ],
         },
         options: {
             pointStyle: false,
             scales: {
-                x2: {
-                    labels: hora,
-                },
                 'y-temperatura': {
                     type: 'linear',
                     position: 'left',
@@ -611,7 +594,8 @@ export function graphExterna(...datos) {
         },
     });
 
-    resize(graph);
+    currentChart = graph;
+
 }
 
 export function graphPrecipitacion(...datos) {
@@ -619,6 +603,11 @@ export function graphPrecipitacion(...datos) {
     const precipitacion = datos[1];
 
     const ctx = document.getElementById('grafico');
+
+    if (currentChart) {
+        currentChart.destroy();
+    }
+
     const graph = new Chart(ctx, {
         data: {
             labels: fecha,
@@ -629,7 +618,6 @@ export function graphPrecipitacion(...datos) {
                     data: precipitacion,
                     borderWidth: 1,
                     hidden: false,
-                    xAxisID: 'x2',
                     yAxisID: 'y-precipitacion',
                 },
             ],
@@ -637,9 +625,6 @@ export function graphPrecipitacion(...datos) {
         options: {
             pointStyle: false,
             scales: {
-                x2: {
-                    labels: fecha,
-                },
                 'y-precipitacion': {
                     type: 'linear',
                     position: 'left',
@@ -648,7 +633,8 @@ export function graphPrecipitacion(...datos) {
         },
     });
 
-    resize(graph);
+    currentChart = graph;
+
 }
 
 export function graphPrecipitacionYear(...datos) {
@@ -656,6 +642,11 @@ export function graphPrecipitacionYear(...datos) {
     const precipitacion = datos[1];
 
     const ctx = document.getElementById('grafico');
+
+    if (currentChart) {
+        currentChart.destroy();
+    }
+
     const graph = new Chart(ctx, {
         data: {
             labels: mes,
@@ -666,7 +657,6 @@ export function graphPrecipitacionYear(...datos) {
                     data: precipitacion,
                     borderWidth: 1,
                     hidden: false,
-                    xAxisID: 'x2',
                     yAxisID: 'y-precipitacion',
                 },
             ],
@@ -674,9 +664,6 @@ export function graphPrecipitacionYear(...datos) {
         options: {
             pointStyle: false,
             scales: {
-                x2: {
-                    labels: mes,
-                },
                 'y-precipitacion': {
                     type: 'linear',
                     position: 'left',
@@ -685,5 +672,6 @@ export function graphPrecipitacionYear(...datos) {
         },
     });
 
-    resize(graph);
+    currentChart = graph;
+
 }

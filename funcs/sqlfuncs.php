@@ -1,15 +1,12 @@
 <?php
 
-// Devuelve true si la fecha es válida
-// para evitar posibles ataques 
+// Devuelve true si la fecha tiene formato estricto YYYY-MM-DD
+// para evitar posibles ataques
 // Si es false, se ejecuta la consulta por defecto (24h)
 function checkFecha($fecha)
 {
-    if (strtotime($fecha)) {
-        return true;
-    } else {
-        return false;
-    }
+    $d = DateTime::createFromFormat('Y-m-d', $fecha);
+    return $d && $d->format('Y-m-d') === $fecha;
 }
 
 /**

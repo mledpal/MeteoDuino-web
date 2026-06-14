@@ -23,9 +23,15 @@ switch ($_SERVER['REQUEST_METHOD']) {
         echo json_encode(['error' => 'ERROR default']);
 }
 
+/**
+ * Devuelve los datos según el modo especificado.
+ *
+ * @param string $modo El modo de operación para determinar qué datos devolver.
+ */
 
-function devolverDatos($modo)
+function devolverDatos(string $modo)
 {
+    header("HTTP/1.1 200 OK");
 
     include_once 'funcs/conexion.php';
     include_once 'funcs/consultas.php';
@@ -80,6 +86,3 @@ function devolverDatos($modo)
 
     echo json_encode($datos);
 }
-
-
-header("HTTP/1.1 200 OK");
