@@ -254,55 +254,54 @@ document.addEventListener('DOMContentLoaded', () => {
     let hora = new Date().getHours();
 
     btnMenu.addEventListener('click', () => {
-        fecha2.style.opacity = 0;
         toggleMenu();
     });
 
     li24h.addEventListener('click', () => {
         toggleMenu();
-        fecha2.style.opacity = 0;
+        fecha2.style.display = 'none';
         drawGraph('24h');
     });
 
     li14dias.addEventListener('click', () => {
         toggleMenu();
-        fecha2.style.opacity = 0;
+        fecha2.style.display = 'none';
         drawGraph('last14days');
     });
 
     liOtros.addEventListener('click', () => {
         toggleMenu();
-        fecha2.style.opacity = 0;
+        fecha2.style.display = 'none';
         drawGraph('otros');
     });
 
     liTemperaturas.addEventListener('click', () => {
         toggleMenu();
-        fecha2.style.opacity = 0;
+        fecha2.style.display = 'none';
         drawGraph('temperaturas');
     });
 
     liComparar.addEventListener('click', () => {
         toggleMenu();
-        fecha2.style.opacity = 1;
+        fecha2.style.display = 'inline-block';
         drawGraph('comparar', fecha.value, fecha2.value);
     });
 
     liExterna.addEventListener('click', () => {
         toggleMenu();
-        fecha2.style.opacity = 0;
+        fecha2.style.display = 'none';
         drawGraph('externa');
     });
 
     liPrecipitacion.addEventListener('click', () => {
         toggleMenu();
-        fecha2.style.opacity = 0;
+        fecha2.style.display = 'none';
         drawGraph('precipitacion');
     });
 
     liPrecipitacionAnio.addEventListener('click', () => {
         toggleMenu();
-        fecha2.style.opacity = 0;
+        fecha2.style.display = 'none';
         drawGraph('precipitacion_anio');
     });
 

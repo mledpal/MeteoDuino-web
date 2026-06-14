@@ -154,10 +154,7 @@ header label input::-webkit-calendar-picker-indicator {
 }
 
 #fecha2 {
-    opacity: 0;
-    width: 0;
-    padding: 0;
-    margin: 0;
+    display: none;
 }
 
 main {
