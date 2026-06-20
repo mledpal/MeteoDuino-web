@@ -13,6 +13,7 @@ Live site: https://meteo.ledemar.es
 **No build step.** Files are served directly — HTML, CSS, and JS are all vanilla and require no compilation. Chart.js (v4.3.0) is bundled as `js/chart.js`.
 
 **Code formatting:** Prettier is configured via `.prettierrc`. Run with:
+
 ```
 npx prettier --write .
 ```
@@ -44,6 +45,7 @@ Frontend (POST to api.php with `modo` param)
 **API modes** (`modo` values): `24h`, `fecha`, `temperaturas`, `otros`, `last14days`, `comparar`, `externa`, `precipitacion`, `precipitacion_anio`, `status`.
 
 **Database tables:**
+
 - `datos` — Internal sensor readings (BMP280 + GY-11): temperature (2 sensors), humidity, pressure, wind speed/direction, solar radiation, rainfall.
 - `datosEXT` — External weather station data.
 

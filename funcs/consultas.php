@@ -144,4 +144,9 @@ ORDER BY subquery.id ASC
                     ORDER BY mes;";
 
     case status = "select * from datosEXT order by id desc limit 4";
+
+    case comparar_meses = "SELECT fecha, ROUND(AVG(sensor1), 2) as temp_media
+                            FROM datos
+                            WHERE YEAR(fecha) = #### AND MONTH(fecha) = ##
+                            GROUP BY fecha ORDER BY fecha ASC";
 }

@@ -94,7 +94,6 @@ export function graph24(
     });
 
     currentChart = graph;
-
 }
 
 export function graphTemperaturas(fecha, max1, min1, med1, max2, min2, med2) {
@@ -184,7 +183,6 @@ export function graphTemperaturas(fecha, max1, min1, med1, max2, min2, med2) {
     });
 
     currentChart = graph;
-
 }
 
 export function graphOtros(fecha, maxp, minp, medp, maxh, minh, medh) {
@@ -267,7 +265,6 @@ export function graphOtros(fecha, maxp, minp, medp, maxh, minh, medh) {
     });
 
     currentChart = graph;
-
 }
 
 export function graphLastDays(fecha, t1, t2, p, h) {
@@ -341,7 +338,6 @@ export function graphLastDays(fecha, t1, t2, p, h) {
     });
 
     currentChart = graph;
-
 }
 
 export function graphComparar(datos) {
@@ -466,7 +462,6 @@ export function graphComparar(datos) {
     });
 
     currentChart = graph;
-
 }
 
 export function graphExterna(...datos) {
@@ -595,7 +590,6 @@ export function graphExterna(...datos) {
     });
 
     currentChart = graph;
-
 }
 
 export function graphPrecipitacion(...datos) {
@@ -634,7 +628,6 @@ export function graphPrecipitacion(...datos) {
     });
 
     currentChart = graph;
-
 }
 
 export function graphPrecipitacionYear(...datos) {
@@ -673,5 +666,60 @@ export function graphPrecipitacionYear(...datos) {
     });
 
     currentChart = graph;
+}
 
+export function graphCompararMeses(datos) {
+    const { mes1, mes2, datos1, datos2 } = datos;
+
+    const dias1 = datos1[0];
+    const temps1 = datos1[1];
+
+    const dias2 = datos2[0];
+    const temps2 = datos2[1];
+
+    const maxDias = Math.max(dias1.length, dias2.length);
+    const labels = Array.from({ length: maxDias }, (_, i) => i + 1);
+
+    const ctx = document.getElementById('grafico');
+
+    if (currentChart) {
+        currentChart.destroy();
+    }
+
+    const graph = new Chart(ctx, {
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: `Temperatura Media (${mes1})`,
+                    type: 'line',
+                    data: temps1,
+                    borderWidth: 1,
+                    hidden: false,
+                    yAxisID: 'y-temperatura',
+                },
+                {
+                    label: `Temperatura Media (${mes2})`,
+                    type: 'line',
+                    data: temps2,
+                    borderWidth: 1,
+                    hidden: false,
+                    yAxisID: 'y-temperatura',
+                    borderDash: [5, 5],
+                },
+            ],
+        },
+        options: {
+            pointStyle: false,
+            scales: {
+                'y-temperatura': {
+                    type: 'linear',
+                    position: 'left',
+                    label: 'Temperatura (°C)',
+                },
+            },
+        },
+    });
+
+    currentChart = graph;
 }

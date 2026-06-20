@@ -361,3 +361,53 @@ function status($conn)
 
     return $datos;
 }
+
+function checkMes($mes)
+{
+    return preg_match('/^\d{4}-(0[1-9]|1[0-2])$/', $mes);
+}
+
+function compararMeses($conn, $mes1, $mes2)
+{
+    if (!isset($mes1) || !isset($mes2) || !checkMes($mes1) || !checkMes($mes2)) {
+        return ['error' => 'Formato de mes inválido. Use YYYY-MM'];
+    }
+
+    $datos1 = array();
+    $datos2 = array();
+
+    $dias1 = array();
+    $temps1 = array();
+
+    $dias2 = array();
+    $temps2 = array();
+
+    $anio1 = substr($mes1, 0, 4);
+    $mesNum1 = substr($mes1, 5, 2);
+
+    $anio2 = substr($mes2, 0, 4);
+    $mesNum2 = substr($mes2, 5, 2);
+
+    $query1 = str_replace(['####', '##'], [$anio1, $mesNum1], Consultas::comparar_meses->value);
+    $query2 = str_replace(['####', '##'], [$anio2, $mesNum2], Consultas::comparar_meses->value);
+
+    $sql = $conn->prepare($query1);
+    $sql->execute();
+
+    while ($row = $sql->fetch()) {
+        array_push($dias1, (string) $row['fecha']);
+        array_push($temps1, (float) $row['temp_media']);
+    }
+    array_push($datos1, $dias1, $temps1);
+
+    $sql = $conn->prepare($query2);
+    $sql->execute();
+
+    while ($row = $sql->fetch()) {
+        array_push($dias2, (string) $row['fecha']);
+        array_push($temps2, (float) $row['temp_media']);
+    }
+    array_push($datos2, $dias2, $temps2);
+
+    return ['comparar_meses' => true, 'mes1' => $mes1, 'mes2' => $mes2, 'datos1' => $datos1, 'datos2' => $datos2];
+}

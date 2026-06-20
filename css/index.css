@@ -19,7 +19,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        sans-serif;
 }
 
 body {
@@ -260,8 +265,12 @@ main {
 }
 
 @keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .marcador h3 {
@@ -280,12 +289,48 @@ main {
     text-align: center;
 }
 
-#divSensacion { background: linear-gradient(135deg, rgba(255,100,100,0.25), rgba(255,50,50,0.1)); }
-#divHumedad { background: linear-gradient(135deg, rgba(100,150,255,0.25), rgba(50,100,255,0.1)); }
-#divPrecipitacion { background: linear-gradient(135deg, rgba(100,200,255,0.25), rgba(50,150,255,0.1)); }
-#divPresion { background: linear-gradient(135deg, rgba(100,255,150,0.25), rgba(50,200,100,0.1)); }
-#divVelocidad { background: linear-gradient(135deg, rgba(255,220,100,0.25), rgba(255,180,50,0.1)); }
-#divDireccion { background: linear-gradient(135deg, rgba(180,100,255,0.25), rgba(150,50,255,0.1)); }
+#divSensacion {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 100, 100, 0.25),
+        rgba(255, 50, 50, 0.1)
+    );
+}
+#divHumedad {
+    background: linear-gradient(
+        135deg,
+        rgba(100, 150, 255, 0.25),
+        rgba(50, 100, 255, 0.1)
+    );
+}
+#divPrecipitacion {
+    background: linear-gradient(
+        135deg,
+        rgba(100, 200, 255, 0.25),
+        rgba(50, 150, 255, 0.1)
+    );
+}
+#divPresion {
+    background: linear-gradient(
+        135deg,
+        rgba(100, 255, 150, 0.25),
+        rgba(50, 200, 100, 0.1)
+    );
+}
+#divVelocidad {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 220, 100, 0.25),
+        rgba(255, 180, 50, 0.1)
+    );
+}
+#divDireccion {
+    background: linear-gradient(
+        135deg,
+        rgba(180, 100, 255, 0.25),
+        rgba(150, 50, 255, 0.1)
+    );
+}
 
 #divPrecipitacion {
     display: none;
@@ -294,7 +339,7 @@ main {
 #divDireccion img {
     width: 50px;
     height: 50px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 #central {

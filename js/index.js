@@ -9,6 +9,7 @@ import {
     graphExterna,
     graphPrecipitacion,
     graphPrecipitacionYear,
+    graphCompararMeses,
 } from './graph.js';
 import { degree } from './degree.js';
 
@@ -29,12 +30,15 @@ const liTemperaturas = document.getElementById('liTemperaturas');
 const liOtros = document.getElementById('liOtros');
 const li14dias = document.getElementById('li14dias');
 const liComparar = document.getElementById('liComparar');
+const liCompararMeses = document.getElementById('liCompararMeses');
 const liExterna = document.getElementById('liExterna');
 const liPrecipitacion = document.getElementById('liprecipitacion');
 const liPrecipitacionAnio = document.getElementById('liprecipitacion_anio');
 
 const fecha = document.getElementById('fecha');
 const fecha2 = document.getElementById('fecha2');
+const mes1 = document.getElementById('mes1');
+const mes2 = document.getElementById('mes2');
 
 const txtUltima = document.getElementById('txtUltima');
 const txtTMax = document.getElementById('txtTMax');
@@ -66,13 +70,21 @@ function toggleMenu() {
  * @param {*} url URL a la que nos conectamos
  * @param {*} modo Tipo de datos que recuperamos *
  */
-async function drawGraph(modo, fecha = null, fecha2 = null) {
+async function drawGraph(
+    modo,
+    fecha = null,
+    fecha2 = null,
+    mes1 = null,
+    mes2 = null
+) {
     divPrecipitacion.style.display = 'none';
     let hora = [new Date().getHours(), new Date().getMinutes()];
 
     const params = new URLSearchParams({ modo });
     if (fecha) params.append('fecha', fecha);
     if (fecha2) params.append('fecha2', fecha2);
+    if (mes1) params.append('mes1', mes1);
+    if (mes2) params.append('mes2', mes2);
 
     const options = {
         method: 'POST',
@@ -206,6 +218,10 @@ async function drawGraph(modo, fecha = null, fecha2 = null) {
             graphComparar(datos);
             break;
 
+        case 'comparar_meses':
+            graphCompararMeses(datos);
+            break;
+
         case 'externa':
             let ultimoRegistro = datos[0].length - 1;
             const reg = {
@@ -248,8 +264,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fecha.value = new Date().toISOString().slice(0, 10);
-
     fecha2.value = fecha.value;
+
+    mes1.value = new Date().toISOString().slice(0, 7);
+    mes2.value = mes1.value;
+
+    mes1.style.display = 'none';
+    mes2.style.display = 'none';
 
     let hora = new Date().getHours();
 
@@ -260,48 +281,81 @@ document.addEventListener('DOMContentLoaded', () => {
     li24h.addEventListener('click', () => {
         toggleMenu();
         fecha2.style.display = 'none';
+        fecha.style.display = 'inline-block';
+        mes1.style.display = 'none';
+        mes2.style.display = 'none';
         drawGraph('24h');
     });
 
     li14dias.addEventListener('click', () => {
         toggleMenu();
         fecha2.style.display = 'none';
+        fecha.style.display = 'inline-block';
+        mes1.style.display = 'none';
+        mes2.style.display = 'none';
         drawGraph('last14days');
     });
 
     liOtros.addEventListener('click', () => {
         toggleMenu();
         fecha2.style.display = 'none';
+        fecha.style.display = 'inline-block';
+        mes1.style.display = 'none';
+        mes2.style.display = 'none';
         drawGraph('otros');
     });
 
     liTemperaturas.addEventListener('click', () => {
         toggleMenu();
         fecha2.style.display = 'none';
+        fecha.style.display = 'inline-block';
+        mes1.style.display = 'none';
+        mes2.style.display = 'none';
         drawGraph('temperaturas');
     });
 
     liComparar.addEventListener('click', () => {
         toggleMenu();
         fecha2.style.display = 'inline-block';
+        fecha.style.display = 'inline-block';
+        mes1.style.display = 'none';
+        mes2.style.display = 'none';
         drawGraph('comparar', fecha.value, fecha2.value);
+    });
+
+    liCompararMeses.addEventListener('click', () => {
+        toggleMenu();
+        fecha.style.display = 'none';
+        fecha2.style.display = 'none';
+        mes1.style.display = 'inline-block';
+        mes2.style.display = 'inline-block';
+        drawGraph('comparar_meses', null, null, mes1.value, mes2.value);
     });
 
     liExterna.addEventListener('click', () => {
         toggleMenu();
         fecha2.style.display = 'none';
+        fecha.style.display = 'inline-block';
+        mes1.style.display = 'none';
+        mes2.style.display = 'none';
         drawGraph('externa');
     });
 
     liPrecipitacion.addEventListener('click', () => {
         toggleMenu();
         fecha2.style.display = 'none';
+        fecha.style.display = 'inline-block';
+        mes1.style.display = 'none';
+        mes2.style.display = 'none';
         drawGraph('precipitacion');
     });
 
     liPrecipitacionAnio.addEventListener('click', () => {
         toggleMenu();
         fecha2.style.display = 'none';
+        fecha.style.display = 'inline-block';
+        mes1.style.display = 'none';
+        mes2.style.display = 'none';
         drawGraph('precipitacion_anio');
     });
 
@@ -331,6 +385,14 @@ document.addEventListener('DOMContentLoaded', () => {
             );
             drawGraph('24h');
         }
+    });
+
+    mes1.addEventListener('change', () => {
+        drawGraph('comparar_meses', null, null, mes1.value, mes2.value);
+    });
+
+    mes2.addEventListener('change', () => {
+        drawGraph('comparar_meses', null, null, mes1.value, mes2.value);
     });
 
     document.addEventListener('click', (e) => {
@@ -407,7 +469,7 @@ const estadoActual = async () => {
         const sunriseLocal = new Date(sunrise.getTime() - timezoneOffset);
         const sunsetLocal = new Date(sunset.getTime() - timezoneOffset);
         const currentTime = new Date(now.getTime() - timezoneOffset);
-       
+
         const isDaytime =
             currentTime >= sunriseLocal && currentTime <= sunsetLocal;
 
