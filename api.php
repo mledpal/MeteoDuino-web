@@ -63,6 +63,12 @@ function devolverDatos(string $modo)
             $datos = comparar($conn, $fecha1, $fecha2);
             break;
 
+        case 'comparar_meses':
+            $mes1 = $_POST['mes1'] ?? null;
+            $mes2 = $_POST['mes2'] ?? null;
+            $datos = compararMeses($conn, $mes1, $mes2);
+            break;
+
         case 'externa':
             $datos = externa($conn);
             break;
